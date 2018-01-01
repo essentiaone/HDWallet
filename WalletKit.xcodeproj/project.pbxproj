@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE90A0781FFA698D005ED7AF /* WalletKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */; };
+		AE90A07A1FFA698D005ED7AF /* WalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */; };
 		AEBA90DA1FFA21ED003EA2BA /* WalletKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AEBA90D81FFA21ED003EA2BA /* WalletKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AEBA90E11FFA225D003EA2BA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBA90E01FFA225D003EA2BA /* Network.swift */; };
 		AEBA90E31FFA22B0003EA2BA /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBA90E21FFA22B0003EA2BA /* KeyGenerator.swift */; };
@@ -29,6 +31,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AE90A07B1FFA698D005ED7AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AEBA90CC1FFA21ED003EA2BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AEBA90D41FFA21ED003EA2BA;
+			remoteInfo = WalletKit;
+		};
+		AE90A0801FFA69D1005ED7AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AEBA90CC1FFA21ED003EA2BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AEBA90EF1FFA2C6A003EA2BA;
+			remoteInfo = Example;
+		};
 		AEBA91061FFA2C74003EA2BA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AEBA90CC1FFA21ED003EA2BA /* Project object */;
@@ -54,6 +70,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AE90A0751FFA698D005ED7AF /* WalletKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletKitTests.swift; sourceTree = "<group>"; };
+		AE90A0791FFA698D005ED7AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEBA90D81FFA21ED003EA2BA /* WalletKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletKit.h; sourceTree = "<group>"; };
 		AEBA90D91FFA21ED003EA2BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +95,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AE90A0721FFA698D005ED7AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE90A07A1FFA698D005ED7AF /* WalletKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AEBA90D11FFA21ED003EA2BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -96,11 +123,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE90A0761FFA698D005ED7AF /* WalletKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */,
+				AE90A0791FFA698D005ED7AF /* Info.plist */,
+			);
+			path = WalletKitTests;
+			sourceTree = "<group>";
+		};
 		AEBA90CB1FFA21ED003EA2BA = {
 			isa = PBXGroup;
 			children = (
 				AEBA90E81FFA2722003EA2BA /* CryptoSwift.framework */,
 				AEBA90D71FFA21ED003EA2BA /* WalletKit */,
+				AE90A0761FFA698D005ED7AF /* WalletKitTests */,
 				AEBA90F11FFA2C6A003EA2BA /* Example */,
 				AEBA90D61FFA21ED003EA2BA /* Products */,
 			);
@@ -111,6 +148,7 @@
 			children = (
 				AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */,
 				AEBA90F01FFA2C6A003EA2BA /* Example.app */,
+				AE90A0751FFA698D005ED7AF /* WalletKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +205,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		AE90A0741FFA698D005ED7AF /* WalletKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE90A07F1FFA698D005ED7AF /* Build configuration list for PBXNativeTarget "WalletKitTests" */;
+			buildPhases = (
+				AE90A0711FFA698D005ED7AF /* Sources */,
+				AE90A0721FFA698D005ED7AF /* Frameworks */,
+				AE90A0731FFA698D005ED7AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE90A07C1FFA698D005ED7AF /* PBXTargetDependency */,
+				AE90A0811FFA69D1005ED7AF /* PBXTargetDependency */,
+			);
+			name = WalletKitTests;
+			productName = WalletKitTests;
+			productReference = AE90A0751FFA698D005ED7AF /* WalletKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AEBA90D41FFA21ED003EA2BA /* WalletKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AEBA90DD1FFA21ED003EA2BA /* Build configuration list for PBXNativeTarget "WalletKit" */;
@@ -214,6 +271,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = yuzushioh;
 				TargetAttributes = {
+					AE90A0741FFA698D005ED7AF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AEBA90EF1FFA2C6A003EA2BA;
+					};
 					AEBA90D41FFA21ED003EA2BA = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
@@ -240,11 +302,19 @@
 			targets = (
 				AEBA90D41FFA21ED003EA2BA /* WalletKit */,
 				AEBA90EF1FFA2C6A003EA2BA /* Example */,
+				AE90A0741FFA698D005ED7AF /* WalletKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AE90A0731FFA698D005ED7AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AEBA90D31FFA21ED003EA2BA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -265,6 +335,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AE90A0711FFA698D005ED7AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE90A0781FFA698D005ED7AF /* WalletKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AEBA90D01FFA21ED003EA2BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -292,6 +370,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AE90A07C1FFA698D005ED7AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AEBA90D41FFA21ED003EA2BA /* WalletKit */;
+			targetProxy = AE90A07B1FFA698D005ED7AF /* PBXContainerItemProxy */;
+		};
+		AE90A0811FFA69D1005ED7AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AEBA90EF1FFA2C6A003EA2BA /* Example */;
+			targetProxy = AE90A0801FFA69D1005ED7AF /* PBXContainerItemProxy */;
+		};
 		AEBA91071FFA2C74003EA2BA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AEBA90D41FFA21ED003EA2BA /* WalletKit */;
@@ -319,6 +407,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AE90A07D1FFA698D005ED7AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LG8FQ3AXT3;
+				INFOPLIST_FILE = WalletKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = yuzushioh.WalletKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
+			};
+			name = Debug;
+		};
+		AE90A07E1FFA698D005ED7AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LG8FQ3AXT3;
+				INFOPLIST_FILE = WalletKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = yuzushioh.WalletKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
+			};
+			name = Release;
+		};
 		AEBA90DB1FFA21ED003EA2BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -532,6 +652,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AE90A07F1FFA698D005ED7AF /* Build configuration list for PBXNativeTarget "WalletKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE90A07D1FFA698D005ED7AF /* Debug */,
+				AE90A07E1FFA698D005ED7AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AEBA90CF1FFA21ED003EA2BA /* Build configuration list for PBXProject "WalletKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

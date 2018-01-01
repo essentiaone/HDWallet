@@ -17,7 +17,7 @@ final class MnemonicManager {
         self.wordList = wordList
     }
     
-    func createMnemonic(fromEntropyString entropyString: String) -> [String] {
+    func createMnemonic(fromEntropyString entropyString: String) -> String {
         let initialEntropy = entropyString.mnemonicData
         
         let acceptableEntropyLengthList = [16, 20, 24, 28, 32]
@@ -48,7 +48,8 @@ final class MnemonicManager {
             let wordIndex = Int(strtoul(subString, nil, 2))
             mnemonic.append(words[wordIndex])
         }
-        return mnemonic
+        
+        return mnemonic.joined(separator: " ")
     }
     
     func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String = "") -> String {
