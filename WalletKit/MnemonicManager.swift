@@ -15,9 +15,7 @@ final class MnemonicManager: MnemonicManagerType {
     init(wordList: WordList) {
         self.wordList = wordList
     }
-}
-
-extension MnemonicManager {
+    
     func createMnemonic(fromEntropyString entropyString: String) -> String {
         let initialEntropy = entropyString.mnemonicData
         
@@ -52,9 +50,7 @@ extension MnemonicManager {
         
         return mnemonic.joined(separator: " ")
     }
-}
-
-extension MnemonicManager {
+    
     func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String) -> String {
         func normalize(string: String) -> Data? {
             return string.data(using: .utf8, allowLossyConversion: true)
