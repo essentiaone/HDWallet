@@ -23,6 +23,9 @@
 		AEBA91031FFA2C74003EA2BA /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEBA90E81FFA2722003EA2BA /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AEBA91041FFA2C74003EA2BA /* WalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */; };
 		AEBA91051FFA2C74003EA2BA /* WalletKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AEBA910E1FFA36EB003EA2BA /* MnemonicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBA910D1FFA36EB003EA2BA /* MnemonicManager.swift */; };
+		AEBA91101FFA52A1003EA2BA /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBA910F1FFA52A1003EA2BA /* WordList.swift */; };
+		AEBA91121FFA5E6D003EA2BA /* UInt8+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBA91111FFA5E6D003EA2BA /* UInt8+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		AEBA90F91FFA2C6A003EA2BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AEBA90FC1FFA2C6A003EA2BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEBA90FE1FFA2C6A003EA2BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEBA910D1FFA36EB003EA2BA /* MnemonicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicManager.swift; sourceTree = "<group>"; };
+		AEBA910F1FFA52A1003EA2BA /* WordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
+		AEBA91111FFA5E6D003EA2BA /* UInt8+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UInt8+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +118,12 @@
 		AEBA90D71FFA21ED003EA2BA /* WalletKit */ = {
 			isa = PBXGroup;
 			children = (
-				AEBA90E01FFA225D003EA2BA /* Network.swift */,
 				AEBA90EA1FFA2B2E003EA2BA /* Wallet.swift */,
+				AEBA910D1FFA36EB003EA2BA /* MnemonicManager.swift */,
 				AEBA90E21FFA22B0003EA2BA /* KeyGenerator.swift */,
-				AEBA90E41FFA23C6003EA2BA /* String+Extension.swift */,
-				AEBA90E61FFA2651003EA2BA /* Data+Extension.swift */,
+				AEBA90E01FFA225D003EA2BA /* Network.swift */,
+				AEBA910F1FFA52A1003EA2BA /* WordList.swift */,
+				AEBA91131FFA615A003EA2BA /* Extension */,
 				AEBA90D81FFA21ED003EA2BA /* WalletKit.h */,
 				AEBA90D91FFA21ED003EA2BA /* Info.plist */,
 			);
@@ -134,6 +141,16 @@
 				AEBA90FE1FFA2C6A003EA2BA /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		AEBA91131FFA615A003EA2BA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AEBA90E41FFA23C6003EA2BA /* String+Extension.swift */,
+				AEBA91111FFA5E6D003EA2BA /* UInt8+Extension.swift */,
+				AEBA90E61FFA2651003EA2BA /* Data+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,9 +269,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEBA91121FFA5E6D003EA2BA /* UInt8+Extension.swift in Sources */,
 				AEBA90EB1FFA2B2E003EA2BA /* Wallet.swift in Sources */,
+				AEBA91101FFA52A1003EA2BA /* WordList.swift in Sources */,
 				AEBA90E11FFA225D003EA2BA /* Network.swift in Sources */,
 				AEBA90E71FFA2651003EA2BA /* Data+Extension.swift in Sources */,
+				AEBA910E1FFA36EB003EA2BA /* MnemonicManager.swift in Sources */,
 				AEBA90E51FFA23C6003EA2BA /* String+Extension.swift in Sources */,
 				AEBA90E31FFA22B0003EA2BA /* KeyGenerator.swift in Sources */,
 			);

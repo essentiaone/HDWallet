@@ -10,8 +10,14 @@ import Foundation
 
 public final class Wallet {
     private let keyGenerator: KeyGenerator
+    private let mnemonicManager: MnemonicManager
     
-    public init(network: Network) {
-        keyGenerator = KeyGenerator(seedString: "000102030405060708090a0b0c0d0e0f", network: network)
+    public init(network: Network, wordList: WordList = .english) {
+        let seedString = "000102030405060708090a0b0c0d0e0f"
+        keyGenerator = KeyGenerator(seedString: seedString, network: network)
+        mnemonicManager = MnemonicManager(wordList: wordList)
+        
+        let mnemonicWords = mnemonicManager.createMnemonic(fromEntropyString: seedString)
+        print(mnemonicWords)
     }
 }

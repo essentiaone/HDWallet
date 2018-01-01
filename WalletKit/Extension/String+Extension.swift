@@ -27,7 +27,7 @@ extension String {
         return mnemonicData
     }
     
-    public var bytes: Array<UInt8> {
-        return data(using: String.Encoding.utf8, allowLossyConversion: true)?.bytes ?? Array(utf8)
+    var bytes: [UInt8] {
+        return data(using: String.Encoding.utf8, allowLossyConversion: true)?.bytes ?? []
     }
 }

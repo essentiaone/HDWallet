@@ -9,7 +9,15 @@
 import Foundation
 
 extension Data {
-    var bytes: Array<UInt8> {
+    var toBits: [String] {
+        var bitArray = [String]()
+        for byte in bytes {
+            bitArray.append(contentsOf: byte.bits)
+        }
+        return bitArray
+    }
+    
+    var bytes: [UInt8] {
         return Array(self)
     }
 }
