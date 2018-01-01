@@ -9,14 +9,15 @@
 import Foundation
 import CryptoSwift
 
-final class MnemonicManager {
-    
-    private let wordList: WordList
+final class MnemonicManager: MnemonicManagerType {
+    fileprivate let wordList: WordList
     
     init(wordList: WordList) {
         self.wordList = wordList
     }
-    
+}
+
+extension MnemonicManager {
     func createMnemonic(fromEntropyString entropyString: String) -> String {
         let initialEntropy = entropyString.mnemonicData
         
@@ -51,8 +52,10 @@ final class MnemonicManager {
         
         return mnemonic.joined(separator: " ")
     }
-    
-    func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String = "") -> String {
+}
+
+extension MnemonicManager {
+    func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String) -> String {
         func normalize(string: String) -> Data? {
             return string.data(using: .utf8, allowLossyConversion: true)
         }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AE90A0781FFA698D005ED7AF /* WalletKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */; };
 		AE90A07A1FFA698D005ED7AF /* WalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */; };
+		AE90A0831FFA8567005ED7AF /* MnemonicManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0821FFA8567005ED7AF /* MnemonicManagerType.swift */; };
 		AEBA90DA1FFA21ED003EA2BA /* WalletKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AEBA90D81FFA21ED003EA2BA /* WalletKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AEBA90E11FFA225D003EA2BA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBA90E01FFA225D003EA2BA /* Network.swift */; };
 		AEBA90E31FFA22B0003EA2BA /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBA90E21FFA22B0003EA2BA /* KeyGenerator.swift */; };
@@ -73,6 +74,7 @@
 		AE90A0751FFA698D005ED7AF /* WalletKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletKitTests.swift; sourceTree = "<group>"; };
 		AE90A0791FFA698D005ED7AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE90A0821FFA8567005ED7AF /* MnemonicManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicManagerType.swift; sourceTree = "<group>"; };
 		AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEBA90D81FFA21ED003EA2BA /* WalletKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletKit.h; sourceTree = "<group>"; };
 		AEBA90D91FFA21ED003EA2BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				AEBA90EA1FFA2B2E003EA2BA /* Wallet.swift */,
+				AE90A0821FFA8567005ED7AF /* MnemonicManagerType.swift */,
 				AEBA910D1FFA36EB003EA2BA /* MnemonicManager.swift */,
 				AEBA90E21FFA22B0003EA2BA /* KeyGenerator.swift */,
 				AEBA90E01FFA225D003EA2BA /* Network.swift */,
@@ -352,6 +355,7 @@
 				AEBA91101FFA52A1003EA2BA /* WordList.swift in Sources */,
 				AEBA90E11FFA225D003EA2BA /* Network.swift in Sources */,
 				AEBA90E71FFA2651003EA2BA /* Data+Extension.swift in Sources */,
+				AE90A0831FFA8567005ED7AF /* MnemonicManagerType.swift in Sources */,
 				AEBA910E1FFA36EB003EA2BA /* MnemonicManager.swift in Sources */,
 				AEBA90E51FFA23C6003EA2BA /* String+Extension.swift in Sources */,
 				AEBA90E31FFA22B0003EA2BA /* KeyGenerator.swift in Sources */,
