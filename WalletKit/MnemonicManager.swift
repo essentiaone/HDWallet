@@ -50,4 +50,25 @@ final class MnemonicManager {
         }
         return mnemonic
     }
+    
+    func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String = "") -> String {
+        func normalize(string: String) -> Data? {
+            return string.data(using: .utf8, allowLossyConversion: true)
+        }
+        
+        guard let password = normalize(string: mnemonic)?.bytes else {
+            fatalError("Nomalizing password failed in \(self)")
+        }
+        
+        guard let salt = normalize(string: "mnemonic" + passphrase)?.bytes else {
+            fatalError("Nomalizing salt failed in \(self)")
+        }
+        
+        do {
+            let seedData = try PKCS5.PBKDF2(password: password, salt: salt, iterations: 2048, variant: .sha512).calculate()
+            return seedData.toHexString()
+        } catch let error {
+            fatalError("PKCS5.PBKDF2 faild: \(error.localizedDescription)")
+        }
+    }
 }
