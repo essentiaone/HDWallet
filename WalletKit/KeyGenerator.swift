@@ -16,7 +16,7 @@ public final class KeyGenerator: KeyGeneratorType {
         let seed = seedString.mnemonicData
         let output: [UInt8]
         do {
-            output = try HMAC(key: "Bitcoin", variant: .sha512).authenticate(seed.bytes)
+            output = try HMAC(key: "Bitcoin seed", variant: .sha512).authenticate(seed.bytes)
         } catch let error {
             fatalError("Error occured in SeedAuthenticator. Description: \(error.localizedDescription)")
         }
