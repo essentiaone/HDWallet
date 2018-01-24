@@ -1,1 +1,2 @@
-github "krzyzanowskim/CryptoSwift" "0.8.0"
+github "krzyzanowskim/CryptoSwift" "0.8.1"
+github "yuzushioh/Swift-Big-Integer" "74db4839df33c75b79f30fc70d3456bfec457b02"
