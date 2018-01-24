@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE299DD220189907002769F9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE299DD120189907002769F9 /* Network.swift */; };
+		AE299DFE2018A63F002769F9 /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE299DFD2018A63E002769F9 /* SMP.swift */; };
 		AE90A0781FFA698D005ED7AF /* WalletKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */; };
 		AE90A07A1FFA698D005ED7AF /* WalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */; };
 		AE90A0831FFA8567005ED7AF /* MnemonicManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0821FFA8567005ED7AF /* MnemonicManagerType.swift */; };
@@ -70,11 +72,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AE299DD120189907002769F9 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		AE299DFD2018A63E002769F9 /* SMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMP.swift; sourceTree = "<group>"; };
 		AE90A0751FFA698D005ED7AF /* WalletKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletKitTests.swift; sourceTree = "<group>"; };
 		AE90A0791FFA698D005ED7AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE90A0821FFA8567005ED7AF /* MnemonicManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicManagerType.swift; sourceTree = "<group>"; };
 		AE90A0841FFA8649005ED7AF /* WalletType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletType.swift; sourceTree = "<group>"; };
+		AE90A0861FFA8973005ED7AF /* KeyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGenerator.swift; sourceTree = "<group>"; };
+		AE90A0881FFA9FBC005ED7AF /* KeyGeneratorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGeneratorType.swift; sourceTree = "<group>"; };
 		AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WalletKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEBA90D81FFA21ED003EA2BA /* WalletKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WalletKit.h; sourceTree = "<group>"; };
 		AEBA90D91FFA21ED003EA2BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +129,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE299DFF2018A642002769F9 /* BigInt */ = {
+			isa = PBXGroup;
+			children = (
+				AE299DFD2018A63E002769F9 /* SMP.swift */,
+			);
+			path = BigInt;
+			sourceTree = "<group>";
+		};
 		AE90A0761FFA698D005ED7AF /* WalletKitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +174,11 @@
 				AEBA90EA1FFA2B2E003EA2BA /* Wallet.swift */,
 				AE90A0821FFA8567005ED7AF /* MnemonicManagerType.swift */,
 				AEBA910D1FFA36EB003EA2BA /* MnemonicManager.swift */,
+				AE90A0881FFA9FBC005ED7AF /* KeyGeneratorType.swift */,
+				AE90A0861FFA8973005ED7AF /* KeyGenerator.swift */,
+				AE299DD120189907002769F9 /* Network.swift */,
 				AEBA910F1FFA52A1003EA2BA /* WordList.swift */,
+				AE299DFF2018A642002769F9 /* BigInt */,
 				AEBA91131FFA615A003EA2BA /* Extension */,
 				AEBA90D81FFA21ED003EA2BA /* WalletKit.h */,
 				AEBA90D91FFA21ED003EA2BA /* Info.plist */,
@@ -350,8 +368,10 @@
 				AEBA91121FFA5E6D003EA2BA /* UInt8+Extension.swift in Sources */,
 				AEBA90EB1FFA2B2E003EA2BA /* Wallet.swift in Sources */,
 				AEBA91101FFA52A1003EA2BA /* WordList.swift in Sources */,
+				AE299DD220189907002769F9 /* Network.swift in Sources */,
 				AEBA90E71FFA2651003EA2BA /* Data+Extension.swift in Sources */,
 				AE90A0831FFA8567005ED7AF /* MnemonicManagerType.swift in Sources */,
+				AE299DFE2018A63F002769F9 /* SMP.swift in Sources */,
 				AEBA910E1FFA36EB003EA2BA /* MnemonicManager.swift in Sources */,
 				AEBA90E51FFA23C6003EA2BA /* String+Extension.swift in Sources */,
 				AE90A0851FFA8649005ED7AF /* WalletType.swift in Sources */,
