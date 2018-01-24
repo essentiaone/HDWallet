@@ -7,15 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AE299DCB2018959A002769F9 /* BigNumber_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE299DC92018959A002769F9 /* BigNumber_iOS.framework */; };
-		AE299DCF201895B1002769F9 /* BigNumber_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE299DC92018959A002769F9 /* BigNumber_iOS.framework */; };
-		AE299DD0201895B1002769F9 /* BigNumber_iOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE299DC92018959A002769F9 /* BigNumber_iOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE90A0781FFA698D005ED7AF /* WalletKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */; };
 		AE90A07A1FFA698D005ED7AF /* WalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */; };
 		AE90A0831FFA8567005ED7AF /* MnemonicManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0821FFA8567005ED7AF /* MnemonicManagerType.swift */; };
 		AE90A0851FFA8649005ED7AF /* WalletType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0841FFA8649005ED7AF /* WalletType.swift */; };
-		AE90A0871FFA8973005ED7AF /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0861FFA8973005ED7AF /* KeyGenerator.swift */; };
-		AE90A0891FFA9FBC005ED7AF /* KeyGeneratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0881FFA9FBC005ED7AF /* KeyGeneratorType.swift */; };
 		AEBA90DA1FFA21ED003EA2BA /* WalletKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AEBA90D81FFA21ED003EA2BA /* WalletKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AEBA90E51FFA23C6003EA2BA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBA90E41FFA23C6003EA2BA /* String+Extension.swift */; };
 		AEBA90E71FFA2651003EA2BA /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBA90E61FFA2651003EA2BA /* Data+Extension.swift */; };
@@ -66,7 +61,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AE299DD0201895B1002769F9 /* BigNumber_iOS.framework in Embed Frameworks */,
 				AEBA91051FFA2C74003EA2BA /* WalletKit.framework in Embed Frameworks */,
 				AEBA91031FFA2C74003EA2BA /* CryptoSwift.framework in Embed Frameworks */,
 			);
@@ -76,7 +70,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AE299DC92018959A002769F9 /* BigNumber_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BigNumber_iOS.framework; path = Carthage/Build/iOS/BigNumber_iOS.framework; sourceTree = "<group>"; };
 		AE90A0751FFA698D005ED7AF /* WalletKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletKitTests.swift; sourceTree = "<group>"; };
 		AE90A0791FFA698D005ED7AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -114,7 +107,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE299DCB2018959A002769F9 /* BigNumber_iOS.framework in Frameworks */,
 				AEBA90E91FFA2722003EA2BA /* CryptoSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,7 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE299DCF201895B1002769F9 /* BigNumber_iOS.framework in Frameworks */,
 				AEBA91041FFA2C74003EA2BA /* WalletKit.framework in Frameworks */,
 				AEBA91021FFA2C74003EA2BA /* CryptoSwift.framework in Frameworks */,
 			);
@@ -144,7 +135,6 @@
 		AEBA90CB1FFA21ED003EA2BA = {
 			isa = PBXGroup;
 			children = (
-				AE299DC92018959A002769F9 /* BigNumber_iOS.framework */,
 				AEBA90E81FFA2722003EA2BA /* CryptoSwift.framework */,
 				AEBA90D71FFA21ED003EA2BA /* WalletKit */,
 				AE90A0761FFA698D005ED7AF /* WalletKitTests */,
