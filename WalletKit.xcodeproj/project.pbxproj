@@ -16,6 +16,9 @@
 		AE8291A42018ADAF0047E0F0 /* MnemonicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919C2018ADAF0047E0F0 /* MnemonicManager.swift */; };
 		AE8291A52018ADAF0047E0F0 /* MnemonicManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919D2018ADAF0047E0F0 /* MnemonicManagerType.swift */; };
 		AE8291A62018ADAF0047E0F0 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919E2018ADAF0047E0F0 /* WordList.swift */; };
+		AE8291A82018AEBF0047E0F0 /* UInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291A72018AEBF0047E0F0 /* UInt32.swift */; };
+		AE8291AA2018C1F10047E0F0 /* BigInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291A92018C1F10047E0F0 /* BigInt+Extension.swift */; };
+		AE8291AC2018C8860047E0F0 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291AB2018C8860047E0F0 /* Key.swift */; };
 		AE90A0781FFA698D005ED7AF /* WalletKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */; };
 		AE90A07A1FFA698D005ED7AF /* WalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */; };
 		AEBA90DA1FFA21ED003EA2BA /* WalletKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AEBA90D81FFA21ED003EA2BA /* WalletKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -83,6 +86,9 @@
 		AE82919C2018ADAF0047E0F0 /* MnemonicManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MnemonicManager.swift; sourceTree = "<group>"; };
 		AE82919D2018ADAF0047E0F0 /* MnemonicManagerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MnemonicManagerType.swift; sourceTree = "<group>"; };
 		AE82919E2018ADAF0047E0F0 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
+		AE8291A72018AEBF0047E0F0 /* UInt32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt32.swift; sourceTree = "<group>"; };
+		AE8291A92018C1F10047E0F0 /* BigInt+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Extension.swift"; sourceTree = "<group>"; };
+		AE8291AB2018C8860047E0F0 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		AE90A0751FFA698D005ED7AF /* WalletKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletKitTests.swift; sourceTree = "<group>"; };
 		AE90A0791FFA698D005ED7AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 				AE8291992018ADAE0047E0F0 /* KeyGeneratorType.swift */,
 				AE82919B2018ADAF0047E0F0 /* KeyGenerator.swift */,
 				AE8291972018ADAE0047E0F0 /* Network.swift */,
+				AE8291AB2018C8860047E0F0 /* Key.swift */,
 				AE82919E2018ADAF0047E0F0 /* WordList.swift */,
 				AE299DFF2018A642002769F9 /* BigInt */,
 				AEBA91131FFA615A003EA2BA /* Extension */,
@@ -204,8 +211,10 @@
 		AEBA91131FFA615A003EA2BA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				AE8291A92018C1F10047E0F0 /* BigInt+Extension.swift */,
 				AEBA90E41FFA23C6003EA2BA /* String+Extension.swift */,
 				AEBA91111FFA5E6D003EA2BA /* UInt8+Extension.swift */,
+				AE8291A72018AEBF0047E0F0 /* UInt32.swift */,
 				AEBA90E61FFA2651003EA2BA /* Data+Extension.swift */,
 			);
 			path = Extension;
@@ -367,6 +376,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8291AA2018C1F10047E0F0 /* BigInt+Extension.swift in Sources */,
+				AE8291A82018AEBF0047E0F0 /* UInt32.swift in Sources */,
 				AE8291A32018ADAF0047E0F0 /* KeyGenerator.swift in Sources */,
 				AE8291A02018ADAF0047E0F0 /* Wallet.swift in Sources */,
 				AE82919F2018ADAF0047E0F0 /* Network.swift in Sources */,
@@ -376,6 +387,7 @@
 				AE8291A42018ADAF0047E0F0 /* MnemonicManager.swift in Sources */,
 				AE299DFE2018A63F002769F9 /* SMP.swift in Sources */,
 				AE8291A52018ADAF0047E0F0 /* MnemonicManagerType.swift in Sources */,
+				AE8291AC2018C8860047E0F0 /* Key.swift in Sources */,
 				AE8291A12018ADAF0047E0F0 /* KeyGeneratorType.swift in Sources */,
 				AE8291A22018ADAF0047E0F0 /* WalletType.swift in Sources */,
 				AEBA90E51FFA23C6003EA2BA /* String+Extension.swift in Sources */,

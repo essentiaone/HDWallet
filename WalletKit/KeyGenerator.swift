@@ -6,12 +6,11 @@
 //  Copyright © 2018 yuzushioh. All rights reserved.
 //
 
-import Foundation
 import CryptoSwift
 
 public final class KeyGenerator: KeyGeneratorType {
-    private let privateKey: Data
-    private let chainCode: Data
+    
+    public let masterPrivateKey: Key
     
     public init(seedString: String, network: Network) {
         let seed = seedString.mnemonicData
@@ -22,7 +21,10 @@ public final class KeyGenerator: KeyGeneratorType {
             fatalError("Error occured in SeedAuthenticator. Description: \(error.localizedDescription)")
         }
         
-        self.privateKey = Data(output[0..<32])
-        self.chainCode = Data(output[32..<64])
+        masterPrivateKey = Key(
+            privateKey: Data(output[0..<32]),
+            chainCode: Data(output[32..<64]),
+            network: network
+        )
     }
 }
