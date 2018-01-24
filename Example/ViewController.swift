@@ -26,4 +26,3 @@ class ViewController: UIViewController {
         print(keyGenerator.masterPrivateKey.extendedPrivateKey)
     }
 }
-

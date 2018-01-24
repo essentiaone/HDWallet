@@ -7,12 +7,12 @@
 //
 
 public struct Key {
-    public let version: UInt32
-    public let depth: UInt32
-    public let fingurePrint: UInt32
-    public let index: UInt32
-    public let privateKey: Data
-    public let chainCode: Data
+    private let version: UInt32
+    private let depth: UInt8
+    private let fingurePrint: UInt32
+    private let index: UInt32
+    private let privateKey: Data
+    private let chainCode: Data
     
     public init(privateKey: Data, chainCode: Data, network: Network) {
         self.version = network.version
