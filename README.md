@@ -1,6 +1,8 @@
 # WalletKit
 WalletKit is a Swift framwork that enables you to create and use bitcoin HD wallet([Hierarchical Deterministic Wallets](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)) in your own app.
 
+You can check if the BIP 32 and BIP 39 are working right in this [site](https://iancoleman.io/bip39/).
+
 ## TODO
 - Implement BIP39([Mnemonic code for generating deterministic keys](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) )
   - Add more language
