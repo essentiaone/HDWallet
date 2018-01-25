@@ -42,8 +42,9 @@
 		AED02DAF2019B83100B76CEC /* NSData+HexString.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DA82019B83000B76CEC /* NSData+HexString.h */; };
 		AED02DB12019B83100B76CEC /* secp256k1.m in Sources */ = {isa = PBXBuildFile; fileRef = AED02DAC2019B83100B76CEC /* secp256k1.m */; };
 		AED02DB62019B90A00B76CEC /* secp256k1.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DB52019B90A00B76CEC /* secp256k1.h */; };
-		AED560742019B9430060A676 /* secp256k1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED560732019B9430060A676 /* secp256k1.framework */; };
 		AED560762019B9A30060A676 /* ECDSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED02D9B2019B7E100B76CEC /* ECDSA.framework */; };
+		AED5607C2019C8540060A676 /* secp256k1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED5607B2019C8540060A676 /* secp256k1.framework */; };
+		AED560822019CC4F0060A676 /* ECDSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED560812019CC4F0060A676 /* ECDSA.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,7 +131,9 @@
 		AED02DA82019B83000B76CEC /* NSData+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HexString.h"; sourceTree = "<group>"; };
 		AED02DAC2019B83100B76CEC /* secp256k1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = secp256k1.m; sourceTree = "<group>"; };
 		AED02DB52019B90A00B76CEC /* secp256k1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secp256k1.h; sourceTree = "<group>"; };
-		AED560732019B9430060A676 /* secp256k1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = secp256k1.framework; sourceTree = "<group>"; };
+		AED560792019C7F20060A676 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		AED5607B2019C8540060A676 /* secp256k1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = secp256k1.framework; sourceTree = "<group>"; };
+		AED560812019CC4F0060A676 /* ECDSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECDSA.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AED560742019B9430060A676 /* secp256k1.framework in Frameworks */,
+				AED5607C2019C8540060A676 /* secp256k1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,23 +264,17 @@
 		AED02D9C2019B7E100B76CEC /* ECDSA */ = {
 			isa = PBXGroup;
 			children = (
-				AED02DB42019B86900B76CEC /* secp256k1 */,
+				AED560812019CC4F0060A676 /* ECDSA.swift */,
+				AED02DB52019B90A00B76CEC /* secp256k1.h */,
+				AED02DAC2019B83100B76CEC /* secp256k1.m */,
+				AED02DA82019B83000B76CEC /* NSData+HexString.h */,
+				AED02DA72019B83000B76CEC /* NSData+HexString.m */,
+				AED5607B2019C8540060A676 /* secp256k1.framework */,
+				AED5607A2019C7FB0060A676 /* ProjectModule */,
 				AED02D9D2019B7E100B76CEC /* ECDSA.h */,
 				AED02D9E2019B7E100B76CEC /* Info.plist */,
 			);
 			path = ECDSA;
-			sourceTree = "<group>";
-		};
-		AED02DB42019B86900B76CEC /* secp256k1 */ = {
-			isa = PBXGroup;
-			children = (
-				AED02DA82019B83000B76CEC /* NSData+HexString.h */,
-				AED02DA72019B83000B76CEC /* NSData+HexString.m */,
-				AED02DB52019B90A00B76CEC /* secp256k1.h */,
-				AED02DAC2019B83100B76CEC /* secp256k1.m */,
-				AED560732019B9430060A676 /* secp256k1.framework */,
-			);
-			path = secp256k1;
 			sourceTree = "<group>";
 		};
 		AED560752019B9A30060A676 /* Frameworks */ = {
@@ -285,6 +282,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AED5607A2019C7FB0060A676 /* ProjectModule */ = {
+			isa = PBXGroup;
+			children = (
+				AED560792019C7F20060A676 /* module.modulemap */,
+			);
+			path = ProjectModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -517,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AED02DB12019B83100B76CEC /* secp256k1.m in Sources */,
+				AED560822019CC4F0060A676 /* ECDSA.swift in Sources */,
 				AED02DAE2019B83100B76CEC /* NSData+HexString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,7 +734,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/WalletKit/secp256k1",
 				);
 				INFOPLIST_FILE = WalletKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -759,7 +764,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/WalletKit/secp256k1",
 				);
 				INFOPLIST_FILE = WalletKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -832,16 +836,17 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ECDSA",
-					"$(PROJECT_DIR)/ECDSA/secp256k1",
 				);
 				INFOPLIST_FILE = ECDSA/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_PRIVATE_FILE = "";
+				MODULEMAP_FILE = "";
+				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/ECDSA/ProjectModule/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = yuzushioh.ECDSA;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/ECDSA/ProjectModule";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -862,16 +867,17 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ECDSA",
-					"$(PROJECT_DIR)/ECDSA/secp256k1",
 				);
 				INFOPLIST_FILE = ECDSA/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_PRIVATE_FILE = "";
+				MODULEMAP_FILE = "";
+				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/ECDSA/ProjectModule/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = yuzushioh.ECDSA;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/ECDSA/ProjectModule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
