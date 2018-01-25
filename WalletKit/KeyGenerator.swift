@@ -10,7 +10,7 @@ import CryptoSwift
 
 public final class KeyGenerator: KeyGeneratorType {
     
-    public let masterPrivateKey: Key
+    public let masterKeyPair: KeyPair
     
     public init(seedString: String, network: Network) {
         let seed = seedString.mnemonicData
@@ -21,7 +21,7 @@ public final class KeyGenerator: KeyGeneratorType {
             fatalError("Error occured in SeedAuthenticator. Description: \(error.localizedDescription)")
         }
         
-        masterPrivateKey = Key(
+        masterKeyPair = KeyPair(
             privateKey: Data(output[0..<32]),
             chainCode: Data(output[32..<64]),
             network: network

@@ -23,6 +23,10 @@ class ViewController: UIViewController {
         print(seed) // 3779b041fab425e9c0fd55846b2a03e9a388fb12784067bd8ebdb464c2574a05bcc7a8eb54d7b2a2c8420ff60f630722ea5132d28605dbc996c8ca7d7a8311c0
         
         let keyGenerator = KeyGenerator(seedString: seed, network: .test)
-        print(keyGenerator.masterPrivateKey.extendedPrivateKey) // tprv8ZgxMBicQKsPdM3GJUGqaS67XFjHNqUC8upXBhNb7UXqyKdLCj6HnTfqrjoEo6x89neRY2DzmKXhjWbAkxYvnb1U7vf4cF4qDicyb7Y2mNa
+        print(keyGenerator.masterKeyPair.extendedPrivateKey)
+        // tprv8ZgxMBicQKsPdM3GJUGqaS67XFjHNqUC8upXBhNb7UXqyKdLCj6HnTfqrjoEo6x89neRY2DzmKXhjWbAkxYvnb1U7vf4cF4qDicyb7Y2mNa
+        
+        print(keyGenerator.masterKeyPair.extendedPublicKey)
+        // 
     }
 }

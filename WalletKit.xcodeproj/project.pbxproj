@@ -18,7 +18,7 @@
 		AE8291A62018ADAF0047E0F0 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919E2018ADAF0047E0F0 /* WordList.swift */; };
 		AE8291A82018AEBF0047E0F0 /* UInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291A72018AEBF0047E0F0 /* UInt32.swift */; };
 		AE8291AA2018C1F10047E0F0 /* BigInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291A92018C1F10047E0F0 /* BigInt+Extension.swift */; };
-		AE8291AC2018C8860047E0F0 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291AB2018C8860047E0F0 /* Key.swift */; };
+		AE8291AC2018C8860047E0F0 /* KeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291AB2018C8860047E0F0 /* KeyPair.swift */; };
 		AE90A0781FFA698D005ED7AF /* WalletKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */; };
 		AE90A07A1FFA698D005ED7AF /* WalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEBA90D51FFA21ED003EA2BA /* WalletKit.framework */; };
 		AEBA90DA1FFA21ED003EA2BA /* WalletKit.h in Headers */ = {isa = PBXBuildFile; fileRef = AEBA90D81FFA21ED003EA2BA /* WalletKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,9 +39,9 @@
 		AED02DA22019B7E100B76CEC /* ECDSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED02D9B2019B7E100B76CEC /* ECDSA.framework */; };
 		AED02DA32019B7E100B76CEC /* ECDSA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED02D9B2019B7E100B76CEC /* ECDSA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AED02DAE2019B83100B76CEC /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = AED02DA72019B83000B76CEC /* NSData+HexString.m */; };
-		AED02DAF2019B83100B76CEC /* NSData+HexString.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DA82019B83000B76CEC /* NSData+HexString.h */; };
+		AED02DAF2019B83100B76CEC /* NSData+HexString.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DA82019B83000B76CEC /* NSData+HexString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AED02DB12019B83100B76CEC /* secp256k1.m in Sources */ = {isa = PBXBuildFile; fileRef = AED02DAC2019B83100B76CEC /* secp256k1.m */; };
-		AED02DB62019B90A00B76CEC /* secp256k1.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DB52019B90A00B76CEC /* secp256k1.h */; };
+		AED02DB62019B90A00B76CEC /* secp256k1.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DB52019B90A00B76CEC /* secp256k1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AED560762019B9A30060A676 /* ECDSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED02D9B2019B7E100B76CEC /* ECDSA.framework */; };
 		AED5607C2019C8540060A676 /* secp256k1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED5607B2019C8540060A676 /* secp256k1.framework */; };
 		AED560822019CC4F0060A676 /* ECDSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED560812019CC4F0060A676 /* ECDSA.swift */; };
@@ -106,7 +106,7 @@
 		AE82919E2018ADAF0047E0F0 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		AE8291A72018AEBF0047E0F0 /* UInt32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt32.swift; sourceTree = "<group>"; };
 		AE8291A92018C1F10047E0F0 /* BigInt+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Extension.swift"; sourceTree = "<group>"; };
-		AE8291AB2018C8860047E0F0 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		AE8291AB2018C8860047E0F0 /* KeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPair.swift; sourceTree = "<group>"; };
 		AE90A0751FFA698D005ED7AF /* WalletKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalletKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE90A0771FFA698D005ED7AF /* WalletKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletKitTests.swift; sourceTree = "<group>"; };
 		AE90A0791FFA698D005ED7AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 				AE8291992018ADAE0047E0F0 /* KeyGeneratorType.swift */,
 				AE82919B2018ADAF0047E0F0 /* KeyGenerator.swift */,
 				AE8291972018ADAE0047E0F0 /* Network.swift */,
-				AE8291AB2018C8860047E0F0 /* Key.swift */,
+				AE8291AB2018C8860047E0F0 /* KeyPair.swift */,
 				AE82919E2018ADAF0047E0F0 /* WordList.swift */,
 				AE299DFF2018A642002769F9 /* BigInt */,
 				AEBA91131FFA615A003EA2BA /* Extension */,
@@ -501,7 +501,7 @@
 				AE8291A42018ADAF0047E0F0 /* MnemonicManager.swift in Sources */,
 				AE299DFE2018A63F002769F9 /* SMP.swift in Sources */,
 				AE8291A52018ADAF0047E0F0 /* MnemonicManagerType.swift in Sources */,
-				AE8291AC2018C8860047E0F0 /* Key.swift in Sources */,
+				AE8291AC2018C8860047E0F0 /* KeyPair.swift in Sources */,
 				AE8291A12018ADAF0047E0F0 /* KeyGeneratorType.swift in Sources */,
 				AE8291A22018ADAF0047E0F0 /* WalletType.swift in Sources */,
 				AEBA90E51FFA23C6003EA2BA /* String+Extension.swift in Sources */,
@@ -840,7 +840,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "";
-				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/ECDSA/ProjectModule/module.modulemap";
+				MODULEMAP_PRIVATE_FILE = "";
 				PRODUCT_BUNDLE_IDENTIFIER = yuzushioh.ECDSA;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -871,7 +871,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "";
-				MODULEMAP_PRIVATE_FILE = "$(SRCROOT)/ECDSA/ProjectModule/module.modulemap";
+				MODULEMAP_PRIVATE_FILE = "";
 				PRODUCT_BUNDLE_IDENTIFIER = yuzushioh.ECDSA;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
