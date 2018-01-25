@@ -39,9 +39,9 @@
 		AED02DA22019B7E100B76CEC /* ECDSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED02D9B2019B7E100B76CEC /* ECDSA.framework */; };
 		AED02DA32019B7E100B76CEC /* ECDSA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AED02D9B2019B7E100B76CEC /* ECDSA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AED02DAE2019B83100B76CEC /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = AED02DA72019B83000B76CEC /* NSData+HexString.m */; };
-		AED02DAF2019B83100B76CEC /* NSData+HexString.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DA82019B83000B76CEC /* NSData+HexString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AED02DAF2019B83100B76CEC /* NSData+HexString.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DA82019B83000B76CEC /* NSData+HexString.h */; };
 		AED02DB12019B83100B76CEC /* secp256k1.m in Sources */ = {isa = PBXBuildFile; fileRef = AED02DAC2019B83100B76CEC /* secp256k1.m */; };
-		AED02DB62019B90A00B76CEC /* secp256k1.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DB52019B90A00B76CEC /* secp256k1.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AED02DB62019B90A00B76CEC /* secp256k1.h in Headers */ = {isa = PBXBuildFile; fileRef = AED02DB52019B90A00B76CEC /* secp256k1.h */; };
 		AED560762019B9A30060A676 /* ECDSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED02D9B2019B7E100B76CEC /* ECDSA.framework */; };
 		AED5607C2019C8540060A676 /* secp256k1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED5607B2019C8540060A676 /* secp256k1.framework */; };
 		AED560822019CC4F0060A676 /* ECDSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED560812019CC4F0060A676 /* ECDSA.swift */; };
