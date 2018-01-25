@@ -9,7 +9,7 @@
 import ECDSA
 
 public struct KeyPair {
-    private let version: UInt32
+    private let network: Network
     private let depth: UInt8
     private let fingurePrint: UInt32
     private let index: UInt32
@@ -17,7 +17,7 @@ public struct KeyPair {
     private let chainCode: Data
     
     public init(privateKey: Data, chainCode: Data, network: Network) {
-        self.version = network.version
+        self.network = network
         self.depth = 0
         self.fingurePrint = 0
         self.index = 0
@@ -38,7 +38,9 @@ public struct KeyPair {
     }
     
     private var extendedPrivateKeyData: Data {
-        var extendedPrivateKeyData = generateBaseKey()
+        var extendedPrivateKeyData = Data()
+        extendedPrivateKeyData += network.privateKeyVersion.toHexData
+        extendedPrivateKeyData += generateKeyComponentData()
         extendedPrivateKeyData += UInt8(0).toHexData
         extendedPrivateKeyData += privateKey
         return extendedPrivateKeyData
@@ -49,12 +51,14 @@ public struct KeyPair {
     }
     
     private var extendedPublicKeyData: Data {
-        var extendedPublicKeyData = generateBaseKey()
+        var extendedPublicKeyData = Data()
+        extendedPublicKeyData += network.publicKeyVersion.toHexData
+        extendedPublicKeyData += generateKeyComponentData()
         extendedPublicKeyData += publicKeyData
         return extendedPublicKeyData
     }
     
-    private func generateBaseKey() -> Data {
+    private func generateKeyComponentData() -> Data {
         var baseKeyData = Data()
         baseKeyData += depth.toHexData
         baseKeyData += fingurePrint.toHexData
