@@ -1,2 +1,0 @@
-SWIFT_INCLUDE_PATHS = $(SRCROOT)/secp256k1
-MODULEMAP_PRIVATE_FILE = $(SRCROOT)/secp256k1/secp256k1.private.modulemap

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface secp256k1 : NSObject
+@interface Secp256k1 : NSObject
 + (NSData *)generatePublicKeyWithPrivateKey:(NSData *)privateKeyData compression:(BOOL)isCompression;
 + (NSData *)compactSignData:(NSData *)msgData withPrivateKey:(NSData *)privateKeyData;
 

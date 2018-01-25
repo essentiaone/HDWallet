@@ -10,7 +10,7 @@
 #import <secp256k1/secp256k1.h>
 #import "NSData+HexString.h"
 
-@implementation secp256k1
+@implementation Secp256k1
 + (NSData *)generatePublicKeyWithPrivateKey:(NSData *)privateKeyData compression:(BOOL)isCompression
 {
 	secp256k1_context *context = secp256k1_context_create(SECP256K1_CONTEXT_SIGN);

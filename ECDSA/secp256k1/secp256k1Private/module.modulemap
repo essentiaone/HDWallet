@@ -1,4 +1,0 @@
-module secp256k1Private {
-    header "../secp256k1.h"
-    export *
-}

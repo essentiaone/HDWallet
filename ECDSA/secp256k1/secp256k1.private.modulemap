@@ -1,3 +1,0 @@
-module secp256k1Private {
-    export *
-}
