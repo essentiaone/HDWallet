@@ -13,16 +13,20 @@ public struct KeyPair {
     private let depth: UInt8
     private let fingurePrint: UInt32
     private let index: UInt32
-    private let privateKey: Data
-    private let chainCode: Data
+    private let privateKeyData: Data
+    private let chainCodeData: Data
     
-    public init(privateKey: Data, chainCode: Data, network: Network) {
+    internal init(privateKeyData: Data, chainCodeData: Data, network: Network) {
         self.network = network
         self.depth = 0
         self.fingurePrint = 0
         self.index = 0
-        self.privateKey = privateKey
-        self.chainCode = chainCode
+        self.privateKeyData = privateKeyData
+        self.chainCodeData = chainCodeData
+    }
+    
+    public var privateKey: String {
+        return privateKeyData.toHexString()
     }
     
     public var publicKey: String {
@@ -30,7 +34,7 @@ public struct KeyPair {
     }
     
     private var publicKeyData: Data {
-        return ECDSA.secp256k1.generatePublicKey(with: privateKey, isCompressed: true)
+        return ECDSA.secp256k1.generatePublicKey(with: privateKeyData, isCompressed: true)
     }
     
     public var extendedPrivateKey: String {
@@ -42,7 +46,7 @@ public struct KeyPair {
         extendedPrivateKeyData += network.privateKeyVersion.toHexData
         extendedPrivateKeyData += generateKeyComponentData()
         extendedPrivateKeyData += UInt8(0).toHexData
-        extendedPrivateKeyData += privateKey
+        extendedPrivateKeyData += privateKeyData
         return extendedPrivateKeyData
     }
     
@@ -63,7 +67,7 @@ public struct KeyPair {
         baseKeyData += depth.toHexData
         baseKeyData += fingurePrint.toHexData
         baseKeyData += index.toHexData
-        baseKeyData += chainCode
+        baseKeyData += chainCodeData
         return baseKeyData
     }
 }

@@ -22,8 +22,8 @@ public final class KeyGenerator: KeyGeneratorType {
         }
         
         masterKeyPair = KeyPair(
-            privateKey: Data(output[0..<32]),
-            chainCode: Data(output[32..<64]),
+            privateKeyData: Data(output[0..<32]),
+            chainCodeData: Data(output[32..<64]),
             network: network
         )
     }
