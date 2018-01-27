@@ -8,6 +8,8 @@
 
 import ECDSA
 
+/// KeyPair has PrivateKey and corresponding PublicKey. It also has all the information
+/// (eg, depth, fingureprint, index) necessory for generating a key pair.
 public struct KeyPair {
     private let network: Network
     private let depth: UInt8
@@ -25,22 +27,27 @@ public struct KeyPair {
         self.chainCodeData = chainCodeData
     }
     
+    /// Private key in String format, encoded in Base58
     public var privateKey: String {
         return privateKeyData.toHexString()
     }
     
+    /// Public key in String format, encoded in Base58
     public var publicKey: String {
         return publicKeyData.toHexString()
     }
     
+    /// Public key in Data format.
     private var publicKeyData: Data {
         return ECDSA.secp256k1.generatePublicKey(with: privateKeyData, isCompressed: true)
     }
     
+    /// Extended private key in String format, encoded in Base58
     public var extendedPrivateKey: String {
         return extendedPrivateKeyData.base58BaseEncodedString
     }
     
+    /// Extended private key in Data format.
     private var extendedPrivateKeyData: Data {
         var extendedPrivateKeyData = Data()
         extendedPrivateKeyData += network.privateKeyVersion.toHexData
@@ -50,10 +57,12 @@ public struct KeyPair {
         return extendedPrivateKeyData
     }
     
+    /// Extended public key in String format, encoded in Base58
     public var extendedPublicKey: String {
         return extendedPublicKeyData.base58BaseEncodedString
     }
     
+    /// Extended public key in Data format.
     private var extendedPublicKeyData: Data {
         var extendedPublicKeyData = Data()
         extendedPublicKeyData += network.publicKeyVersion.toHexData
@@ -62,6 +71,9 @@ public struct KeyPair {
         return extendedPublicKeyData
     }
     
+    /// Generate a key component data with depth, fingure print, index, and chain code.
+    ///
+    /// - Returns: data including depth, fingure print, index, and chain code.
     private func generateKeyComponentData() -> Data {
         var baseKeyData = Data()
         baseKeyData += depth.toHexData
