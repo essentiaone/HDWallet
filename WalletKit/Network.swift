@@ -10,12 +10,21 @@ public enum Network {
     case main
     case test
     
-    public var version: UInt32 {
+    public var privateKeyVersion: UInt32 {
         switch self {
         case .main:
             return 0x0488ADE4
         case .test:
             return 0x04358394
+        }
+    }
+    
+    public var publicKeyVersion: UInt32 {
+        switch self {
+        case .main:
+            return 0x0488B21E
+        case .test:
+            return 0x043587CF
         }
     }
 }
