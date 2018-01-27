@@ -1,5 +1,5 @@
 //
-//  KeyGeneratorType.swift
+//  KeyPairGeneratorType.swift
 //  WalletKit
 //
 //  Created by yuzushioh on 2018/01/02.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol KeyGeneratorType {
+public protocol KeyPairGeneratorType {
     
     /// KeyPair with MasterPrivateKey and MasterPublicKey generated from seed you provided.
     static var masterKeyPair: KeyPair? { get }

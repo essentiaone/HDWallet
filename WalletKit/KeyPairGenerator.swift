@@ -1,5 +1,5 @@
 //
-//  KeyGenerator.swift
+//  KeyPairGenerator.swift
 //  WalletKit
 //
 //  Created by yuzushioh on 2018/01/02.
@@ -8,7 +8,7 @@
 
 import CryptoSwift
 
-public final class KeyGenerator: KeyGeneratorType {
+public final class KeyPairGenerator: KeyPairGeneratorType {
     
     public static var masterKeyPair: KeyPair?
     
@@ -30,8 +30,8 @@ public final class KeyGenerator: KeyGeneratorType {
     }
     
     public init() {
-        guard let masterKeyPair = KeyGenerator.masterKeyPair else {
-            fatalError("\(KeyGenerator.setup) must be called before initializing.")
+        guard let masterKeyPair = KeyPairGenerator.masterKeyPair else {
+            fatalError("\(KeyPairGenerator.setup) must be called before initializing.")
         }
         
         print(
