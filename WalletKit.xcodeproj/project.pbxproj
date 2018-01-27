@@ -10,9 +10,9 @@
 		AE299DFE2018A63F002769F9 /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE299DFD2018A63E002769F9 /* SMP.swift */; };
 		AE82919F2018ADAF0047E0F0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291972018ADAE0047E0F0 /* Network.swift */; };
 		AE8291A02018ADAF0047E0F0 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291982018ADAE0047E0F0 /* Wallet.swift */; };
-		AE8291A12018ADAF0047E0F0 /* KeyGeneratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291992018ADAE0047E0F0 /* KeyGeneratorType.swift */; };
+		AE8291A12018ADAF0047E0F0 /* KeyPairGeneratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291992018ADAE0047E0F0 /* KeyPairGeneratorType.swift */; };
 		AE8291A22018ADAF0047E0F0 /* WalletType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919A2018ADAF0047E0F0 /* WalletType.swift */; };
-		AE8291A32018ADAF0047E0F0 /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919B2018ADAF0047E0F0 /* KeyGenerator.swift */; };
+		AE8291A32018ADAF0047E0F0 /* KeyPairGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919B2018ADAF0047E0F0 /* KeyPairGenerator.swift */; };
 		AE8291A42018ADAF0047E0F0 /* MnemonicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919C2018ADAF0047E0F0 /* MnemonicGenerator.swift */; };
 		AE8291A52018ADAF0047E0F0 /* MnemonicGeneratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919D2018ADAF0047E0F0 /* MnemonicGeneratorType.swift */; };
 		AE8291A62018ADAF0047E0F0 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919E2018ADAF0047E0F0 /* WordList.swift */; };
@@ -98,9 +98,9 @@
 		AE299DFD2018A63E002769F9 /* SMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMP.swift; sourceTree = "<group>"; };
 		AE8291972018ADAE0047E0F0 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		AE8291982018ADAE0047E0F0 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
-		AE8291992018ADAE0047E0F0 /* KeyGeneratorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyGeneratorType.swift; sourceTree = "<group>"; };
+		AE8291992018ADAE0047E0F0 /* KeyPairGeneratorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPairGeneratorType.swift; sourceTree = "<group>"; };
 		AE82919A2018ADAF0047E0F0 /* WalletType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletType.swift; sourceTree = "<group>"; };
-		AE82919B2018ADAF0047E0F0 /* KeyGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyGenerator.swift; sourceTree = "<group>"; };
+		AE82919B2018ADAF0047E0F0 /* KeyPairGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPairGenerator.swift; sourceTree = "<group>"; };
 		AE82919C2018ADAF0047E0F0 /* MnemonicGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MnemonicGenerator.swift; sourceTree = "<group>"; };
 		AE82919D2018ADAF0047E0F0 /* MnemonicGeneratorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MnemonicGeneratorType.swift; sourceTree = "<group>"; };
 		AE82919E2018ADAF0047E0F0 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
@@ -223,8 +223,8 @@
 				AE8291982018ADAE0047E0F0 /* Wallet.swift */,
 				AE82919D2018ADAF0047E0F0 /* MnemonicGeneratorType.swift */,
 				AE82919C2018ADAF0047E0F0 /* MnemonicGenerator.swift */,
-				AE8291992018ADAE0047E0F0 /* KeyGeneratorType.swift */,
-				AE82919B2018ADAF0047E0F0 /* KeyGenerator.swift */,
+				AE8291992018ADAE0047E0F0 /* KeyPairGeneratorType.swift */,
+				AE82919B2018ADAF0047E0F0 /* KeyPairGenerator.swift */,
 				AE8291972018ADAE0047E0F0 /* Network.swift */,
 				AE8291AB2018C8860047E0F0 /* KeyPair.swift */,
 				AE82919E2018ADAF0047E0F0 /* WordList.swift */,
@@ -492,7 +492,7 @@
 			files = (
 				AE8291AA2018C1F10047E0F0 /* BigInt+Extension.swift in Sources */,
 				AE8291A82018AEBF0047E0F0 /* UInt32.swift in Sources */,
-				AE8291A32018ADAF0047E0F0 /* KeyGenerator.swift in Sources */,
+				AE8291A32018ADAF0047E0F0 /* KeyPairGenerator.swift in Sources */,
 				AE8291A02018ADAF0047E0F0 /* Wallet.swift in Sources */,
 				AE82919F2018ADAF0047E0F0 /* Network.swift in Sources */,
 				AEBA91121FFA5E6D003EA2BA /* UInt8+Extension.swift in Sources */,
@@ -502,7 +502,7 @@
 				AE299DFE2018A63F002769F9 /* SMP.swift in Sources */,
 				AE8291A52018ADAF0047E0F0 /* MnemonicGeneratorType.swift in Sources */,
 				AE8291AC2018C8860047E0F0 /* KeyPair.swift in Sources */,
-				AE8291A12018ADAF0047E0F0 /* KeyGeneratorType.swift in Sources */,
+				AE8291A12018ADAF0047E0F0 /* KeyPairGeneratorType.swift in Sources */,
 				AE8291A22018ADAF0047E0F0 /* WalletType.swift in Sources */,
 				AEBA90E51FFA23C6003EA2BA /* String+Extension.swift in Sources */,
 			);

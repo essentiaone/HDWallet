@@ -1,5 +1,5 @@
 //
-//  KeyGenerator.swift
+//  KeyPairGenerator.swift
 //  WalletKit
 //
 //  Created by yuzushioh on 2018/01/02.
@@ -8,11 +8,11 @@
 
 import CryptoSwift
 
-public final class KeyGenerator: KeyGeneratorType {
+public final class KeyPairGenerator: KeyPairGeneratorType {
     
-    public let masterKeyPair: KeyPair
+    public static var masterKeyPair: KeyPair?
     
-    public init(seedString: String, network: Network) {
+    public static func setup(seedString: String, network: Network, hardensMasterKeyPair: Bool) {
         let seed = seedString.mnemonicData
         let output: [UInt8]
         do {
@@ -24,7 +24,19 @@ public final class KeyGenerator: KeyGeneratorType {
         masterKeyPair = KeyPair(
             privateKeyData: Data(output[0..<32]),
             chainCodeData: Data(output[32..<64]),
+            hardens: hardensMasterKeyPair,
             network: network
+        )
+    }
+    
+    public init() {
+        guard let masterKeyPair = KeyPairGenerator.masterKeyPair else {
+            fatalError("\(KeyPairGenerator.setup) must be called before initializing.")
+        }
+        
+        print(
+            masterKeyPair.extendedPrivateKey,
+            masterKeyPair.extendedPublicKey
         )
     }
 }
