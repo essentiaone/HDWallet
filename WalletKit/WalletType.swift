@@ -28,6 +28,15 @@ public protocol WalletType {
     ///   - passphrase: Passphrase you set when created the mnemonic sentence.
     /// - Returns: Seed to recover the deterministic keys.
     func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String) -> String
+    
+    
+    /// Initialize KeyGenerator inside Wallet. By calling this method, you can generate wallet with seed.
+    ///
+    /// - Parameters:
+    ///   - seed: Seed string for generating root key pair.
+    ///   - network: whether it is test net or main net.
+    ///   - hardensMasterKeyPair: whether you want to harden master key pair.
+    func initialize(seed: String, network: Network, hardensMasterKeyPair: Bool)
 }
 
 public extension WalletType {

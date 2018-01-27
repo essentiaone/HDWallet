@@ -9,7 +9,9 @@
 import Foundation
 
 public final class Wallet: WalletType {
-    private let mnemonicGenerator: MnemonicGenerator
+    
+    private let mnemonicGenerator: MnemonicGeneratorType
+    private var keyPairGenerator: KeyPairGeneratorType?
     
     public init(wordList: WordList) {
         mnemonicGenerator = MnemonicGenerator(wordList: wordList)
@@ -21,5 +23,10 @@ public final class Wallet: WalletType {
     
     public func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String) -> String {
         return mnemonicGenerator.createSeedString(fromMnemonic: mnemonic, withPassphrase: passphrase)
+    }
+    
+    public func initialize(seed: String, network: Network, hardensMasterKeyPair: Bool) {
+        KeyPairGenerator.setup(seedString: seed, network: network, hardensMasterKeyPair: hardensMasterKeyPair)
+        keyPairGenerator = KeyPairGenerator()
     }
 }
