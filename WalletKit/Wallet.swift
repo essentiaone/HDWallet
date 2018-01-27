@@ -9,17 +9,17 @@
 import Foundation
 
 public final class Wallet: WalletType {
-    private let mnemonicManager: MnemonicManager
+    private let mnemonicGenerator: MnemonicGenerator
     
     public init(wordList: WordList) {
-        mnemonicManager = MnemonicManager(wordList: wordList)
+        mnemonicGenerator = MnemonicGenerator(wordList: wordList)
     }
     
     public func createMnemonic(fromEntropyString entropyString: String) -> String {
-        return mnemonicManager.createMnemonic(fromEntropyString: entropyString)
+        return mnemonicGenerator.createMnemonic(fromEntropyString: entropyString)
     }
     
     public func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String) -> String {
-        return mnemonicManager.createSeedString(fromMnemonic: mnemonic, withPassphrase: passphrase)
+        return mnemonicGenerator.createSeedString(fromMnemonic: mnemonic, withPassphrase: passphrase)
     }
 }

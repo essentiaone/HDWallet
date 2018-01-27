@@ -1,5 +1,5 @@
 //
-//  MnemonicManager.swift
+//  MnemonicGenerator.swift
 //  WalletKit
 //
 //  Created by yuzushioh on 2018/01/01.
@@ -9,7 +9,7 @@
 import Foundation
 import CryptoSwift
 
-final class MnemonicManager: MnemonicManagerType {
+final class MnemonicGenerator: MnemonicGeneratorType {
     fileprivate let wordList: WordList
     
     init(wordList: WordList) {

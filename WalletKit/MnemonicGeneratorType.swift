@@ -1,5 +1,5 @@
 //
-//  MnemonicManagerType.swift
+//  MnemonicGeneratorType.swift
 //  WalletKit
 //
 //  Created by yuzushioh on 2018/01/02.
@@ -12,7 +12,7 @@ import CryptoSwift
 // All the implementations for generating mnemonic code(sentence) for deterministic key are based on BIP39.
 // See more details in https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki
 
-protocol MnemonicManagerType {
+protocol MnemonicGeneratorType {
     
     /// Generates a mnemonic sentence from an entropy string provided.
     ///
@@ -35,7 +35,7 @@ protocol MnemonicManagerType {
     init(wordList: WordList)
 }
 
-extension MnemonicManagerType {
+extension MnemonicGeneratorType {
     
     /// Generates a seed from mnemonic sentence provided.
     ///

@@ -13,8 +13,8 @@
 		AE8291A12018ADAF0047E0F0 /* KeyGeneratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291992018ADAE0047E0F0 /* KeyGeneratorType.swift */; };
 		AE8291A22018ADAF0047E0F0 /* WalletType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919A2018ADAF0047E0F0 /* WalletType.swift */; };
 		AE8291A32018ADAF0047E0F0 /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919B2018ADAF0047E0F0 /* KeyGenerator.swift */; };
-		AE8291A42018ADAF0047E0F0 /* MnemonicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919C2018ADAF0047E0F0 /* MnemonicManager.swift */; };
-		AE8291A52018ADAF0047E0F0 /* MnemonicManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919D2018ADAF0047E0F0 /* MnemonicManagerType.swift */; };
+		AE8291A42018ADAF0047E0F0 /* MnemonicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919C2018ADAF0047E0F0 /* MnemonicGenerator.swift */; };
+		AE8291A52018ADAF0047E0F0 /* MnemonicGeneratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919D2018ADAF0047E0F0 /* MnemonicGeneratorType.swift */; };
 		AE8291A62018ADAF0047E0F0 /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82919E2018ADAF0047E0F0 /* WordList.swift */; };
 		AE8291A82018AEBF0047E0F0 /* UInt32.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291A72018AEBF0047E0F0 /* UInt32.swift */; };
 		AE8291AA2018C1F10047E0F0 /* BigInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291A92018C1F10047E0F0 /* BigInt+Extension.swift */; };
@@ -101,8 +101,8 @@
 		AE8291992018ADAE0047E0F0 /* KeyGeneratorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyGeneratorType.swift; sourceTree = "<group>"; };
 		AE82919A2018ADAF0047E0F0 /* WalletType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletType.swift; sourceTree = "<group>"; };
 		AE82919B2018ADAF0047E0F0 /* KeyGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyGenerator.swift; sourceTree = "<group>"; };
-		AE82919C2018ADAF0047E0F0 /* MnemonicManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MnemonicManager.swift; sourceTree = "<group>"; };
-		AE82919D2018ADAF0047E0F0 /* MnemonicManagerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MnemonicManagerType.swift; sourceTree = "<group>"; };
+		AE82919C2018ADAF0047E0F0 /* MnemonicGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MnemonicGenerator.swift; sourceTree = "<group>"; };
+		AE82919D2018ADAF0047E0F0 /* MnemonicGeneratorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MnemonicGeneratorType.swift; sourceTree = "<group>"; };
 		AE82919E2018ADAF0047E0F0 /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		AE8291A72018AEBF0047E0F0 /* UInt32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt32.swift; sourceTree = "<group>"; };
 		AE8291A92018C1F10047E0F0 /* BigInt+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigInt+Extension.swift"; sourceTree = "<group>"; };
@@ -221,8 +221,8 @@
 			children = (
 				AE82919A2018ADAF0047E0F0 /* WalletType.swift */,
 				AE8291982018ADAE0047E0F0 /* Wallet.swift */,
-				AE82919D2018ADAF0047E0F0 /* MnemonicManagerType.swift */,
-				AE82919C2018ADAF0047E0F0 /* MnemonicManager.swift */,
+				AE82919D2018ADAF0047E0F0 /* MnemonicGeneratorType.swift */,
+				AE82919C2018ADAF0047E0F0 /* MnemonicGenerator.swift */,
 				AE8291992018ADAE0047E0F0 /* KeyGeneratorType.swift */,
 				AE82919B2018ADAF0047E0F0 /* KeyGenerator.swift */,
 				AE8291972018ADAE0047E0F0 /* Network.swift */,
@@ -498,9 +498,9 @@
 				AEBA91121FFA5E6D003EA2BA /* UInt8+Extension.swift in Sources */,
 				AEBA90E71FFA2651003EA2BA /* Data+Extension.swift in Sources */,
 				AE8291A62018ADAF0047E0F0 /* WordList.swift in Sources */,
-				AE8291A42018ADAF0047E0F0 /* MnemonicManager.swift in Sources */,
+				AE8291A42018ADAF0047E0F0 /* MnemonicGenerator.swift in Sources */,
 				AE299DFE2018A63F002769F9 /* SMP.swift in Sources */,
-				AE8291A52018ADAF0047E0F0 /* MnemonicManagerType.swift in Sources */,
+				AE8291A52018ADAF0047E0F0 /* MnemonicGeneratorType.swift in Sources */,
 				AE8291AC2018C8860047E0F0 /* KeyPair.swift in Sources */,
 				AE8291A12018ADAF0047E0F0 /* KeyGeneratorType.swift in Sources */,
 				AE8291A22018ADAF0047E0F0 /* WalletType.swift in Sources */,
