@@ -11,20 +11,23 @@ import ECDSA
 /// KeyPair has PrivateKey and corresponding PublicKey. It also has all the information
 /// (eg, depth, fingureprint, index) necessory for generating a key pair.
 public struct KeyPair {
-    private let network: Network
+    
     private let depth: UInt8
     private let fingurePrint: UInt32
     private let index: UInt32
     private let privateKeyData: Data
     private let chainCodeData: Data
+    private let hardens: Bool
+    private let network: Network
     
-    internal init(privateKeyData: Data, chainCodeData: Data, network: Network) {
-        self.network = network
+    internal init(privateKeyData: Data, chainCodeData: Data, hardens: Bool, network: Network) {
         self.depth = 0
         self.fingurePrint = 0
         self.index = 0
         self.privateKeyData = privateKeyData
         self.chainCodeData = chainCodeData
+        self.hardens = hardens
+        self.network = network
     }
     
     /// Private key in String format, encoded in Base58
@@ -78,7 +81,8 @@ public struct KeyPair {
         var baseKeyData = Data()
         baseKeyData += depth.toHexData
         baseKeyData += fingurePrint.toHexData
-        baseKeyData += index.toHexData
+        let childIndex = hardens ? (0x80000000 | index) : index
+        baseKeyData += childIndex.toHexData
         baseKeyData += chainCodeData
         return baseKeyData
     }

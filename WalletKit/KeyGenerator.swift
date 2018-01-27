@@ -10,9 +10,9 @@ import CryptoSwift
 
 public final class KeyGenerator: KeyGeneratorType {
     
-    public let masterKeyPair: KeyPair
+    public static var masterKeyPair: KeyPair?
     
-    public init(seedString: String, network: Network) {
+    public static func setup(seedString: String, network: Network, hardensMasterKeyPair: Bool) {
         let seed = seedString.mnemonicData
         let output: [UInt8]
         do {
@@ -24,7 +24,19 @@ public final class KeyGenerator: KeyGeneratorType {
         masterKeyPair = KeyPair(
             privateKeyData: Data(output[0..<32]),
             chainCodeData: Data(output[32..<64]),
+            hardens: hardensMasterKeyPair,
             network: network
+        )
+    }
+    
+    public init() {
+        guard let masterKeyPair = KeyGenerator.masterKeyPair else {
+            fatalError("\(KeyGenerator.setup) must be called before initializing.")
+        }
+        
+        print(
+            masterKeyPair.extendedPrivateKey,
+            masterKeyPair.extendedPublicKey
         )
     }
 }

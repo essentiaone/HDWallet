@@ -11,12 +11,13 @@ import Foundation
 public protocol KeyGeneratorType {
     
     /// KeyPair with MasterPrivateKey and MasterPublicKey generated from seed you provided.
-    var masterKeyPair: KeyPair { get }
+    static var masterKeyPair: KeyPair? { get }
     
-    /// Initialize KeyGenerator
+    /// Set up KeyGenerator. Before initializing KeyGenerator, you need to call this method to generate master key pair. Otherwise crashes.
     ///
     /// - Parameters:
     ///   - seedString: Root seed for generating HD wallet.
     ///   - network: Netwrok indicating whether it is for test net or main net.
-    init(seedString: String, network: Network)
+    ///   - hardensMasterKeyPair: whether or not you want the keys to be hardened.
+    static func setup(seedString: String, network: Network, hardensMasterKeyPair: Bool)
 }

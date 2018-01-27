@@ -9,6 +9,12 @@
 import Foundation
 
 public protocol WalletType {
+    
+    /// Initialize Wallet
+    ///
+    /// - Parameter wordList: in which language to create mnemonic sentence.
+    init(wordList: WordList)
+    
     /// Generates a mnemonic sentence from an entropy string provided.
     ///
     /// - Parameter entropyString: An entropy string to generate mnemonic from. But the length must be of 16, 20, 24, 28 or 32.
@@ -25,6 +31,11 @@ public protocol WalletType {
 }
 
 public extension WalletType {
+    
+    public init() {
+        self.init(wordList: .english)
+    }
+    
     /// Generates a seed from mnemonic sentence provided.
     ///
     /// - Parameters:
