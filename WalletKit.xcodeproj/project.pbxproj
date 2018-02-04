@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		AE299DFE2018A63F002769F9 /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE299DFD2018A63E002769F9 /* SMP.swift */; };
 		AE6639EF20273CED0055B143 /* WalletPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6639EE20273CED0055B143 /* WalletPath.swift */; };
+		AE6639F12027470C0055B143 /* RIPEMD160.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6639F02027470C0055B143 /* RIPEMD160.swift */; };
+		AE6639F42027476A0055B143 /* RIPEMD160+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6639F32027476A0055B143 /* RIPEMD160+Extension.swift */; };
 		AE82919F2018ADAF0047E0F0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291972018ADAE0047E0F0 /* Network.swift */; };
 		AE8291A02018ADAF0047E0F0 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291982018ADAE0047E0F0 /* Wallet.swift */; };
 		AE8291A12018ADAF0047E0F0 /* KeyPairGeneratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291992018ADAE0047E0F0 /* KeyPairGeneratorType.swift */; };
@@ -98,6 +100,8 @@
 /* Begin PBXFileReference section */
 		AE299DFD2018A63E002769F9 /* SMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMP.swift; sourceTree = "<group>"; };
 		AE6639EE20273CED0055B143 /* WalletPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPath.swift; sourceTree = "<group>"; };
+		AE6639F02027470C0055B143 /* RIPEMD160.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIPEMD160.swift; sourceTree = "<group>"; };
+		AE6639F32027476A0055B143 /* RIPEMD160+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RIPEMD160+Extension.swift"; sourceTree = "<group>"; };
 		AE8291972018ADAE0047E0F0 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		AE8291982018ADAE0047E0F0 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		AE8291992018ADAE0047E0F0 /* KeyPairGeneratorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPairGeneratorType.swift; sourceTree = "<group>"; };
@@ -185,6 +189,14 @@
 			path = BigInt;
 			sourceTree = "<group>";
 		};
+		AE6639F22027473F0055B143 /* RIPEMD160 */ = {
+			isa = PBXGroup;
+			children = (
+				AE6639F02027470C0055B143 /* RIPEMD160.swift */,
+			);
+			path = RIPEMD160;
+			sourceTree = "<group>";
+		};
 		AE90A0761FFA698D005ED7AF /* WalletKitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +243,7 @@
 				AE6639EE20273CED0055B143 /* WalletPath.swift */,
 				AE8291AB2018C8860047E0F0 /* KeyPair.swift */,
 				AE82919E2018ADAF0047E0F0 /* WordList.swift */,
+				AE6639F22027473F0055B143 /* RIPEMD160 */,
 				AE299DFF2018A642002769F9 /* BigInt */,
 				AEBA91131FFA615A003EA2BA /* Extension */,
 				AEBA90D81FFA21ED003EA2BA /* WalletKit.h */,
@@ -260,6 +273,7 @@
 				AEBA91111FFA5E6D003EA2BA /* UInt8+Extension.swift */,
 				AE8291A72018AEBF0047E0F0 /* UInt32.swift */,
 				AEBA90E61FFA2651003EA2BA /* Data+Extension.swift */,
+				AE6639F32027476A0055B143 /* RIPEMD160+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -502,10 +516,12 @@
 				AEBA91121FFA5E6D003EA2BA /* UInt8+Extension.swift in Sources */,
 				AEBA90E71FFA2651003EA2BA /* Data+Extension.swift in Sources */,
 				AE8291A62018ADAF0047E0F0 /* WordList.swift in Sources */,
+				AE6639F12027470C0055B143 /* RIPEMD160.swift in Sources */,
 				AE8291A42018ADAF0047E0F0 /* MnemonicGenerator.swift in Sources */,
 				AE299DFE2018A63F002769F9 /* SMP.swift in Sources */,
 				AE8291A52018ADAF0047E0F0 /* MnemonicGeneratorType.swift in Sources */,
 				AE8291AC2018C8860047E0F0 /* KeyPair.swift in Sources */,
+				AE6639F42027476A0055B143 /* RIPEMD160+Extension.swift in Sources */,
 				AE8291A12018ADAF0047E0F0 /* KeyPairGeneratorType.swift in Sources */,
 				AE8291A22018ADAF0047E0F0 /* WalletType.swift in Sources */,
 				AEBA90E51FFA23C6003EA2BA /* String+Extension.swift in Sources */,

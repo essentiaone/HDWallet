@@ -38,5 +38,8 @@ public final class KeyPairGenerator: KeyPairGeneratorType {
             masterKeyPair.extendedPrivateKey,
             masterKeyPair.extendedPublicKey
         )
+        
+        let key = masterKeyPair.derive(at: "m/44'/0'/0'/0")
+        print(key.extendedPrivateKey, key.extendedPublicKey)
     }
 }

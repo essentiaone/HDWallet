@@ -29,6 +29,10 @@ extension Data {
     var doubleSHA256: Data {
         return sha256().sha256()
     }
+    
+    var hash160: Data {
+        return RIPEMD160.hash(message: self.sha256())
+    }
 }
 
 // MARK: Base56Encode
