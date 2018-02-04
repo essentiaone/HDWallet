@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AE299DFE2018A63F002769F9 /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE299DFD2018A63E002769F9 /* SMP.swift */; };
+		AE6639EF20273CED0055B143 /* WalletPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6639EE20273CED0055B143 /* WalletPath.swift */; };
 		AE82919F2018ADAF0047E0F0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291972018ADAE0047E0F0 /* Network.swift */; };
 		AE8291A02018ADAF0047E0F0 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291982018ADAE0047E0F0 /* Wallet.swift */; };
 		AE8291A12018ADAF0047E0F0 /* KeyPairGeneratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8291992018ADAE0047E0F0 /* KeyPairGeneratorType.swift */; };
@@ -96,6 +97,7 @@
 
 /* Begin PBXFileReference section */
 		AE299DFD2018A63E002769F9 /* SMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMP.swift; sourceTree = "<group>"; };
+		AE6639EE20273CED0055B143 /* WalletPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPath.swift; sourceTree = "<group>"; };
 		AE8291972018ADAE0047E0F0 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		AE8291982018ADAE0047E0F0 /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		AE8291992018ADAE0047E0F0 /* KeyPairGeneratorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyPairGeneratorType.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				AE8291992018ADAE0047E0F0 /* KeyPairGeneratorType.swift */,
 				AE82919B2018ADAF0047E0F0 /* KeyPairGenerator.swift */,
 				AE8291972018ADAE0047E0F0 /* Network.swift */,
+				AE6639EE20273CED0055B143 /* WalletPath.swift */,
 				AE8291AB2018C8860047E0F0 /* KeyPair.swift */,
 				AE82919E2018ADAF0047E0F0 /* WordList.swift */,
 				AE299DFF2018A642002769F9 /* BigInt */,
@@ -491,6 +494,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE8291AA2018C1F10047E0F0 /* BigInt+Extension.swift in Sources */,
+				AE6639EF20273CED0055B143 /* WalletPath.swift in Sources */,
 				AE8291A82018AEBF0047E0F0 /* UInt32.swift in Sources */,
 				AE8291A32018ADAF0047E0F0 /* KeyPairGenerator.swift in Sources */,
 				AE8291A02018ADAF0047E0F0 /* Wallet.swift in Sources */,
