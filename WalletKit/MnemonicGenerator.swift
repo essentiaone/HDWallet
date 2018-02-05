@@ -9,15 +9,14 @@
 import Foundation
 import CryptoSwift
 
-final class MnemonicGenerator: MnemonicGeneratorType {
-    fileprivate let wordList: WordList
+public final class MnemonicGenerator {
     
-    init(wordList: WordList) {
-        self.wordList = wordList
-    }
-    
-    func createMnemonic(fromEntropyString entropyString: String) -> String {
-        let initialEntropy = entropyString.mnemonicData
+    /// Generates a mnemonic sentence from an entropy string provided.
+    ///
+    /// - Parameter entropy: An entropy string to generate mnemonic from. But the length must be of 16, 20, 24, 28 or 32.
+    /// - Returns: Mnemonic sentence. The length could be any number from 3 to 24 in a multiple of 3. Most of the time 12 or 24.
+    public static func create(entropy: String, language: WordList = .english) -> String {
+        let initialEntropy = entropy.mnemonicData
         
         let acceptableEntropyLengthList = [16, 20, 24, 28, 32]
         guard acceptableEntropyLengthList.contains(initialEntropy.count) else {
@@ -34,7 +33,7 @@ final class MnemonicGenerator: MnemonicGeneratorType {
             fatalError("Entropy data length mush be in a multiple of \(splittingInterval).")
         }
         
-        let words = wordList.words
+        let words = language.words
         let estimatedWordCount = entropyBits.count / splittingInterval
         
         var mnemonic: [String] = []
@@ -51,7 +50,13 @@ final class MnemonicGenerator: MnemonicGeneratorType {
         return mnemonic.joined(separator: " ")
     }
     
-    func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String) -> String {
+    /// Generates a seed from mnemonic sentence provided.
+    ///
+    /// - Parameters:
+    ///   - mnemonic: Mnemonic sentence to generates a seed from.
+    ///   - passphrase: Passphrase you set when created the mnemonic sentence.
+    /// - Returns: Seed to recover the deterministic keys.
+    public static func createSeed(mnemonic: String, withPassphrase passphrase: String = "") -> String {
         func normalize(string: String) -> Data? {
             return string.data(using: .utf8, allowLossyConversion: true)
         }

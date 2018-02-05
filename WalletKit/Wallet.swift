@@ -7,26 +7,26 @@
 //
 
 import Foundation
+import CryptoSwift
 
-public final class Wallet: WalletType {
+public final class Wallet {
+    public let masterKeyPair: KeyPair
+    public let network: Network
     
-    private let mnemonicGenerator: MnemonicGeneratorType
-    private var keyPairGenerator: KeyPairGeneratorType?
-    
-    public init(wordList: WordList) {
-        mnemonicGenerator = MnemonicGenerator(wordList: wordList)
-    }
-    
-    public func createMnemonic(fromEntropyString entropyString: String) -> String {
-        return mnemonicGenerator.createMnemonic(fromEntropyString: entropyString)
-    }
-    
-    public func createSeedString(fromMnemonic mnemonic: String, withPassphrase passphrase: String) -> String {
-        return mnemonicGenerator.createSeedString(fromMnemonic: mnemonic, withPassphrase: passphrase)
-    }
-    
-    public func initialize(seed: String, network: Network, hardensMasterKeyPair: Bool) {
-        KeyPairGenerator.setup(seedString: seed, network: network, hardensMasterKeyPair: hardensMasterKeyPair)
-        keyPairGenerator = KeyPairGenerator()
+    public init(seed: String, network: Network) {
+        let seed = seed.mnemonicData
+        let output: [UInt8]
+        do {
+            output = try HMAC(key: "Bitcoin seed", variant: .sha512).authenticate(seed.bytes)
+        } catch let error {
+            fatalError("Error occured in SeedAuthenticator. Description: \(error.localizedDescription)")
+        }
+        
+        self.network = network
+        self.masterKeyPair = KeyPair(
+            privateKeyData: Data(output[0..<32]),
+            chainCodeData: Data(output[32..<64]),
+            network: network
+        )
     }
 }

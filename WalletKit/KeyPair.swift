@@ -16,19 +16,17 @@ public struct KeyPair {
     private let depth: UInt8
     private let parentFingerprint: UInt32
     private let index: UInt32
-    private let hardens: Bool
     private let network: Network
     
     private let privateKeyData: Data
     private let chainCodeData: Data
     
-    internal init(privateKeyData: Data, chainCodeData: Data, depth: UInt8, parentFingerprint: UInt32, index: UInt32, hardens: Bool, network: Network) {
+    internal init(privateKeyData: Data, chainCodeData: Data, depth: UInt8, parentFingerprint: UInt32, index: UInt32, network: Network) {
         self.privateKeyData = privateKeyData
         self.chainCodeData = chainCodeData
         self.depth = depth
         self.parentFingerprint = parentFingerprint
         self.index = index
-        self.hardens = hardens
         self.network = network
     }
     
@@ -39,13 +37,12 @@ public struct KeyPair {
     ///   - chainCodeData: chain code in data format, generated from seed string.
     ///   - hardens: wthether the key pair should hardened or not.
     ///   - network:
-    internal init(privateKeyData: Data, chainCodeData: Data, hardens: Bool, network: Network) {
+    internal init(privateKeyData: Data, chainCodeData: Data, network: Network) {
         self.depth = 0
         self.parentFingerprint = 0
         self.index = 0
         self.privateKeyData = privateKeyData
         self.chainCodeData = chainCodeData
-        self.hardens = hardens
         self.network = network
     }
     
@@ -73,46 +70,28 @@ public struct KeyPair {
     
     /// Extended private key in String format, encoded in Base58
     public var extendedPrivateKey: String {
-        return extendedPrivateKeyData.base58BaseEncodedString
-    }
-    
-    /// Extended private key in Data format.
-    private var extendedPrivateKeyData: Data {
         var extendedPrivateKeyData = Data()
         extendedPrivateKeyData += network.privateKeyVersion.toHexData
-        extendedPrivateKeyData += generateKeyComponentData()
+        extendedPrivateKeyData += depth.toHexData
+        extendedPrivateKeyData += parentFingerprint.toHexData
+        extendedPrivateKeyData += index.toHexData
+        extendedPrivateKeyData += chainCodeData
         extendedPrivateKeyData += UInt8(0).toHexData
         extendedPrivateKeyData += privateKeyData
-        return extendedPrivateKeyData
+        return extendedPrivateKeyData.base58BaseEncodedString
     }
     
     /// Extended public key in String format, encoded in Base58
     public var extendedPublicKey: String {
-        return extendedPublicKeyData.base58BaseEncodedString
-    }
-    
-    /// Extended public key in Data format.
-    private var extendedPublicKeyData: Data {
         var extendedPublicKeyData = Data()
         extendedPublicKeyData += network.publicKeyVersion.toHexData
-        extendedPublicKeyData += generateKeyComponentData()
+        extendedPublicKeyData += depth.toHexData
+        extendedPublicKeyData += parentFingerprint.toHexData
+        extendedPublicKeyData += index.toHexData
+        extendedPublicKeyData += chainCodeData
         extendedPublicKeyData += publicKeyData
-        return extendedPublicKeyData
+        return extendedPublicKeyData.base58BaseEncodedString
     }
-    
-    /// Generate a key component data with depth, fingure print, index, and chain code.
-    ///
-    /// - Returns: data including depth, fingure print, index, and chain code.
-    private func generateKeyComponentData() -> Data {
-        var baseKeyData = Data()
-        baseKeyData += depth.toHexData
-        baseKeyData += parentFingerprint.toHexData
-        let childIndex = hardens ? (0x80000000 | index) : index
-        baseKeyData += childIndex.toHexData
-        baseKeyData += chainCodeData
-        return baseKeyData
-    }
-    
     
     /// Derive private key at the specified index
     ///
@@ -160,7 +139,6 @@ public struct KeyPair {
             depth: depth + 1,
             parentFingerprint: fingurePrint,
             index: derivedIndex,
-            hardens: hardens,
             network: network
         )
     }
