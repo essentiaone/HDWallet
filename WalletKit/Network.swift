@@ -27,13 +27,4 @@ public enum Network {
             return 0x043587CF
         }
     }
-    
-    public var rootKeyPairPath: String {
-        switch self {
-        case .main:
-            return "44'/0'"
-        case .test:
-            return "44'/1'"
-        }
-    }
 }
