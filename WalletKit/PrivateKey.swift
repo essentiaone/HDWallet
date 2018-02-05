@@ -26,17 +26,12 @@ public struct PrivateKey {
     }
     
     init(seed: Data, network: Network) {
-        let output: [UInt8]
-        do {
-            output = try HMAC(key: "Bitcoin seed", variant: .sha512).authenticate(seed.bytes)
-        } catch let error {
-            fatalError("Error occured in SeedAuthenticator. Description: \(error.localizedDescription)")
-        }
-        
         self.depth = 0
         self.fingerprint = 0
         self.index = 0
         self.network = network
+        
+        let output = Crypto.HMACSHA512(key: "Bitcoin seed", data: seed)
         self.privateKey = Data(output[0..<32])
         self.chainCode = Data(output[32..<64])
     }
