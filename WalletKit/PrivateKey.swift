@@ -51,4 +51,44 @@ public struct PrivateKey {
         extendedPrivateKeyData += privateKey
         return extendedPrivateKeyData.base58BaseEncodedString
     }
+    
+    public func derived(at index: UInt32, hardens: Bool = false) -> PrivateKey {
+        let edge: UInt32 = 0x80000000
+        guard (edge & index) == 0 else { fatalError("Invalid child index") }
+        
+        var data = Data()
+        if hardens {
+            data += UInt8(0).toHexData
+            data += privateKey
+        } else {
+            data += publicKey.publicKey
+        }
+        
+        let derivingIndex = hardens ? (edge + index) : index
+        data += derivingIndex.toHexData
+        
+        let curveOrder = BInt(hex: "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141")!
+        
+        let digest: Data
+        do {
+            digest = Data(try HMAC(key: chainCode.bytes, variant: .sha512).authenticate(data.bytes))
+        } catch let error {
+            fatalError("HAMC has faild: \(error.localizedDescription)")
+        }
+        
+        let factor = BInt(data: digest[0..<32])
+        let derivedPrivateKey = ((BInt(data: privateKey) + factor) % curveOrder).toData
+        
+        let derivedChainCode = digest[32..<64]
+        let fingurePrint = UInt32(bytes: publicKey.publicKey.hash160.bytes.prefix(4))
+        
+        return PrivateKey(
+            privateKey: derivedPrivateKey,
+            chainCode: derivedChainCode,
+            depth: depth + 1,
+            fingerprint: fingurePrint,
+            index: derivingIndex,
+            network: network
+        )
+    }
 }
