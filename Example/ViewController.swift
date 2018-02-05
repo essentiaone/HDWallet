@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         
         // By calling initialize, you can now access to your wallet.
         let wallet = Wallet(seed: seed, network: .test)
-        print(wallet.masterKeyPair.extendedPrivateKey, wallet.masterKeyPair.extendedPublicKey)
+        print(wallet.privateKey.extended, wallet.publicKey.extended)
         
         // Master private key and master public key generated from the seed.
         // tprv8ZgxMBicQKsPdM3GJUGqaS67XFjHNqUC8upXBhNb7UXqyKdLCj6HnTfqrjoEo6x89neRY2DzmKXhjWbAkxYvnb1U7vf4cF4qDicyb7Y2mNa

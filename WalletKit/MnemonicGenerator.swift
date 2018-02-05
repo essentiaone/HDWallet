@@ -56,7 +56,7 @@ public final class MnemonicGenerator {
     ///   - mnemonic: Mnemonic sentence to generates a seed from.
     ///   - passphrase: Passphrase you set when created the mnemonic sentence.
     /// - Returns: Seed to recover the deterministic keys.
-    public static func createSeed(mnemonic: String, withPassphrase passphrase: String = "") -> String {
+    public static func createSeed(mnemonic: String, withPassphrase passphrase: String = "") -> Data {
         func normalize(string: String) -> Data? {
             return string.data(using: .utf8, allowLossyConversion: true)
         }
@@ -70,8 +70,7 @@ public final class MnemonicGenerator {
         }
         
         do {
-            let seedData = try PKCS5.PBKDF2(password: password, salt: salt, iterations: 2048, variant: .sha512).calculate()
-            return seedData.toHexString()
+            return Data(try PKCS5.PBKDF2(password: password, salt: salt, iterations: 2048, variant: .sha512).calculate())
         } catch let error {
             fatalError("PKCS5.PBKDF2 faild: \(error.localizedDescription)")
         }
