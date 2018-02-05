@@ -11,10 +11,6 @@ import CryptoSwift
 
 public final class MnemonicGenerator {
     
-    /// Generates a mnemonic sentence from an entropy string provided.
-    ///
-    /// - Parameter entropy: An entropy string to generate mnemonic from. But the length must be of 16, 20, 24, 28 or 32.
-    /// - Returns: Mnemonic sentence. The length could be any number from 3 to 24 in a multiple of 3. Most of the time 12 or 24.
     public static func create(entropy: String, language: WordList = .english) -> String {
         let initialEntropy = entropy.mnemonicData
         
@@ -50,12 +46,6 @@ public final class MnemonicGenerator {
         return mnemonic.joined(separator: " ")
     }
     
-    /// Generates a seed from mnemonic sentence provided.
-    ///
-    /// - Parameters:
-    ///   - mnemonic: Mnemonic sentence to generates a seed from.
-    ///   - passphrase: Passphrase you set when created the mnemonic sentence.
-    /// - Returns: Seed to recover the deterministic keys.
     public static func createSeed(mnemonic: String, withPassphrase passphrase: String = "") -> Data {
         func normalize(string: String) -> Data? {
             return string.data(using: .utf8, allowLossyConversion: true)
