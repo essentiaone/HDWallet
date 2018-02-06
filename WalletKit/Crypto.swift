@@ -9,13 +9,23 @@
 import CryptoSwift
 
 final class Crypto {
-    static func HMACSHA512(key: String, data: Data) -> [UInt8] {
+    static func HMACSHA512(key: String, data: Data) -> Data {
         let output: [UInt8]
         do {
             output = try HMAC(key: "Bitcoin seed", variant: .sha512).authenticate(data.bytes)
         } catch let error {
             fatalError("Error occured. Description: \(error.localizedDescription)")
         }
-        return output
+        return Data(output)
+    }
+    
+    static func HMACSHA512(key: Data, data: Data) -> Data {
+        let output: [UInt8]
+        do {
+            output = try HMAC(key: key.bytes, variant: .sha512).authenticate(data.bytes)
+        } catch let error {
+            fatalError("Error occured. Description: \(error.localizedDescription)")
+        }
+        return Data(output)
     }
 }

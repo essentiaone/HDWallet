@@ -30,5 +30,16 @@ class ViewController: UIViewController {
         // Master private key and master public key generated from the seed.
         // tprv8ZgxMBicQKsPdM3GJUGqaS67XFjHNqUC8upXBhNb7UXqyKdLCj6HnTfqrjoEo6x89neRY2DzmKXhjWbAkxYvnb1U7vf4cF4qDicyb7Y2mNa
         // tpubD6NzVbkrYhZ4Wp54C7wRyqkE6HFDYAf6iDRJUDQtXkLEoot6q7usxxHi2tGW48TfY783vGoZ3ufE5XH9YP86c7X6G3CjMh8Dua1ZTTWyjSa
+        
+        let bitcoinPrivateKey = wallet.privateKey.derived(at: 44, hardens: true)
+        let purposePrivateKey = bitcoinPrivateKey.derived(at: 1, hardens: true)
+        let externalPrivateKey = purposePrivateKey.derived(at: 0, hardens: true)
+        let firstPrivateKey = externalPrivateKey.derived(at: 0)
+        let privateKey = firstPrivateKey.derived(at: 0)
+        
+        print(firstPrivateKey.extended, firstPrivateKey.publicKey.extended)
+        // tprv8hJrzKEmbFfBx44tsRe1wHh25i5QGztsawJGmxeqryPwdXdKrgxMgJUWn35dY2nrYmomRWWL7Y9wJrA6EvKJ27BfQTX1tWzZVxAXrR2pLLn
+        // tpubDDzu8jH1jdLrqX6gm5JcLhM8ejbLSL5nAEu44Uh9HFCLU1t6V5mwro6NxAXCfR2jUJ9vkYkUazKXQSU7WAaA9cbEkxdWmbLxHQnWqLyQ6uR
+        print(privateKey.publicKey.address)
     }
 }

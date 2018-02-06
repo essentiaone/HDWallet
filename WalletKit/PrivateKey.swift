@@ -23,8 +23,8 @@ public struct PrivateKey {
         self.network = network
         
         let output = Crypto.HMACSHA512(key: "Bitcoin seed", data: seed)
-        self.privateKey = Data(output[0..<32])
-        self.chainCode = Data(output[32..<64])
+        self.privateKey = output[0..<32]
+        self.chainCode = output[32..<64]
     }
     
     init(privateKey: Data, chainCode: Data, depth: UInt8, fingerprint: UInt32, index: UInt32, network: Network) {
@@ -50,5 +50,39 @@ public struct PrivateKey {
         extendedPrivateKeyData += UInt8(0).toHexData
         extendedPrivateKeyData += privateKey
         return extendedPrivateKeyData.base58BaseEncodedString
+    }
+    
+    public func derived(at index: UInt32, hardens: Bool = false) -> PrivateKey {
+        let edge: UInt32 = 0x80000000
+        guard (edge & index) == 0 else { fatalError("Invalid child index") }
+        
+        var data = Data()
+        if hardens {
+            data += UInt8(0).toHexData
+            data += privateKey
+        } else {
+            data += publicKey.publicKey
+        }
+        
+        let derivingIndex = hardens ? (edge + index) : index
+        data += derivingIndex.toHexData
+        
+        let digest = Crypto.HMACSHA512(key: chainCode, data: data)
+        let factor = BInt(data: digest[0..<32])
+        
+        let curveOrder = BInt(hex: "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141")!
+        let derivedPrivateKey = ((BInt(data: privateKey) + factor) % curveOrder).toData
+        
+        let derivedChainCode = digest[32..<64]
+        let fingurePrint = UInt32(bytes: publicKey.publicKey.hash160.prefix(4))
+        
+        return PrivateKey(
+            privateKey: derivedPrivateKey,
+            chainCode: derivedChainCode,
+            depth: depth + 1,
+            fingerprint: fingurePrint,
+            index: derivingIndex,
+            network: network
+        )
     }
 }
