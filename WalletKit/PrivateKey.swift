@@ -23,8 +23,8 @@ public struct PrivateKey {
         self.network = network
         
         let output = Crypto.HMACSHA512(key: "Bitcoin seed", data: seed)
-        self.privateKey = Data(output[0..<32])
-        self.chainCode = Data(output[32..<64])
+        self.privateKey = output[0..<32]
+        self.chainCode = output[32..<64]
     }
     
     init(privateKey: Data, chainCode: Data, depth: UInt8, fingerprint: UInt32, index: UInt32, network: Network) {
@@ -67,20 +67,14 @@ public struct PrivateKey {
         let derivingIndex = hardens ? (edge + index) : index
         data += derivingIndex.toHexData
         
-        let curveOrder = BInt(hex: "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141")!
-        
-        let digest: Data
-        do {
-            digest = Data(try HMAC(key: chainCode.bytes, variant: .sha512).authenticate(data.bytes))
-        } catch let error {
-            fatalError("HAMC has faild: \(error.localizedDescription)")
-        }
-        
+        let digest = Crypto.HMACSHA512(key: chainCode, data: data)
         let factor = BInt(data: digest[0..<32])
+        
+        let curveOrder = BInt(hex: "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141")!
         let derivedPrivateKey = ((BInt(data: privateKey) + factor) % curveOrder).toData
         
         let derivedChainCode = digest[32..<64]
-        let fingurePrint = UInt32(bytes: publicKey.publicKey.hash160.bytes.prefix(4))
+        let fingurePrint = UInt32(bytes: publicKey.publicKey.hash160.prefix(4))
         
         return PrivateKey(
             privateKey: derivedPrivateKey,
