@@ -6,8 +6,6 @@
 //  Copyright © 2018 yuzushioh. All rights reserved.
 //
 
-import Foundation
-
 // https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki
 public final class Mnemonic {
     public enum Strength: Int {

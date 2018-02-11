@@ -6,8 +6,6 @@
 //  Copyright © 2018 yuzushioh. All rights reserved.
 //
 
-import CryptoSwift
-
 public struct PrivateKey {
     public let raw: Data
     public let chainCode: Data
@@ -48,7 +46,8 @@ public struct PrivateKey {
         extendedPrivateKeyData += chainCode
         extendedPrivateKeyData += UInt8(0)
         extendedPrivateKeyData += raw
-        return extendedPrivateKeyData.base58BaseEncodedString
+        let checksum = extendedPrivateKeyData.sha256().prefix(4)
+        return Base58.encode(extendedPrivateKeyData + checksum)
     }
     
     public func derived(at index: UInt32, hardens: Bool = false) -> PrivateKey {

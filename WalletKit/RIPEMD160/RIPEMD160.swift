@@ -6,8 +6,6 @@
 //  Copyright © 2018 yuzushioh. All rights reserved.
 //
 
-import Foundation
-
 extension Data {
     var hash160: Data {
         return RIPEMD160.hash(message: self.sha256())
