@@ -10,36 +10,36 @@ import ECDSA
 import CryptoSwift
 
 public struct PublicKey {
+    public let raw: Data
+    public let chainCode: Data
     public let depth: UInt8
     public let fingerprint: UInt32
     public let index: UInt32
     public let network: Network
-    public let publicKey: Data
-    public let chainCode: Data
     
     init(privateKey: PrivateKey, chainCode: Data, network: Network, depth: UInt8, fingerprint: UInt32, index: UInt32) {
         self.depth = depth
         self.fingerprint = fingerprint
         self.index = index
         self.network = network
-        self.publicKey = ECDSA.secp256k1.generatePublicKey(with: privateKey.privateKey, isCompressed: true)
+        self.raw = ECDSA.secp256k1.generatePublicKey(with: privateKey.raw, isCompressed: true)
         self.chainCode = chainCode
     }
     
     public var address: String {
-        let hash = publicKey.hash160
+        let hash = raw.hash160
         let checksum = hash.doubleSHA256.prefix(4)
         return (hash + checksum).base58BaseEncodedString
     }
     
     public var extended: String {
         var extendedPublicKeyData = Data()
-        extendedPublicKeyData += network.publicKeyVersion.toHexData
-        extendedPublicKeyData += depth.toHexData
-        extendedPublicKeyData += fingerprint.toHexData
-        extendedPublicKeyData += index.toHexData
+        extendedPublicKeyData += network.publicKeyVersion.bigEndian
+        extendedPublicKeyData += depth.littleEndian
+        extendedPublicKeyData += fingerprint.littleEndian
+        extendedPublicKeyData += index.littleEndian
         extendedPublicKeyData += chainCode
-        extendedPublicKeyData += publicKey
+        extendedPublicKeyData += raw
         return extendedPublicKeyData.base58BaseEncodedString
     }
 }
