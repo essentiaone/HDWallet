@@ -26,7 +26,6 @@ public final class Wallet {
     }
     
     public func generateAddress(at index: UInt32) -> String {
-        print(changePrivateKey.extended)
         return changePrivateKey.derived(at: index).publicKey.address
     }
 }

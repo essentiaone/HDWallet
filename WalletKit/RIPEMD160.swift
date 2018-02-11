@@ -6,12 +6,6 @@
 //  Copyright © 2018 yuzushioh. All rights reserved.
 //
 
-extension Data {
-    var hash160: Data {
-        return RIPEMD160.hash(message: self.sha256())
-    }
-}
-
 struct RIPEMD160 {
     
     private var MDbuf: (UInt32, UInt32, UInt32, UInt32, UInt32)
@@ -374,7 +368,7 @@ struct RIPEMD160 {
 }
 
 extension RIPEMD160 {
-    static func hash(message: Data) -> Data {
+    static func hash(_ message: Data) -> Data {
         var md = RIPEMD160()
         md.update(data: message)
         return md.finalize()

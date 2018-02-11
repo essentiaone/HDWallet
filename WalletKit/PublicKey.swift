@@ -26,9 +26,10 @@ public struct PublicKey {
         self.privateKey = privateKey
     }
     
+    // NOTE: https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki
     public var address: String {
         let prefix = Data([network.publicKeyHash])
-        let payload = raw.hash160
+        let payload = RIPEMD160.hash(raw.sha256())
         let checksum = (prefix + payload).doubleSHA256.prefix(4)
         return Base58.encode(prefix + payload + checksum)
     }
