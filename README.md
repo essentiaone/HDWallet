@@ -60,3 +60,6 @@ print(secondAddress)
 let thirdAddress = wallet.generateAddress(at: 2)
 print(thirdAddress)
 ```
+
+## License
+EthereumKit is released under the [MIT License](LICENSE.md).
