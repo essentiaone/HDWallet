@@ -42,6 +42,7 @@ public struct PublicKey {
         extendedPublicKeyData += index.littleEndian
         extendedPublicKeyData += chainCode
         extendedPublicKeyData += raw
-        return Base58.encode(extendedPublicKeyData)
+        let checksum = extendedPublicKeyData.doubleSHA256.prefix(4)
+        return Base58.encode(extendedPublicKeyData + checksum)
     }
 }
