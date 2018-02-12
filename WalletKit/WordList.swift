@@ -6,8 +6,6 @@
 //  Copyright © 2018 yuzushioh. All rights reserved.
 //
 
-import Foundation
-
 public enum WordList {
     case english
     

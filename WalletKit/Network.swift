@@ -27,4 +27,22 @@ public enum Network {
             return 0x043587CF
         }
     }
+    
+    public var publicKeyHash: UInt8 {
+        switch self {
+        case .main:
+            return 0x00
+        case .test:
+            return 0x6f
+        }
+    }
+    
+    public var coinType: UInt32 {
+        switch self {
+        case .main:
+            return 0
+        case .test:
+            return 1
+        }
+    }
 }

@@ -1,47 +1,62 @@
 # WalletKit
 WalletKit is a Swift framwork that enables you to create and use bitcoin HD wallet([Hierarchical Deterministic Wallets](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)) in your own app.
 
-You can check if the BIP 32 and BIP 39 are working right in this [site](https://iancoleman.io/bip39/).
+You can check if the address generation is working right [here](https://iancoleman.io/bip39/).
 
-## TODO
-- Implement BIP39([Mnemonic code for generating deterministic keys](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) )
-  - Add more language
-  - Add tests
-- Implement BIP32([Hierarchical Deterministic Wallets](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki))
-  - Add tests
-- Set up CI
+## Features
+- Mnemonic recovery phrease in [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
+- [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)/[BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) HD wallet
+- [BIP13](https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki) address format
 
 ## How to use
 
-- Create the instance of Wallet.
-```swift
-let wallet = Wallet(wordList: .english)
-```
-
-### Mnemonic sentence
-- Just provide an entropy for a mnemonic sentence, or mnemonic sentence for a root seed.
+- Generate seed and convert it to mnemonic sentence.
 
 ```swift
-// Provide entropy to generate mnemonic sentence from.        
-let entropy = "000102030405060708090a0b0c0d0e0f"
-let mnemonic = wallet.createMnemonic(fromEntropyString: entropy)
-
+let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
+let mnemonic = Mnemonic.create(entropy: entropy)
 print(mnemonic)
 // abandon amount liar amount expire adjust cage candy arch gather drum buyer
 
-// Provide mnemonic sentence to generate root seed from.
-let seed = wallet.createSeedString(fromMnemonic: mnemonic)
-
-print(seed)
-// 3779b041fab425e9c0fd55846b2a03e9a388fb12784067bd8ebdb464c2574a05bcc7a8eb54d7b2a2c8420ff60f630722ea5132d28605dbc996c8ca7d7a8311c0
+let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+print(seed.toHexString())
 ```
 
-### Hierarchical Deterministic
-- Generate master private key from the seed generated above
+- PrivateKey and key derivation (BIP32, BIP44)
 
 ```swift
-let keyGenerator = KeyGenerator(seedString: seed, network: .test)
-print(keyGenerator.masterPrivateKey.extendedPrivateKey) 
-// tprv8ZgxMBicQKsPdM3GJUGqaS67XFjHNqUC8upXBhNb7UXqyKdLCj6HnTfqrjoEo6x89neRY2DzmKXhjWbAkxYvnb1U7vf4cF4qDicyb7Y2mNa
+let masterPrivateKey = PrivateKey(seed: seed, network: .main)
+
+// m/44'
+let purpose = masterPrivateKey.derived(at: 44, hardens: true)
+
+// m/44'/60'
+let coinType = purpose.derived(at: 60, hardens: true)
+
+// m/44'/60'/0'
+let account = coinType.derived(at: 0, hardens: true)
+
+// m/44'/60'/0'/0
+let change = account.derived(at: 0)
+
+// m/44'/60'/0'/0
+let firstPrivateKey = change.derived(at: 0)
+print(firstPrivateKey.publicKey.address)
 ```
 
+
+- Create your wallet and generate addresse
+
+```swift
+// It generates master key pair from the seed provided.
+let wallet = Wallet(seed: seed, network: .main)
+
+let firstAddress = wallet.generateAddress(at: 0)
+print(firstAddress)
+
+let secondAddress = wallet.generateAddress(at: 1)
+print(secondAddress)
+
+let thirdAddress = wallet.generateAddress(at: 2)
+print(thirdAddress)
+```
