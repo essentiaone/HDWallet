@@ -62,4 +62,4 @@ print(thirdAddress)
 ```
 
 ## License
-EthereumKit is released under the [MIT License](LICENSE.md).
+WalletKit is released under the [MIT License](LICENSE.md).
