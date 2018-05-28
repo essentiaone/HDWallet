@@ -188,7 +188,6 @@ class WalletKitTests: XCTestCase {
         let wallet = Wallet(seed: seed, network: .main)
         
         let firstAddressP2SH = wallet.generateAddressBIP49(at: 0)
-        print("BIP49:" + firstAddressP2SH)
         XCTAssertEqual(firstAddressP2SH, "32K5SuFrxTYMGjGRFStmdU1bPTrQ2GhsnV")
 
         let secondAddressP2SH = wallet.generateAddressBIP49(at: 1)
@@ -200,5 +199,24 @@ class WalletKitTests: XCTestCase {
         let forthAddressP2SH = wallet.generateAddressBIP49(at: 3)
         XCTAssertEqual(forthAddressP2SH, "357mLUhA6CTzBTkJMVSiw2rQBUwJibRCSp")
         
+    }
+
+    func testMainNetBIP84AddressGeneration() {
+        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
+        let mnemonic = Mnemonic.create(entropy: entropy)
+        let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+        let wallet = Wallet(seed: seed, network: .main)
+        
+        let firstAddressBech32 = wallet.generateAddressBIP84(at: 0)
+        XCTAssertEqual(firstAddressBech32, "bc1qdsdxmlnu5phmwaw9fy88vm57n552l9ztcg4rev")
+        
+        let secondAddressBech32 = wallet.generateAddressBIP84(at: 1)
+        XCTAssertEqual(secondAddressBech32, "bc1qn8e93hk0gdmwwq7xhmqy7k7pza8gunlftgyltp")
+        
+        let thirdAddressBech32 = wallet.generateAddressBIP84(at: 2)
+        XCTAssertEqual(thirdAddressBech32, "bc1qtm5rsf56v5u2v39jd7800av4aumrs2dva8cxfd")
+        
+        let forthAddressBech32 = wallet.generateAddressBIP84(at: 3)
+        XCTAssertEqual(forthAddressBech32, "bc1qntew983t8y752fn0tpex3dc5pu8ae2du6d8ghv")
     }
 }
