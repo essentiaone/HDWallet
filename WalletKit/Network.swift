@@ -37,6 +37,15 @@ public enum Network {
         }
     }
     
+    public var scriptHash: UInt8 {
+        switch self {
+        case .main:
+            return 0x05
+        case .test:
+            return 0xc4
+        }
+    }
+    
     public var coinType: UInt32 {
         switch self {
         case .main:
