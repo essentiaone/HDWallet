@@ -54,6 +54,6 @@ public final class Wallet {
     }
     
     public func generateAddressBIP49(at index: UInt32) -> String {
-        return receiveBIP49PrivateKey.derived(at: index).publicKey.addressP2SH
+        return receiveBIP49PrivateKey.derived(at: index).publicKey.addressBIP49
     }
 }

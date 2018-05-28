@@ -34,13 +34,26 @@ public struct PublicKey {
         return Base58.encode(prefix + payload + checksum)
     }
     
-    public var addressP2SH: String {
+    public var redeemScript: Data    {
+        var redeem = Data([0x00, 0x14])
+        redeem.append(RIPEMD160.hash(raw.sha256()))
+        return redeem
+    }
+
+    public var outputScript: Data    {
+        var script = Data([0xa9, 0x14])
+        script.append(RIPEMD160.hash(redeemScript.sha256()))
+        script.append(Data([0x87]))
+        return script
+    }
+
+    public var addressBIP49: String {
         let prefix = Data([network.scriptHash])
-        let payload = RIPEMD160.hash(raw.sha256())
+        let payload = RIPEMD160.hash(redeemScript.sha256())
         let checksum = (prefix + payload).doubleSHA256.prefix(4)
         return Base58.encode(prefix + payload + checksum)
     }
-    
+
     public var extended: String {
         var extendedPublicKeyData = Data()
         extendedPublicKeyData += network.publicKeyVersion.bigEndian
