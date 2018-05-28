@@ -82,6 +82,15 @@ public enum Network {
         }
     }
     
+    public var bech32: String {
+        switch self {
+        case .main:
+            return "bc"
+        case .test:
+            return "tb"
+        }
+    }
+    
     public var coinType: UInt32 {
         switch self {
         case .main:

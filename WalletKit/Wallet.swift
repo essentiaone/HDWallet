@@ -48,12 +48,32 @@ public final class Wallet {
         let change = account.derived(at: 1)
         return change
     }
-
+    
+    private var receiveBIP84PrivateKey: PrivateKey {
+        let purpose = privateKey.derived(at: 84, hardens: true)
+        let coinType = purpose.derived(at: network.coinType, hardens: true)
+        let account = coinType.derived(at: 0, hardens: true)
+        let receive = account.derived(at: 0)
+        return receive
+    }
+    
+    private var changeBIP84PrivateKey: PrivateKey {
+        let purpose = privateKey.derived(at: 84, hardens: true)
+        let coinType = purpose.derived(at: network.coinType, hardens: true)
+        let account = coinType.derived(at: 0, hardens: true)
+        let change = account.derived(at: 1)
+        return change
+    }
+    
     public func generateAddress(at index: UInt32) -> String {
         return receivePrivateKey.derived(at: index).publicKey.address
     }
     
     public func generateAddressBIP49(at index: UInt32) -> String {
         return receiveBIP49PrivateKey.derived(at: index).publicKey.addressBIP49
+    }
+    
+    public func generateAddressBIP84(at index: UInt32) -> String {
+        return receiveBIP84PrivateKey.derived(at: index).publicKey.addressBIP84
     }
 }

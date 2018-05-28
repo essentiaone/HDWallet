@@ -53,7 +53,20 @@ public struct PublicKey {
         let checksum = (prefix + payload).doubleSHA256.prefix(4)
         return Base58.encode(prefix + payload + checksum)
     }
-
+    
+    public var addressBIP84: String {
+        let addrCoder = SegwitAddrCoder()
+        var address : String
+        do  {
+            address = try addrCoder.encode(hrp: network.bech32, version: 0x00, program: RIPEMD160.hash(raw.sha256()))
+        }
+        catch {
+            address = "";
+        }
+        
+        return address
+    }
+    
     public var extended: String {
         var extendedPublicKeyData = Data()
         extendedPublicKeyData += network.publicKeyVersion.bigEndian
