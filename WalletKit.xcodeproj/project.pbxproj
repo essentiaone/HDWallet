@@ -43,6 +43,8 @@
 		AED560762019B9A30060A676 /* ECDSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED02D9B2019B7E100B76CEC /* ECDSA.framework */; };
 		AED5607C2019C8540060A676 /* secp256k1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED5607B2019C8540060A676 /* secp256k1.framework */; };
 		AED560822019CC4F0060A676 /* ECDSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED560812019CC4F0060A676 /* ECDSA.swift */; };
+		FA587C8B20BC47C60033F34A /* Bech32.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA587C8A20BC47C60033F34A /* Bech32.swift */; };
+		FA587C8D20BC4C1A0033F34A /* SegwitAddrCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA587C8C20BC4C1A0033F34A /* SegwitAddrCoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,8 @@
 		AED560792019C7F20060A676 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		AED5607B2019C8540060A676 /* secp256k1.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = secp256k1.framework; sourceTree = "<group>"; };
 		AED560812019CC4F0060A676 /* ECDSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECDSA.swift; sourceTree = "<group>"; };
+		FA587C8A20BC47C60033F34A /* Bech32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bech32.swift; sourceTree = "<group>"; };
+		FA587C8C20BC4C1A0033F34A /* SegwitAddrCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegwitAddrCoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +220,8 @@
 		AEBA90D71FFA21ED003EA2BA /* WalletKit */ = {
 			isa = PBXGroup;
 			children = (
+				FA587C8A20BC47C60033F34A /* Bech32.swift */,
+				FA587C8C20BC4C1A0033F34A /* SegwitAddrCoder.swift */,
 				AE8291982018ADAE0047E0F0 /* Wallet.swift */,
 				AE10B15020305B2500565720 /* Mnemonic.swift */,
 				AE8291972018ADAE0047E0F0 /* Network.swift */,
@@ -479,12 +485,14 @@
 				AE8291A02018ADAF0047E0F0 /* Wallet.swift in Sources */,
 				AE82919F2018ADAF0047E0F0 /* Network.swift in Sources */,
 				AE10B15520305C3F00565720 /* Base58Encode.swift in Sources */,
+				FA587C8B20BC47C60033F34A /* Bech32.swift in Sources */,
 				AE8291A62018ADAF0047E0F0 /* WordList.swift in Sources */,
 				AE6639F12027470C0055B143 /* RIPEMD160.swift in Sources */,
 				AE299DFE2018A63F002769F9 /* SMP.swift in Sources */,
 				AE1BF3352028B17B00344FB0 /* PublicKey.swift in Sources */,
 				AE1BF3372028B5B000344FB0 /* Crypto.swift in Sources */,
 				AE1BF3332028AEA400344FB0 /* PrivateKey.swift in Sources */,
+				FA587C8D20BC4C1A0033F34A /* SegwitAddrCoder.swift in Sources */,
 				AE10B15120305B2500565720 /* Mnemonic.swift in Sources */,
 				AE10B15320305B6500565720 /* DataConvertable.swift in Sources */,
 			);
