@@ -9,7 +9,7 @@
 public enum Network {
     case main
     case test
-    
+
     public var privateKeyVersion: UInt32 {
         switch self {
         case .main:
@@ -25,6 +25,42 @@ public enum Network {
             return 0x0488B21E
         case .test:
             return 0x043587CF
+        }
+    }
+    
+    public var privateKeyBIP49Version: UInt32 {
+        switch self {
+        case .main:
+            return 0x049D7878
+        case .test:
+            return 0x044A4E28
+        }
+    }
+    
+    public var publicKeyBIP49Version: UInt32 {
+        switch self {
+        case .main:
+            return 0x049D7CB2
+        case .test:
+            return 0x044A5262
+        }
+    }
+
+    public var privateKeyBIP84Version: UInt32 {
+        switch self {
+        case .main:
+            return 0x04B2430C
+        case .test:
+            return 0x045F18BC
+        }
+    }
+    
+    public var publicKeyBIP84Version: UInt32 {
+        switch self {
+        case .main:
+            return 0x04B24746
+        case .test:
+            return 0x045F1CF6
         }
     }
     
