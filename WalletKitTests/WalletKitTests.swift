@@ -61,13 +61,13 @@ class WalletKitTests: XCTestCase {
         // m/44'
         let purpose = privateKey.derived(at: 44, hardens: true)
         
-        // m/44'/60'
+        // m/44'/0'
         let coinType = purpose.derived(at: network.coinType, hardens: true)
         
-        // m/44'/60'/0'
+        // m/44'/0'/0'
         let account = coinType.derived(at: 0, hardens: true)
         
-        // m/44'/60'/0'/0
+        // m/44'/0'/0'/0
         let change = account.derived(at: 0)
         
         XCTAssertEqual(
@@ -80,7 +80,7 @@ class WalletKitTests: XCTestCase {
             "xpub6FPsFsTPcNZW16Cz274HPALS91r8joGLFhQo7M93TPBRUBttb48xBZ9k34oiG29Bvqfry9QyXPsGXSRE1kjut92Dgik1w6Whm1GU4F122n8"
         )
         
-        // m/44'/60'/0'/0
+        // m/44'/0'/0'/0
         let firstPrivateKey = change.derived(at: 0)
         XCTAssertEqual(
             firstPrivateKey.publicKey.address,
@@ -109,13 +109,13 @@ class WalletKitTests: XCTestCase {
         // m/44'
         let purpose = privateKey.derived(at: 44, hardens: true)
         
-        // m/44'/60'
+        // m/44'/0'
         let coinType = purpose.derived(at: network.coinType, hardens: true)
         
-        // m/44'/60'/0'
+        // m/44'/0'/0'
         let account = coinType.derived(at: 0, hardens: true)
         
-        // m/44'/60'/0'/0
+        // m/44'/0'/0'/0
         let change = account.derived(at: 0)
         
         XCTAssertEqual(
@@ -128,7 +128,7 @@ class WalletKitTests: XCTestCase {
             "tpubDDzu8jH1jdLrqX6gm5JcLhM8ejbLSL5nAEu44Uh9HFCLU1t6V5mwro6NxAXCfR2jUJ9vkYkUazKXQSU7WAaA9cbEkxdWmbLxHQnWqLyQ6uR"
         )
         
-        // m/44'/60'/0'/0
+        // m/44'/0'/0'/0
         let firstPrivateKey = change.derived(at: 0)
         XCTAssertEqual(
             firstPrivateKey.publicKey.address,
@@ -178,6 +178,27 @@ class WalletKitTests: XCTestCase {
         
         let forthAddress = wallet.generateAddress(at: 3)
         XCTAssertEqual(forthAddress, "mqwDZupDkKsaLsEEDAC9yKtQW6AFTsNeCh")
+        
+    }
+
+    func testMainNetBIP49AddressGeneration() {
+        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
+        let mnemonic = Mnemonic.create(entropy: entropy)
+        let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+        let wallet = Wallet(seed: seed, network: .main)
+        
+        let firstAddressP2SH = wallet.generateAddressBIP49(at: 0)
+        print("BIP49:" + firstAddressP2SH)
+        XCTAssertEqual(firstAddressP2SH, "32K5SuFrxTYMGjGRFStmdU1bPTrQ2GhsnV")
+
+        let secondAddressP2SH = wallet.generateAddressBIP49(at: 1)
+        XCTAssertEqual(secondAddressP2SH, "3FQTSxzUrxnApYTu5Wtt99sqrvtodPyKcV")
+        
+        let thirdAddressP2SH = wallet.generateAddressBIP49(at: 2)
+        XCTAssertEqual(thirdAddressP2SH, "34uY5KLosSPpuTkzsvfBwPBjav4u2n6GTh")
+        
+        let forthAddressP2SH = wallet.generateAddressBIP49(at: 3)
+        XCTAssertEqual(forthAddressP2SH, "357mLUhA6CTzBTkJMVSiw2rQBUwJibRCSp")
         
     }
 }
