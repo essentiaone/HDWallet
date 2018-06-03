@@ -30,16 +30,16 @@ let masterPrivateKey = PrivateKey(seed: seed, network: .main)
 // m/44'
 let purpose = masterPrivateKey.derived(at: 44, hardens: true)
 
-// m/44'/60'
-let coinType = purpose.derived(at: 60, hardens: true)
+// m/44'/0'
+let coinType = purpose.derived(at: 0, hardens: true)
 
-// m/44'/60'/0'
+// m/44'/0'/0'
 let account = coinType.derived(at: 0, hardens: true)
 
-// m/44'/60'/0'/0
+// m/44'/0'/0'/0
 let change = account.derived(at: 0)
 
-// m/44'/60'/0'/0
+// m/44'/0'/0'/0
 let firstPrivateKey = change.derived(at: 0)
 print(firstPrivateKey.publicKey.address)
 ```
