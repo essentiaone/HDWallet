@@ -12,6 +12,7 @@ import Foundation
 /// Segregated Witness Address encoder/decoder
 public class SegwitAddrCoder {
     private let bech32 = Bech32()
+    public init() { }
     
     /// Convert from one power-of-2 number base to another
     private func convertBits(from: Int, to: Int, pad: Bool, idata: Data) throws -> Data {

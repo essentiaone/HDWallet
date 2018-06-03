@@ -5,6 +5,7 @@
 //  Created by yuzushioh on 2018/02/06.
 //  Copyright © 2018 yuzushioh. All rights reserved.
 //
+import Foundation
 
 public struct PrivateKey {
     public let raw: Data

@@ -7,7 +7,6 @@
 //
 
 import CryptoSwift
-import ECDSA
 
 final class Crypto {
     static func HMACSHA512(key: Data, data: Data) -> Data {
