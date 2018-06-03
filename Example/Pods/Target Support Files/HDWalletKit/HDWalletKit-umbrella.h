@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double HDWalletVersionNumber;
-FOUNDATION_EXPORT const unsigned char HDWalletVersionString[];
+FOUNDATION_EXPORT double HDWalletKitVersionNumber;
+FOUNDATION_EXPORT const unsigned char HDWalletKitVersionString[];
 

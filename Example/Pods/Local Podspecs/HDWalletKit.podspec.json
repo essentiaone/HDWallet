@@ -1,0 +1,30 @@
+{
+  "name": "HDWalletKit",
+  "version": "0.1.0",
+  "summary": "Hierarchical Deterministic(HD) wallet for cryptocurrencies",
+  "description": "Hierarchical Deterministic(HD) wallet for cryptocurrencies",
+  "homepage": "https://github.com/Samourai-Wallet/HDWalletKit.git",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "euwars": "nazifi10@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Samourai-Wallet/HDWalletKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HDWalletKit/**/*",
+  "dependencies": {
+    "secp256k1.swift": [
+      "~> 0.1.4"
+    ],
+    "CryptoSwift": [
+      "~> 0.10.0"
+    ]
+  }
+}

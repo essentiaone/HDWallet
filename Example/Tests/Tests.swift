@@ -1,5 +1,5 @@
 import XCTest
-import HDWallet
+import HDWalletKit
 
 class WalletKitTests: XCTestCase {
     func testMenmonic() {
