@@ -1,0 +1,6 @@
+use_frameworks!
+target 'HDWallet_Tests' do
+  pod 'HDWallet', :path => '../'
+  
+  
+end

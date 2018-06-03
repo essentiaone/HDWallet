@@ -1,0 +1,31 @@
+{
+  "name": "HDWallet",
+  "version": "0.1.0",
+  "summary": "A short description of HDWallet.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/euwars/HDWallet",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "euwars": "nazifi10@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/euwars/HDWallet.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HDWallet/**/*",
+  "public_header_files": "HDWallet/**/*.h",
+  "dependencies": {
+    "secp256k1.swift": [
+      "~> 0.1.4"
+    ],
+    "CryptoSwift": [
+      "~> 0.10.0"
+    ]
+  }
+}
