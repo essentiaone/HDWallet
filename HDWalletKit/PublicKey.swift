@@ -16,7 +16,14 @@ public struct PublicKey {
     public let index: UInt32
     public let network: Network
     
-    private let privateKey: PrivateKey
+    private let privateKey: PrivateKey?
+    
+    public enum DecodingError: LocalizedError {
+        case base58DecodingFailed
+        public var errorDescription: String? {
+            return "Failed to decode xpub"
+        }
+    }
     
     init(privateKey: PrivateKey, chainCode: Data, network: Network, depth: UInt8, fingerprint: UInt32, index: UInt32) {
         self.raw = Crypto.generatePublicKey(data: privateKey.raw, compressed: true)
@@ -26,6 +33,17 @@ public struct PublicKey {
         self.index = index
         self.network = network
         self.privateKey = privateKey
+    }
+    
+    public init(xpub: String, network: Network, index: UInt32) throws {
+        guard let decoded = xpub.base58CheckDecodedData else { throw DecodingError.base58DecodingFailed }
+        self.fingerprint = UInt32(Data(bytes: decoded.bytes[5...8]).uint8)
+        self.raw = Data(bytes: decoded.bytes[45...77])
+        self.depth = decoded.bytes[4]
+        self.chainCode = Data(bytes: decoded.bytes[13...44])
+        self.index = index
+        self.network = network
+        self.privateKey = nil
     }
     
     // NOTE: https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki
@@ -79,5 +97,15 @@ public struct PublicKey {
         extendedPublicKeyData += raw
         let checksum = extendedPublicKeyData.doubleSHA256.prefix(4)
         return Base58.encode(extendedPublicKeyData + checksum)
+    }
+}
+
+extension Data {
+    var uint8: UInt8 {
+        get {
+            var number: UInt8 = 0
+            self.copyBytes(to: &number, count: MemoryLayout<UInt8>.size)
+            return number
+        }
     }
 }
