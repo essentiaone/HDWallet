@@ -13,6 +13,9 @@ Hierarchical Deterministic(HD) wallet for cryptocurrencies
   s.source           = { :git => 'https://github.com/Samourai-Wallet/HDWalletKit.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.10'
+  s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
 
   s.source_files = 'HDWalletKit/**/*'
 
