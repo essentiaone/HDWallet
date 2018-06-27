@@ -1,10 +1,6 @@
 platform :ios, '10.0'
 use_frameworks!
 
-target 'HDWallet_Tests' do
-  pod 'HDWalletKit', :path => '../'
-end
-
 target 'HDWalletKit_Tests' do
     pod 'HDWalletKit', :path => '../'
 end
