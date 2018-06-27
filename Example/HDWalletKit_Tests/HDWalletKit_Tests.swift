@@ -12,7 +12,7 @@ import HDWalletKit
 class HDWalletKit_Tests: XCTestCase {
     
     func testMenmonic() {
-        let entropy = Data.init(hex: "000102030405060708090a0b0c0d0e0f")
+        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
         let mnemonic = Mnemonic.create(entropy: entropy)
         XCTAssertEqual(
             mnemonic,
