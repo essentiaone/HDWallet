@@ -546,7 +546,8 @@
 				C40F43FD146B9FC67C1A8E441CC1906B /* WordList.swift */,
 				01D120D1E80B3B97C59233EC957F45ED /* Mnemonic.swift */,
 			);
-			path = Mnemonic;
+			name = Mnemonic;
+			path = HDWalletKit/Mnemonic;
 			sourceTree = "<group>";
 		};
 		34C0F0E220E3CF3A00F41267 /* Crypto */ = {
@@ -555,7 +556,8 @@
 				34C0F0E420E3CF4F00F41267 /* Encryption */,
 				34C0F0E320E3CF4500F41267 /* Hash */,
 			);
-			path = Crypto;
+			name = Crypto;
+			path = HDWalletKit/Crypto;
 			sourceTree = "<group>";
 		};
 		34C0F0E320E3CF4500F41267 /* Hash */ = {
@@ -582,7 +584,8 @@
 				EF2CCC12227049320309A0AEF3D5109B /* SegwitAddrCoder.swift */,
 				4037112750F780E64CD35550F042EED6 /* Base58Encode.swift */,
 			);
-			path = Encodeing;
+			name = Encodeing;
+			path = HDWalletKit/Encodeing;
 			sourceTree = "<group>";
 		};
 		34C0F0E720E3DB6F00F41267 /* Helpers */ = {
@@ -590,7 +593,8 @@
 			children = (
 				304ACBF90589112DC30627BCADDF569A /* DataConvertable.swift */,
 			);
-			path = Helpers;
+			name = Helpers;
+			path = HDWalletKit/Helpers;
 			sourceTree = "<group>";
 		};
 		34EBBBF9D33F5084259105577FD68061 /* Pods-HDWallet_Tests */ = {
