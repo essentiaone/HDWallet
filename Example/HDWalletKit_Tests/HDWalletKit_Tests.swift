@@ -1,7 +1,16 @@
+//
+//  HDWalletKit_Tests.swift
+//  HDWalletKit_Tests
+//
+//  Created by Pavlo Boiko on 27.06.18.
+//  Copyright © 2018 CocoaPods. All rights reserved.
+//
+
 import XCTest
 import HDWalletKit
 
-class WalletKitTests: XCTestCase {
+class HDWalletKit_Tests: XCTestCase {
+    
     func testMenmonic() {
         let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
         let mnemonic = Mnemonic.create(entropy: entropy)
@@ -210,4 +219,5 @@ class WalletKitTests: XCTestCase {
         let forthAddressBech32 = wallet.generateAddressBIP84(at: 3)
         XCTAssertEqual(forthAddressBech32, "bc1qntew983t8y752fn0tpex3dc5pu8ae2du6d8ghv")
     }
+    
 }

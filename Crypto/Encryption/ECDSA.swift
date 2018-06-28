@@ -31,7 +31,7 @@ public final class ECDSA {
         let size = isCompression ? 33 : 65
         let pubkey = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
 
-        var s = size_t()
+        var s = size_t(size)
         
         result = secp256k1_ec_pubkey_serialize(context, pubkey, &s, &pKey, isCompression ? UInt32(SECP256K1_EC_COMPRESSED) : UInt32(SECP256K1_EC_UNCOMPRESSED))
         if (result != 1) {
