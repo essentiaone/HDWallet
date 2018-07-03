@@ -51,20 +51,45 @@ public struct PrivateKey {
         return Base58.encode(extendedPrivateKeyData + checksum)
     }
     
-    public func derived(at index: UInt32, hardens: Bool = false) -> PrivateKey {
+    public func wif() -> String {
+        if self.network.coinType == Network.main(.bitcoin).coinType {
+            var data = Data()
+            data += UInt8(0x80)
+            data += raw
+            data += UInt8(0x01)
+            data += data.doubleSHA256.prefix(4)
+            return Base58.encode(data)
+        }
+        return "WIF is not specified"
+    }
+    
+    public func get() -> String {
+        switch self.network.coinType {
+        case Network.main(.bitcoin).coinType:
+            return self.wif()
+        case Network.main(.ethereum).coinType:
+            return self.raw.toHexString()
+        default:
+            return "None"
+        }
+    }
+    
+    public func derived(at node:DerivationNode) -> PrivateKey {
         let edge: UInt32 = 0x80000000
-        guard (edge & index) == 0 else { fatalError("Invalid child index") }
-        
+        guard (edge & node.index) == 0 else { fatalError("Invalid child index") }
+
         var data = Data()
-        if hardens {
+        switch node {
+        case .hardened:
             data += UInt8(0)
             data += raw
-        } else {
+        case .notHardened:
             data += publicKey.raw
         }
+
         
-        let derivingIndex = hardens ? (edge + index) : index
-        data += derivingIndex.bigEndian
+        let derivingIndex = CFSwapInt32BigToHost(node.hardens ? (edge | node.index) : node.index)
+        data += derivingIndex
         
         let digest = Crypto.HMACSHA512(key: chainCode, data: data)
         let factor = BInt(data: digest[0..<32])

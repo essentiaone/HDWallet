@@ -18,12 +18,10 @@
 		34C0F0DA20E392D200F41267 /* HDWalletKit_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDWalletKit_Tests.swift; sourceTree = "<group>"; };
 		34C0F0DC20E392D200F41267 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		57DCE7B262E0441B48A7C2E5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		640C1E3BF7798AFB66CFB109 /* Pods-HDWallet_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDWallet_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HDWallet_Tests/Pods-HDWallet_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A2130992ABBFE48B69E9BE9 /* Pods_HDWalletKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDWalletKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C11395215A9B301964BA4D4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C4ED793E0247D36F9898972D /* HDWalletKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HDWalletKit.podspec; path = ../HDWalletKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E8F4E6C2428977EE2B4FD2F2 /* Pods_HDWallet_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDWallet_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF253178745042098908DBDF /* Pods-HDWallet_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDWallet_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDWallet_Tests/Pods-HDWallet_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +48,6 @@
 		5A2289994A395D9DDB9958F6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				640C1E3BF7798AFB66CFB109 /* Pods-HDWallet_Tests.debug.xcconfig */,
-				EF253178745042098908DBDF /* Pods-HDWallet_Tests.release.xcconfig */,
 				0A3C307645041B2700D0F5A4 /* Pods-HDWalletKit_Tests.debug.xcconfig */,
 				1EB29830B97BF469B3E2D108 /* Pods-HDWalletKit_Tests.release.xcconfig */,
 			);

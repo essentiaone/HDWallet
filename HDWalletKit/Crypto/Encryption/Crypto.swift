@@ -30,7 +30,11 @@ final class Crypto {
     }
     
     static func generatePublicKey(data: Data, compressed: Bool) -> Data {
-        return ECDSA.secp256k1.generatePublicKey(with: data, isCompressed: true)
+        return ECDSA.secp256k1.generatePublicKey(with: data, isCompressed: compressed)
+    }
+    
+    static func sha3keccak256(data:Data) -> Data {
+        return Data(bytes:SHA3(variant: .keccak256).calculate(for: data.bytes))
     }
 }
 
