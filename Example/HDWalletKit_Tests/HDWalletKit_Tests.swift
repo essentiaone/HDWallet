@@ -189,8 +189,7 @@ class HDWalletKit_Tests: XCTestCase {
         print("SEED")
         print(seed as NSData)
         print("Mnemonic:" + mnemonic)
-        print("Private key:" + wallet.privateKey.extended)
-        print(try! wallet.generatePrivateKey(at: [.hardened(44),.hardened(0),.hardened(0),.notHardened(0)]).publicKey.address)
+        print(try! wallet.generateAddress(at: [.hardened(44),.hardened(0),.hardened(0),.notHardened(0),.notHardened(0)]))
         print("Private key GET:" + wallet.privateKey.get())
 
     }
@@ -201,7 +200,6 @@ class HDWalletKit_Tests: XCTestCase {
         let seed = Mnemonic.createSeed(mnemonic: mnemonic)
         let wallet = Wallet(seed: seed, network: .main(.ethereum))
         print("Mnemonic:" + mnemonic)
-        print("Private key:" + wallet.privateKey.extended)
         print("PRIVATKEY")
         print(try! wallet.generateAddress(at: [.hardened(44),.hardened(60),.hardened(0),.notHardened(0),.notHardened(0)]))
         print("Private key GET:" + wallet.privateKey.get())
