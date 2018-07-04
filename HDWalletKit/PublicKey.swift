@@ -24,7 +24,6 @@ public struct PublicKey {
         self.fingerprint = fingerprint
         self.index = index
         self.network = network
-        
     }
     
     // NOTE: https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki

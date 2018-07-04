@@ -37,6 +37,7 @@
 		2F9A8AB3F49BFCAE5F72605E48A618CE /* ecmult_const.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EB12DEFA17894FA1B7426671157B8C0 /* ecmult_const.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		332AE3CF5C6F62A0CB28D69FAD83D4F2 /* CompactMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2C78245A8E57F7E069A8780EC76D39 /* CompactMap.swift */; };
 		3387EE78E4511DCA5DD72462EFE8E1D9 /* scalar_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C3581C725A8F80272D27CB1DF88EC22 /* scalar_impl.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		34921FFD20ED16DE00A59A6F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34921FFA20ED0E4B00A59A6F /* Account.swift */; };
 		34D6BCF61EF2732FDE4EC1D39D2F3257 /* BigInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAD4D7316DE04A8E1557366A5BDDE44 /* BigInt+Extension.swift */; };
 		37E344689F0B32CA6FF37EF51208FB38 /* ecmult_gen_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = CCA01E2386DFC0F1335945D1A29CF510 /* ecmult_gen_impl.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		37F8A513CB557694A02CFB068A685A24 /* field.h in Headers */ = {isa = PBXBuildFile; fileRef = DCA21F791D5786C900DDFFF86B399301 /* field.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -223,6 +224,7 @@
 		3172BFABDB5ED8AE8F71091549740124 /* HDWalletKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HDWalletKit-prefix.pch"; sourceTree = "<group>"; };
 		3378694FF79FA15771A862A11417EAD5 /* CMAC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CMAC.swift; path = Sources/CryptoSwift/CMAC.swift; sourceTree = "<group>"; };
 		344B31DCEE9EC6430CFA1CD493600DF1 /* lax_der_parsing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = lax_der_parsing.h; path = secp256k1/Classes/secp256k1/contrib/lax_der_parsing.h; sourceTree = "<group>"; };
+		34921FFA20ED0E4B00A59A6F /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		36FC0859AA98716C01D5386A66C8DF6A /* UInt128.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UInt128.swift; path = Sources/CryptoSwift/UInt128.swift; sourceTree = "<group>"; };
 		38ADDF8176EF2BA4E154A6E8C1A0C007 /* Network.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Network.swift; path = HDWalletKit/Network.swift; sourceTree = "<group>"; };
 		39A27E9395B5A763A1593ABC643632CE /* Pods-HDWalletKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HDWalletKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -231,7 +233,6 @@
 		3D1A594174A41334CFEF83C5BFEAA9FD /* scalar_4x64_impl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = scalar_4x64_impl.h; path = secp256k1/Classes/secp256k1/src/scalar_4x64_impl.h; sourceTree = "<group>"; };
 		3EF9A4E9870BF1122DDF65CE18999854 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F73B4C76DEBFE3FD998845D9DF1E6D4 /* UInt16+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UInt16+Extension.swift"; path = "Sources/CryptoSwift/UInt16+Extension.swift"; sourceTree = "<group>"; };
-		3F97C598AAE40DDC28637A8A3DEAE1E4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43B101FA916514400F3DA0ECCF8F2701 /* ZeroPadding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ZeroPadding.swift; path = Sources/CryptoSwift/ZeroPadding.swift; sourceTree = "<group>"; };
 		43D5BCAED3C54CEE52382D001AB29B13 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		446EF85636DFCE6D163E552131230F35 /* AEADChaCha20Poly1305.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEADChaCha20Poly1305.swift; path = Sources/CryptoSwift/AEAD/AEADChaCha20Poly1305.swift; sourceTree = "<group>"; };
@@ -438,7 +439,6 @@
 				D3EC502EF809A18BD271024D05DB3FD0 /* HDWalletKit-dummy.m */,
 				3172BFABDB5ED8AE8F71091549740124 /* HDWalletKit-prefix.pch */,
 				278D4B6931C740758D5A6F7448E89B70 /* HDWalletKit-umbrella.h */,
-				3F97C598AAE40DDC28637A8A3DEAE1E4 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/HDWalletKit";
@@ -620,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				B9FF1192B12B6BA50CF3E0D781AB1D48 /* DerivationNode.swift */,
+				34921FFA20ED0E4B00A59A6F /* Account.swift */,
 				38ADDF8176EF2BA4E154A6E8C1A0C007 /* Network.swift */,
 				5297E2D2017B9E0A3EAB19428FCF4314 /* PrivateKey.swift */,
 				65C1F6C74EC1ED6CC6AB7E32FCBE7857 /* PublicKey.swift */,
@@ -1069,6 +1070,7 @@
 				C49BDB59E14BD739F9D6BCCB78FC120F /* Mnemonic.swift in Sources */,
 				7A42C7D852BFFED631CBE64EE0D1DBE1 /* Network.swift in Sources */,
 				0CC9F384684B743827764AD85B903ACA /* PrivateKey.swift in Sources */,
+				34921FFD20ED16DE00A59A6F /* Account.swift in Sources */,
 				E25184E0F54D452B0041F028D21C0C14 /* PublicKey.swift in Sources */,
 				4BB017E1CC42A6777E6017074EFA16A8 /* RIPEMD160.swift in Sources */,
 				480DC4FAD2DBAFABA7A9383107A3735E /* SMP.swift in Sources */,
