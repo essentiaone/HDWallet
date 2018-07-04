@@ -11,32 +11,50 @@ import secp256k1
 
 public struct PublicKey {
     public let raw: Data
+    public let chainCode: Data
+    public let depth: UInt8
+    public let fingerprint: UInt32
+    public let index: UInt32
     public let network: Network
     
-    init(privateKey: PrivateKey,network:Network) {
-        self.raw = Crypto.generatePublicKey(data: privateKey.raw, compressed: false)
+    init(privateKey: PrivateKey, chainCode: Data, network: Network, depth: UInt8, fingerprint: UInt32, index: UInt32) {
+        self.raw = Crypto.generatePublicKey(data: privateKey.raw, compressed: true)
+        self.chainCode = chainCode
+        self.depth = depth
+        self.fingerprint = fingerprint
+        self.index = index
         self.network = network
+        
     }
     
     // NOTE: https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki
     public var address: String {
-        switch network {
-        case .main(let coin):
-            switch coin {
-            case .bitcoin:
-                let prefix = Data([network.publicKeyHash])
-                let payload = RIPEMD160.hash(raw.sha256())
-                let checksum = (prefix + payload).doubleSHA256.prefix(4)
-                return Base58.encode(prefix + payload + checksum)
-            case .ethereum:
-                let addressData = Crypto.sha3keccak256(data: (Data(hex:"0x") + raw).dropFirst()).suffix(20)
-                return "0x" + EIP55.encode(addressData)
-            case .litecoin:
-                return ""
-            }
-        case .test:
+        switch network.coin {
+        case .bitcoin:
+            let prefix = Data([network.publicKeyHash])
+            let payload = RIPEMD160.hash(raw.sha256())
+            let checksum = (prefix + payload).doubleSHA256.prefix(4)
+            return Base58.encode(prefix + payload + checksum)
+        case .ethereum:
+            let addressData = Crypto.sha3keccak256(data: (Data(hex:"0x") + raw).dropFirst()).suffix(20)
+            return "0x" + EIP55.encode(addressData)
+        case .litecoin:
+            return ""
+        case .bitcoinCash:
             return ""
         }
+    }
+    
+    public var extended: String {
+        var extendedPublicKeyData = Data()
+        extendedPublicKeyData += network.publicKeyVersion.bigEndian
+        extendedPublicKeyData += depth.littleEndian
+        extendedPublicKeyData += fingerprint.littleEndian
+        extendedPublicKeyData += index.littleEndian
+        extendedPublicKeyData += chainCode
+        extendedPublicKeyData += raw
+        let checksum = extendedPublicKeyData.doubleSHA256.prefix(4)
+        return Base58.encode(extendedPublicKeyData + checksum)
     }
     
     public func get() -> String {

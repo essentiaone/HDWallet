@@ -6,9 +6,16 @@
 //  Copyright © 2018 yuzushioh. All rights reserved.
 //
 
+public enum Coin {
+    case bitcoin
+    case ethereum
+    case litecoin
+    case bitcoinCash
+}
+
 public enum Network {
     case main(Coin)
-    case test
+    case test(Coin)
 
     public var privateKeyVersion: UInt32 {
         switch self {
@@ -36,6 +43,15 @@ public enum Network {
             return 0x6f
         }
     }
+    
+    public var coin:Coin {
+        switch self {
+        case .main(let coin):
+            return coin
+        case .test(let coin):
+            return coin
+        }
+    }
 
     
     public var coinType: UInt32 {
@@ -48,6 +64,8 @@ public enum Network {
                 return 60
             case .litecoin:
                 return 2
+            case .bitcoinCash:
+                return 145
             }
         case .test:
             return 1

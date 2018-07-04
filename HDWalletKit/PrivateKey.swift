@@ -35,7 +35,20 @@ public struct PrivateKey {
     }
     
     public var publicKey: PublicKey {
-        return PublicKey(privateKey: self,network: network)
+        return PublicKey(privateKey: self, chainCode: chainCode, network: network, depth: depth, fingerprint: fingerprint, index: index)
+    }
+    
+    public var extended: String {
+        var extendedPrivateKeyData = Data()
+        extendedPrivateKeyData += network.privateKeyVersion.bigEndian
+        extendedPrivateKeyData += depth.littleEndian
+        extendedPrivateKeyData += fingerprint.littleEndian
+        extendedPrivateKeyData += index.littleEndian
+        extendedPrivateKeyData += chainCode
+        extendedPrivateKeyData += UInt8(0)
+        extendedPrivateKeyData += raw
+        let checksum = extendedPrivateKeyData.doubleSHA256.prefix(4)
+        return Base58.encode(extendedPrivateKeyData + checksum)
     }
     
     public func wif() -> String {
