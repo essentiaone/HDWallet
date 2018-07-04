@@ -30,7 +30,8 @@ public struct PublicKey {
     // NOTE: https://github.com/bitcoin/bips/blob/master/bip-0013.mediawiki
     public var address: String {
         switch network.coin {
-        case .bitcoin:
+        case .bitcoin: fallthrough
+        case .litecoin:
             let prefix = Data([network.publicKeyHash])
             let payload = RIPEMD160.hash(raw.sha256())
             let checksum = (prefix + payload).doubleSHA256.prefix(4)
@@ -38,8 +39,6 @@ public struct PublicKey {
         case .ethereum:
             let addressData = Crypto.sha3keccak256(data: (Data(hex:"0x") + raw).dropFirst()).suffix(20)
             return "0x" + EIP55.encode(addressData)
-        case .litecoin:
-            return ""
         case .bitcoinCash:
             return ""
         }

@@ -37,8 +37,13 @@ public enum Network {
 
     public var publicKeyHash: UInt8 {
         switch self {
-        case .main:
-            return 0x00
+        case .main(let coin):
+            switch coin {
+            case .litecoin:
+                return 0x30
+            default:
+                return 0x00
+            }
         case .test:
             return 0x6f
         }
