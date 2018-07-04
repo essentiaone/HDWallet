@@ -31,6 +31,7 @@ public struct PublicKey {
     public var address: String {
         switch network.coin {
         case .bitcoin: fallthrough
+        case .bitcoinCash: fallthrough
         case .litecoin:
             let prefix = Data([network.publicKeyHash])
             let payload = RIPEMD160.hash(raw.sha256())
@@ -39,8 +40,6 @@ public struct PublicKey {
         case .ethereum:
             let addressData = Crypto.sha3keccak256(data: (Data(hex:"0x") + raw).dropFirst()).suffix(20)
             return "0x" + EIP55.encode(addressData)
-        case .bitcoinCash:
-            return ""
         }
     }
     

@@ -198,6 +198,25 @@ class HDWalletKit_Tests: XCTestCase {
         
         let forthAddress = wallet.generateAddress(at: 3)
         XCTAssertEqual(forthAddress, "LcZoNSHLQc1XGjMLy6PdqE8PtphMbRPCQ3")
-
+    }
+    
+    func testBitcoinCashAddressGeneration() {
+        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
+        let mnemonic = Mnemonic.create(entropy: entropy)
+        let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+        let wallet = Wallet(seed: seed, network: .main(.bitcoinCash))
+        
+        let firstAddress = wallet.generateAddress(at: 0)
+        XCTAssertEqual(firstAddress, "1FYh9oXWbAzgcX3hPSrRWUodYWt87bMmne")
+        
+        let secondAddress = wallet.generateAddress(at: 1)
+        XCTAssertEqual(secondAddress, "19Q2M5swtorWmL9ZdhtaxBFFuhUuBr9z1Q")
+        
+        let thirdAddress = wallet.generateAddress(at: 2)
+        XCTAssertEqual(thirdAddress, "1QDAX8eZXMjVdZxMzHyXr81uWu9ZDWd9vR")
+        
+        let forthAddress = wallet.generateAddress(at: 3)
+        XCTAssertEqual(forthAddress, "1Jgjm6m4ETPGezaoTBdJCJV7RCjDRR9Ddf")
+        
     }
 }
