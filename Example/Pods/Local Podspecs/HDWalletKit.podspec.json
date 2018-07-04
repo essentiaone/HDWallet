@@ -3,16 +3,16 @@
   "version": "0.1.1",
   "summary": "Hierarchical Deterministic(HD) wallet for cryptocurrencies",
   "description": "Hierarchical Deterministic(HD) wallet for cryptocurrencies",
-  "homepage": "https://github.com/Samourai-Wallet/HDWalletKit.git",
+  "homepage": "https://github.com/essentiaone/HDWallet.git",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "euwars": "nazifi10@gmail.com"
+    "impl": "pavlo.bojkoo@gmail.com"
   },
   "source": {
-    "git": "https://github.com/Samourai-Wallet/HDWalletKit.git",
+    "git": "https://github.com/essentiaone/HDWallet.git",
     "tag": "0.1.1"
   },
   "platforms": {
@@ -21,7 +21,7 @@
     "tvos": "9.0",
     "watchos": "2.0"
   },
-  "source_files": "HDWalletKit/**/*",
+  "source_files": "HDWalletKit/**/*.{swift}",
   "dependencies": {
     "secp256k1.swift": [
       "~> 0.1.4"
