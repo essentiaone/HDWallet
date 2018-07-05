@@ -32,14 +32,23 @@ public struct PublicKey {
         case .bitcoin: fallthrough
         case .bitcoinCash: fallthrough
         case .litecoin:
-            let prefix = Data([network.publicKeyHash])
-            let payload = RIPEMD160.hash(raw.sha256())
-            let checksum = (prefix + payload).doubleSHA256.prefix(4)
-            return Base58.encode(prefix + payload + checksum)
+            return generateBtcAddress()
         case .ethereum:
-            let addressData = Crypto.sha3keccak256(data: (Data(hex:"0x") + raw).dropFirst()).suffix(20)
-            return "0x" + EIP55.encode(addressData)
+            return generateEthAddress()
         }
+    }
+    
+    func generateBtcAddress() -> String {
+        let prefix = Data([network.publicKeyHash])
+        let payload = RIPEMD160.hash(raw.sha256())
+        let checksum = (prefix + payload).doubleSHA256.prefix(4)
+        return Base58.encode(prefix + payload + checksum)
+    }
+    
+    func generateEthAddress() -> String {
+        let formattedData = (Data(hex: network.addressPrefix) + raw).dropFirst()
+        let addressData = Crypto.sha3keccak256(data: formattedData).suffix(20)
+        return network.addressPrefix + EIP55.encode(addressData)
     }
     
     public var extended: String {

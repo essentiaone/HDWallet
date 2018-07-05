@@ -7,9 +7,9 @@
 
 import Foundation
 
-public struct Account:Equatable {
+public struct Account: Equatable {
     
-    public init(rawPrivateKey:String, rawPublicKey:String, address:String) {
+    public init(rawPrivateKey: String, rawPublicKey: String, address: String) {
         self.rawPublicKey = rawPublicKey
         self.rawPrivateKey = rawPrivateKey
         self.address = address

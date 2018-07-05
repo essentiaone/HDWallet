@@ -34,7 +34,7 @@ final class Crypto {
     }
     
     static func sha3keccak256(data:Data) -> Data {
-        return Data(bytes:SHA3(variant: .keccak256).calculate(for: data.bytes))
+        return Data(bytes: SHA3(variant: .keccak256).calculate(for: data.bytes))
     }
 }
 

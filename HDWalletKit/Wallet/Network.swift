@@ -49,7 +49,26 @@ public enum Network {
         }
     }
     
-    public var coin:Coin {
+    public var addressPrefix:String {
+        switch self {
+        case .main(let coin):
+            switch coin {
+            case .ethereum:
+                return "0x"
+            default:
+                return ""
+            }
+        case .test(let coin):
+            switch coin {
+            case .ethereum:
+                return "0x"
+            default:
+                return ""
+            }
+        }
+    }
+    
+    public var coin: Coin {
         switch self {
         case .main(let coin):
             return coin

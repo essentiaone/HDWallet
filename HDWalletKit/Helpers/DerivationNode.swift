@@ -11,7 +11,7 @@ public enum DerivationNode {
     case hardened(UInt32)
     case notHardened(UInt32)
     
-    public var index:UInt32 {
+    public var index: UInt32 {
         switch self {
         case .hardened(let index):
             return index
@@ -20,7 +20,7 @@ public enum DerivationNode {
         }
     }
     
-    public var hardens:Bool {
+    public var hardens: Bool {
         switch self {
         case .hardened:
             return true
