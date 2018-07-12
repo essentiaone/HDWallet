@@ -4,8 +4,9 @@ use_frameworks!
 target 'HDWalletKit' do
     pod 'secp256k1.swift', '~> 0.1.4'
     pod 'CryptoSwift', '~> 0.10.0'
-end
 
-target 'HDWalletKit_Tests' do
-    pod 'HDWalletKit', :path => '.'
+    target 'HDWalletKit_Tests' do
+        inherit! :search_paths
+    end
+
 end

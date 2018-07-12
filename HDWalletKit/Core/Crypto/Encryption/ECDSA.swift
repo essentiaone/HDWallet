@@ -24,21 +24,26 @@ public final class ECDSA {
         var pKey = secp256k1_pubkey()
         
         var result = secp256k1_ec_pubkey_create(context, &pKey, prvKey)
-        if (result != 1) {
+        if result != 1 {
             return nil
         }
         
         let size = isCompression ? 33 : 65
         let pubkey = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
 
-        var s = size_t(size)
+        var sizeT = size_t(size)
+        let copressingKey = isCompression ? UInt32(SECP256K1_EC_COMPRESSED) : UInt32(SECP256K1_EC_UNCOMPRESSED)
         
-        result = secp256k1_ec_pubkey_serialize(context, pubkey, &s, &pKey, isCompression ? UInt32(SECP256K1_EC_COMPRESSED) : UInt32(SECP256K1_EC_UNCOMPRESSED))
-        if (result != 1) {
+        result = secp256k1_ec_pubkey_serialize(context,
+                                               pubkey,
+                                               &sizeT,
+                                               &pKey,
+                                               copressingKey)
+        if result != 1 {
             return nil
         }
         
-        secp256k1_context_destroy(context);
+        secp256k1_context_destroy(context)
         
         let data = Data(bytes: pubkey, count: size)
         free(pubkey)

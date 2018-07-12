@@ -9,6 +9,42 @@
 import Foundation
 
 extension BInt {
+    internal init?(str: String, radix: Int) {
+        self.init(0)
+        let bint16 = BInt(16)
+        
+        var exp = BInt(1)
+        
+        str.reversed().forEach {
+            guard let int = Int(String($0), radix: radix) else {
+                return
+            }
+            let value = BInt(int)
+            self += (value * exp)
+            exp *= bint16
+        }
+    }
+}
+
+extension BInt: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case bigInt
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let string = try container.decode(String.self, forKey: .bigInt)
+        self = Wei(number: string, withBase: 10)!
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(asString(withBase: 10), forKey: .bigInt)
+    }
+}
+
+
+extension BInt {
     var data: Data {
         let count = limbs.count
         var data = Data(count: count * 8)
