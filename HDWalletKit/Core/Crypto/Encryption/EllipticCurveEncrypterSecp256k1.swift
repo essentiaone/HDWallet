@@ -31,10 +31,10 @@ public class EllipticCurveEncrypterSecp256k1 {
     public func sign(hash: Data, privateKey: Data) -> secp256k1_ecdsa_recoverable_signature? {
         precondition(hash.count == 32, "Hash must be 32 bytes size")
         var signature = secp256k1_ecdsa_recoverable_signature()
-        let status = privateKey.withUnsafeBytes { (key: UnsafePointer<UInt8>) in
+        let status = SecpResult(privateKey.withUnsafeBytes { (key: UnsafePointer<UInt8>) in
             hash.withUnsafeBytes { secp256k1_ecdsa_sign_recoverable(context, &signature, $0, key, nil, nil) }
-        }
-        return status == 1 ? signature : nil
+        })
+        return status == .success ? signature : nil
     }
     
     /// Converts signature data structure to 65 bytes.
@@ -78,8 +78,8 @@ public class EllipticCurveEncrypterSecp256k1 {
         precondition(hash.count == 32, "Hash must be 32 bytes size")
         let hash = hash.bytes
         var outPubKey = secp256k1_pubkey()
-        let status = secp256k1_ecdsa_recover(context, &outPubKey, &signature, hash)
-        return status == 1 ? outPubKey : nil
+        let status = SecpResult(secp256k1_ecdsa_recover(context, &outPubKey, &signature, hash))
+        return status == .success ? outPubKey : nil
     }
     
     /// Converts public key from library's data structure to bytes

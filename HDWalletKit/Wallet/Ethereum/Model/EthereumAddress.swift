@@ -8,7 +8,7 @@
 
 import Foundation
 /// Represents an address
-public struct Address: Codable {
+public struct EthereumAddress: Codable {
     
     /// Address in data format
     public let data: Data

@@ -1,12 +1,12 @@
 import Foundation
 /// RawTransaction constructs necessary information to publish transaction.
-public struct RawTransaction: Codable {
+public struct EthereumRawTransaction: Codable {
     
     /// Amount value to send, unit is in Wei
     public let value: Wei
     
     /// Address to send ether to
-    public let to: Address
+    public let to: EthereumAddress
     
     /// Gas price for this transaction, unit is in Wei
     /// you need to convert it if it is specified in GWei
@@ -25,7 +25,7 @@ public struct RawTransaction: Codable {
 
     public init(value: Wei, to: String, gasPrice: Int, gasLimit: Int, nonce: Int, data: Data = Data()) {
         self.value = value
-        self.to = Address(string: to)
+        self.to = EthereumAddress(string:to)
         self.gasPrice = gasPrice
         self.gasLimit = gasLimit
         self.nonce = nonce

@@ -23,30 +23,32 @@ public final class ECDSA {
         let prvKey = privateKeyData.bytes
         var pKey = secp256k1_pubkey()
         
-        var result = secp256k1_ec_pubkey_create(context, &pKey, prvKey)
-        if result != 1 {
+        var result = SecpResult(secp256k1_ec_pubkey_create(context, &pKey, prvKey))
+        if result == .failure {
             return nil
         }
+        let compressedKeySize = 33
+        let decompressedKeySize = 65
         
-        let size = isCompression ? 33 : 65
-        let pubkey = UnsafeMutablePointer<UInt8>.allocate(capacity: size)
+        let keySize = isCompression ? compressedKeySize : decompressedKeySize
+        let serealizedKey = UnsafeMutablePointer<UInt8>.allocate(capacity: keySize)
 
-        var sizeT = size_t(size)
+        var keySizeT = size_t(keySize)
         let copressingKey = isCompression ? UInt32(SECP256K1_EC_COMPRESSED) : UInt32(SECP256K1_EC_UNCOMPRESSED)
         
-        result = secp256k1_ec_pubkey_serialize(context,
-                                               pubkey,
-                                               &sizeT,
+        result = SecpResult(secp256k1_ec_pubkey_serialize(context,
+                                               serealizedKey,
+                                               &keySizeT,
                                                &pKey,
-                                               copressingKey)
-        if result != 1 {
+                                               copressingKey))
+        if result == .failure {
             return nil
         }
         
         secp256k1_context_destroy(context)
         
-        let data = Data(bytes: pubkey, count: size)
-        free(pubkey)
+        let data = Data(bytes: serealizedKey, count: keySize)
+        free(serealizedKey)
         return data
     }
 }
