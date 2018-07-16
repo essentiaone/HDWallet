@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/essentiaone/HDWallet.git'
   s.license          = { :type => 'MIT', :file => 'LICENSE.md' }
   s.author           = { 'impl' => 'pavlo.bojkoo@gmail.com' }
-  s.source           = { :git => 'https://github.com/essentiaone/HDWallet.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/essentiaone/HDWallet.git', :branch => "feature/podspec-validation" :tag => s.version.to_s }
 
   s.platform     = :ios, "10.0"
   s.swift_version= '4'
