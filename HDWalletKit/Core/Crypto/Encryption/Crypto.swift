@@ -36,6 +36,14 @@ final class Crypto {
     static func sha3keccak256(data:Data) -> Data {
         return Data(bytes: SHA3(variant: .keccak256).calculate(for: data.bytes))
     }
+    
+    static func sign(_ hash: Data, privateKey: Data) throws -> Data {
+        let encrypter = EllipticCurveEncrypterSecp256k1()
+        guard var signatureInInternalFormat = encrypter.sign(hash: hash, privateKey: privateKey) else {
+            throw HDWalletKitError.failedToSign
+        }
+        return encrypter.export(signature: &signatureInInternalFormat)
+    }
 }
 
 // MARK: SHA256 of SHA256

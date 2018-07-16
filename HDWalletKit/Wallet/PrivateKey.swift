@@ -108,5 +108,9 @@ public struct PrivateKey {
             network: network
         )
     }
+    
+    public func sign(hash: Data) throws -> Data {
+        return try Crypto.sign(hash, privateKey: raw)
+    }
 }
 

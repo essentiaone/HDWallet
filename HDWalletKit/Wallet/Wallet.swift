@@ -26,9 +26,7 @@ public final class Wallet {
     
     public func generateAccount(at index: UInt32 = 0) -> Account {
         let address = bip44PrivateKey.derived(at: .notHardened(index))
-        return Account(rawPrivateKey: address.get(),
-                       rawPublicKey: address.publicKey.get(),
-                       address: address.publicKey.address)
+        return Account(privateKey: address)
     }
     
     public func generateAccounts(count: UInt32) -> [Account]  {
@@ -37,6 +35,13 @@ public final class Wallet {
             accounts.append(generateAccount(at: index))
         }
         return accounts
+    }
+    
+    public func sign(rawTransaction: EthereumRawTransaction) throws -> String {
+        let signer = EIP155Signer()
+        let rawData = try signer.sign(rawTransaction, privateKey: privateKey)
+        let hash = rawData.toHexString().addHexPrefix()
+        return hash
     }
     
     //MARK: - Private

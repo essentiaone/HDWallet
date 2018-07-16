@@ -7,15 +7,23 @@
 
 import Foundation
 
-public struct Account: Equatable {
+public struct Account {
     
-    public init(rawPrivateKey: String, rawPublicKey: String, address: String) {
-        self.rawPublicKey = rawPublicKey
-        self.rawPrivateKey = rawPrivateKey
-        self.address = address
+    public init(privateKey: PrivateKey) {
+        self.privateKey = privateKey
     }
     
-    public let rawPrivateKey: String
-    public let rawPublicKey: String
-    public let address: String
+    public let privateKey: PrivateKey
+    
+    public var rawPrivateKey: String {
+        return privateKey.get()
+    }
+    
+    public var rawPublicKey: String {
+        return privateKey.publicKey.get()
+    }
+    
+    public var address: String {
+        return privateKey.publicKey.address
+    }
 }
