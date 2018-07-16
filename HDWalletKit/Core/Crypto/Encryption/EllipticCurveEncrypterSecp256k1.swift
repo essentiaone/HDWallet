@@ -43,12 +43,12 @@ public class EllipticCurveEncrypterSecp256k1 {
     /// - Returns: 65 byte exported signature data.
     public func export(signature: inout secp256k1_ecdsa_recoverable_signature) -> Data {
         var output = Data(count: 65)
-        var recid = 0 as Int32
+        var recId = 0 as Int32
         _ = output.withUnsafeMutableBytes { (output: UnsafeMutablePointer<UInt8>) in
-            secp256k1_ecdsa_recoverable_signature_serialize_compact(context, output, &recid, &signature)
+            secp256k1_ecdsa_recoverable_signature_serialize_compact(context, output, &recId, &signature)
         }
         
-        output[64] = UInt8(recid)
+        output[64] = UInt8(recId)
         return output
     }
     
@@ -60,9 +60,9 @@ public class EllipticCurveEncrypterSecp256k1 {
     public func `import`(signature: Data) -> secp256k1_ecdsa_recoverable_signature {
         precondition(signature.count == 65, "Signature must be 65 byte size")
         var sig = secp256k1_ecdsa_recoverable_signature()
-        let recid = Int32(signature[64])
+        let recId = Int32(signature[64])
         signature.withUnsafeBytes { (input: UnsafePointer<UInt8>) -> Void in
-            secp256k1_ecdsa_recoverable_signature_parse_compact(context, &sig, input, recid)
+            secp256k1_ecdsa_recoverable_signature_parse_compact(context, &sig, input, recId)
         }
         return sig
     }
