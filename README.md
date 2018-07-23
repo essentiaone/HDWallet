@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/essentiaone/HDWallet.svg?branch=develop)](https://travis-ci.com/essentiaone/HDWallet)
-
+[![codecov.io](https://codecov.io/gh/essentiaone/HDWallet/branch/develop/graphs/badge.svg)](https://codecov.io/gh/essentiaone/HDWallet/branch/develop)
 # HDWalletKit
 HDWalletKit is a Swift framwork that enables you to create and use bitcoin HD wallet ([Hierarchical Deterministic Wallets](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)) in your own app.
 
@@ -7,6 +7,10 @@ You can check if the address generation is working right [here](https://iancolem
 
 ## Features
 - Mnemonic recovery phrease in [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
+
+## Include to your project
+### Cocoapods
+`pod 'HDWalletKit'`
 
 ## How to use
 
