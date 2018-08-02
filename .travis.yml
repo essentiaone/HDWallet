@@ -5,4 +5,20 @@ osx_image:
 script:
   - xcodebuild test -workspace 'HDWalletKit.xcworkspace' -scheme 'HDWalletKit_Tests' -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.4'
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+branches:
+  only:
+  - feature/auto-deploy
+rvm:
+- 2.0.0
+install:
+- git config --global user.email "pavlo.bojkoo@gmail.com"
+- git config --global user.name "Pavlo Boiko"
+- rake bootstrap
+script:
+- xcodebuild test -workspace 'HDWalletKit.xcworkspace' -scheme 'HDWalletKit_Tests' -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.4'
+- git remote set-url origin "${GH_TOKEN}@github.com/essentiaone/ess-cocoapodspec.git"
+- rake deploy
+env:
+  global:
+    secure: KE5x2fZOOybk/jLluQaHZNhZ5AEnldx/NTQWupSvzd3Cvc0PP01UfYpCOg/qqvO2xNX066B9K3CaAFLEo1aqKwISnBSMNafNRntlK4A1i5eoKJHaUh2wg8ct6g4zxX8nAE2IriOedvTwTU4oo1gGxUjWc/W1HSEm4pCDw/+QdwSiQ4KMhNHrvxvAH5qXGQdZoIVmUDSvY3M5uvI+wlIdBGII4dgjefBburYZh6MTm/ikT/47np/jJ5kz9Ul6SkYMP6nRW4W/ZZfzBEO9G2N75/9ZTLwWKE3nIG8dPc9Wp8G1AWxIHVG/oQItYVmzdUNdnklJIL6PNGhXtC0eE05hK1lYr4BrNfbfL9HKvBX+iUjAx3Z4t+sff1/PWD484GWV+jQtBu8W9DOvOKHREuakmb8CJEPUaCAMdocHdgwFrFgYRWxiOIngL5/uqPEHqtrFWN84kcOCjDodw8qr35cI4kgYCrcs9ZKjwr/IHkj9S7VzTyhPuRTMHfhxUUV24RsK++jBajegw6MAfrCNQLcXCGJbCJk9JddDmGQqHqnuPMBtQNfRxgs1Bl3xmLuLljmgTATrqDkTpyNEQeDnpehJkKTTa25DRjUW1yZE+3XE/TWczRslFYnre8B2fcdID5H028l29jynRY7qdJuNJ2bqrLI8piTkY/aCeQscW8f2uA8=
