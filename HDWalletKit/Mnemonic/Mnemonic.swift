@@ -16,8 +16,7 @@ public final class Mnemonic {
     
     public static func create(strength: Strength = .normal, language: WordList = .english) -> String {
         let byteCount = strength.rawValue / 8
-        var bytes = Data(count: byteCount)
-        _ = bytes.withUnsafeMutableBytes { SecRandomCopyBytes(kSecRandomDefault, byteCount, $0) }
+        let bytes = Data.randomBytes(length: byteCount)
         return create(entropy: bytes, language: language)
     }
     
