@@ -33,7 +33,7 @@ public class KeystoreV3: KeystoreInterface {
         guard let N = keystoreParams.crypto.kdfparams.n else {return nil}
         guard let P = keystoreParams.crypto.kdfparams.p else {return nil}
         guard let R = keystoreParams.crypto.kdfparams.r else {return nil}
-        guard let derivedKey = scrypt(password: password,
+        guard let derivedKey = encryptData(password: password,
                                       salt: saltData,
                                       length: derivedLen,
                                       N: N,
@@ -55,7 +55,7 @@ public class KeystoreV3: KeystoreInterface {
         return Data(bytes:decryptedPK)
     }
     
-    private func scrypt(password: String, salt: Data, length: Int, N: Int, R: Int, P: Int) -> Data? {
+    private func encryptData(password: String, salt: Data, length: Int, N: Int, R: Int, P: Int) -> Data? {
         guard let passwordData = password.data(using: .utf8) else {return nil}
         guard let deriver = try? Scrypt(password: passwordData.bytes, salt: salt.bytes, dkLen: length, N: N, r: R, p: P) else {return nil}
         guard let result = try? deriver.calculate() else {return nil}
@@ -65,7 +65,12 @@ public class KeystoreV3: KeystoreInterface {
     private func encryptDataToStorage(_ password: String, seed: Data, dkLen: Int=32, N: Int = 1024, R: Int = 8, P: Int = 1) throws {
         let saltLen = 32;
         let saltData = Data.randomBytes(length: saltLen)
-        guard let derivedKey = scrypt(password: password, salt: saltData, length: dkLen, N: N, R: R, P: P) else {throw KeystoreError.keyDerivationError}
+        guard let derivedKey = encryptData(password: password,
+                                           salt: saltData,
+                                           length: dkLen,
+                                           N: N,
+                                           R: R,
+                                           P: P) else {throw KeystoreError.keyDerivationError}
         let last16bytes = Data(derivedKey[(derivedKey.count - 16)...(derivedKey.count-1)])
         let encryptionKey = Data(derivedKey[0...15])
         let IV = Data.randomBytes(length: 16)
@@ -84,9 +89,3 @@ public class KeystoreV3: KeystoreInterface {
         self.keystoreParams = keystoreparams
     }
 }
-
-
-
-
-
-
