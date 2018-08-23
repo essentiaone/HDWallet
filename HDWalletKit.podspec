@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name             = 'HDWalletKit'
-  s.version          = '0.0.7'
+  s.version          = '0.0.8'
   s.summary          = 'Hierarchical Deterministic(HD) wallet for cryptocurrencies'
-
+  
   s.description      = <<-DESC
       WalletKit is a Swift framwork that enables you to create and use bitcoin HD wallet([Hierarchical Deterministic Wallets](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)) in your own app.
                        DESC
@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   s.swift_version= '4.1'
   s.static_framework  = true
 
-  s.ios.deployment_target = '8.0'
-  s.osx.deployment_target = '10.10'
+  s.ios.deployment_target = '9.0'
+  s.osx.deployment_target = '10.11'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
