@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3401AEFA20F797CB006DEF49 /* EthereumAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3401AEF920F797CB006DEF49 /* EthereumAddress.swift */; };
 		3401AF6E20F908AA006DEF49 /* SecpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3401AF6D20F908AA006DEF49 /* SecpResult.swift */; };
+		344167EC212CC100008B8A91 /* KeystoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344167EB212CC100008B8A91 /* KeystoreTests.swift */; };
 		3492213320F64D9B00A59A6F /* BigInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492211C20F64D9B00A59A6F /* BigInt+Extension.swift */; };
 		3492213420F64D9B00A59A6F /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492211D20F64D9B00A59A6F /* SMP.swift */; };
 		3492213520F64D9B00A59A6F /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492212020F64D9B00A59A6F /* Crypto.swift */; };
@@ -31,6 +32,10 @@
 		3492216520F6B79400A59A6F /* EIP155Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492216320F6B79300A59A6F /* EIP155Signer.swift */; };
 		3492216620F6B79400A59A6F /* RLP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492216420F6B79400A59A6F /* RLP.swift */; };
 		3492216B20F747EC00A59A6F /* EllipticCurveEncrypterSecp256k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492216A20F747EC00A59A6F /* EllipticCurveEncrypterSecp256k1.swift */; };
+		34B7964A21296427000B1251 /* KeystoreV3Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7964921296427000B1251 /* KeystoreV3Json.swift */; };
+		34B7964C212A881C000B1251 /* KeystoreInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7964B212A881C000B1251 /* KeystoreInterface.swift */; };
+		34B7964E212A93A0000B1251 /* KeystoreV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7964D212A93A0000B1251 /* KeystoreV3.swift */; };
+		34B79650212A95D5000B1251 /* Data+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7964F212A95D5000B1251 /* Data+Random.swift */; };
 		34B7B84D20F7572900D2C34A /* HDWalletKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492216820F7466800A59A6F /* HDWalletKitError.swift */; };
 		34B7B84F20F75DBF00D2C34A /* MnemonicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7B84E20F75DBF00D2C34A /* MnemonicTests.swift */; };
 		34B7B85120F75E4E00D2C34A /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7B85020F75E4E00D2C34A /* CryptoTests.swift */; };
@@ -67,6 +72,7 @@
 		18C19464A6E097FE0E2D504F /* Pods-HDWalletKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDWalletKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDWalletKit_Tests/Pods-HDWalletKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3401AEF920F797CB006DEF49 /* EthereumAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddress.swift; sourceTree = "<group>"; };
 		3401AF6D20F908AA006DEF49 /* SecpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecpResult.swift; sourceTree = "<group>"; };
+		344167EB212CC100008B8A91 /* KeystoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreTests.swift; sourceTree = "<group>"; };
 		349220E520F64C6600A59A6F /* libHDWalletKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDWalletKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3492211C20F64D9B00A59A6F /* BigInt+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BigInt+Extension.swift"; sourceTree = "<group>"; };
 		3492211D20F64D9B00A59A6F /* SMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMP.swift; sourceTree = "<group>"; };
@@ -92,6 +98,10 @@
 		3492216420F6B79400A59A6F /* RLP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLP.swift; sourceTree = "<group>"; };
 		3492216820F7466800A59A6F /* HDWalletKitError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDWalletKitError.swift; sourceTree = "<group>"; };
 		3492216A20F747EC00A59A6F /* EllipticCurveEncrypterSecp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticCurveEncrypterSecp256k1.swift; sourceTree = "<group>"; };
+		34B7964921296427000B1251 /* KeystoreV3Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreV3Json.swift; sourceTree = "<group>"; };
+		34B7964B212A881C000B1251 /* KeystoreInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreInterface.swift; sourceTree = "<group>"; };
+		34B7964D212A93A0000B1251 /* KeystoreV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreV3.swift; sourceTree = "<group>"; };
+		34B7964F212A95D5000B1251 /* Data+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Random.swift"; sourceTree = "<group>"; };
 		34B7B84E20F75DBF00D2C34A /* MnemonicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicTests.swift; sourceTree = "<group>"; };
 		34B7B85020F75E4E00D2C34A /* CryptoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
 		34B7B85220F75E5B00D2C34A /* AddressGenerationTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = AddressGenerationTests.swift; sourceTree = "<group>"; };
@@ -146,6 +156,7 @@
 		3492211920F64D9B00A59A6F /* HDWalletKit */ = {
 			isa = PBXGroup;
 			children = (
+				34B7964821282BD4000B1251 /* Keystore */,
 				3492211A20F64D9B00A59A6F /* Core */,
 				3492212920F64D9B00A59A6F /* Mnemonic */,
 				3492212C20F64D9B00A59A6F /* Models */,
@@ -253,6 +264,7 @@
 				34B7B85020F75E4E00D2C34A /* CryptoTests.swift */,
 				34B7B85220F75E5B00D2C34A /* AddressGenerationTests.swift */,
 				3492214B20F64E0300A59A6F /* Info.plist */,
+				344167EB212CC100008B8A91 /* KeystoreTests.swift */,
 			);
 			path = HDWalletKit_Tests;
 			sourceTree = "<group>";
@@ -282,10 +294,21 @@
 			path = Error;
 			sourceTree = "<group>";
 		};
+		34B7964821282BD4000B1251 /* Keystore */ = {
+			isa = PBXGroup;
+			children = (
+				34B7964921296427000B1251 /* KeystoreV3Json.swift */,
+				34B7964B212A881C000B1251 /* KeystoreInterface.swift */,
+				34B7964D212A93A0000B1251 /* KeystoreV3.swift */,
+			);
+			path = Keystore;
+			sourceTree = "<group>";
+		};
 		34B7B85520F7847000D2C34A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				34B7B85620F7848D00D2C34A /* String+Hex.swift */,
+				34B7964F212A95D5000B1251 /* Data+Random.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -424,11 +447,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HDWalletKit_Tests/Pods-HDWalletKit_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/scrypt/scrypt.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/scrypt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,7 +488,9 @@
 			files = (
 				34B7B84D20F7572900D2C34A /* HDWalletKitError.swift in Sources */,
 				3492216220F6B53300A59A6F /* Typealiaces.swift in Sources */,
+				34B7964A21296427000B1251 /* KeystoreV3Json.swift in Sources */,
 				3492214220F64D9B00A59A6F /* Wallet.swift in Sources */,
+				34B7964C212A881C000B1251 /* KeystoreInterface.swift in Sources */,
 				3492213F20F64D9B00A59A6F /* Network.swift in Sources */,
 				3492216520F6B79400A59A6F /* EIP155Signer.swift in Sources */,
 				3492213B20F64D9B00A59A6F /* EIP55.swift in Sources */,
@@ -476,6 +503,7 @@
 				3401AF6E20F908AA006DEF49 /* SecpResult.swift in Sources */,
 				3492213820F64D9B00A59A6F /* DataConvertable.swift in Sources */,
 				3492213E20F64D9B00A59A6F /* Account.swift in Sources */,
+				34B79650212A95D5000B1251 /* Data+Random.swift in Sources */,
 				3492213A20F64D9B00A59A6F /* Base58Encode.swift in Sources */,
 				3492213520F64D9B00A59A6F /* Crypto.swift in Sources */,
 				3492216B20F747EC00A59A6F /* EllipticCurveEncrypterSecp256k1.swift in Sources */,
@@ -485,6 +513,7 @@
 				3492213620F64D9B00A59A6F /* ECDSA.swift in Sources */,
 				3492213320F64D9B00A59A6F /* BigInt+Extension.swift in Sources */,
 				3492213C20F64D9B00A59A6F /* Mnemonic.swift in Sources */,
+				34B7964E212A93A0000B1251 /* KeystoreV3.swift in Sources */,
 				3492214020F64D9B00A59A6F /* PrivateKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +525,7 @@
 				34B7B85320F75E5B00D2C34A /* AddressGenerationTests.swift in Sources */,
 				34B7B85120F75E4E00D2C34A /* CryptoTests.swift in Sources */,
 				34B7B84F20F75DBF00D2C34A /* MnemonicTests.swift in Sources */,
+				344167EC212CC100008B8A91 /* KeystoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
