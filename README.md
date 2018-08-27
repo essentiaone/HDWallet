@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.com/essentiaone/HDWallet.svg?branch=develop)](https://travis-ci.com/essentiaone/HDWallet)
 [![codecov.io](https://codecov.io/gh/essentiaone/HDWallet/branch/develop/graphs/badge.svg)](https://codecov.io/gh/essentiaone/HDWallet/branch/develop)
+[![Badge w/ Version](https://cocoapod-badges.herokuapp.com/v/HDWalletKit/badge.png)](https://cocoadocs.org/docsets/HDWalletKit)
+[![Badge w/ Platform](https://cocoapod-badges.herokuapp.com/p/HDWalletKit/badge.svg)](https://cocoadocs.org/docsets/HDWalletKit)
+[![Badge w/ Licence](https://cocoapod-badges.herokuapp.com/l/HDWalletKit/badge.svg)](https://cocoadocs.org/docsets/HDWalletKit)
+
 # HDWalletKit
 HDWalletKit is a Swift framwork that enables you to create and use bitcoin HD wallet ([Hierarchical Deterministic Wallets](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)) in your own app.
 
