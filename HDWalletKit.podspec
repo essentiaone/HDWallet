@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'HDWalletKit'
-  s.version          = '0.0.9'
+  s.version          = '0.1.0'
   s.summary          = 'Hierarchical Deterministic(HD) wallet for cryptocurrencies'
   
   s.description      = <<-DESC
@@ -18,7 +18,6 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.11'
-  s.watchos.deployment_target = '2.0'
 
   s.module_name   = "HDWalletKit"
   s.source_files = 'HDWalletKit/**/*.{swift}'
