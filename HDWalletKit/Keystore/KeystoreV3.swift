@@ -14,7 +14,6 @@ public class KeystoreV3: KeystoreInterface {
     public var keystoreParams: KeystoreParamsV3?
     
     public required init? (seed: Data, password: String) throws {
-        guard seed.count == 32 else {return nil}
         try encryptDataToStorage(password, seed: seed)
     }
     
@@ -43,7 +42,6 @@ public class KeystoreV3: KeystoreInterface {
         let derivedKeyLast16bytes = Data(derivedKey[(derivedKey.count - 16)...(derivedKey.count - 1)])
         dataForMAC.append(derivedKeyLast16bytes)
         guard let cipherText = Data.fromHex(keystoreParams.crypto.ciphertext) else {return nil}
-        if (cipherText.count != 32) {return nil}
         dataForMAC.append(cipherText)
         let mac = dataForMAC.sha3(.keccak256)
         guard let calculatedMac = Data.fromHex(keystoreParams.crypto.mac),
