@@ -11,9 +11,15 @@ You can check if the address generation is working right [here](https://iancolem
 
 ## Features
 - Mnemonic recovery phrease in [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
+- Keystore generation
+- Read keystore file
+- Sign ether transaction
+
 ## Include to your project
 ### Cocoapods
+Put this line to your `Podfile`
 `pod 'HDWalletKit'`
+Run `pod install` in terminal
 ## How to use
 - Generate seed and convert it to mnemonic sentence.
 ```swift
