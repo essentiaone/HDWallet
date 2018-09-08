@@ -40,4 +40,9 @@ public struct KeystoreParamsV3: Codable {
             var iv: String
         }
     }
+    
+    private enum CodingKeys: String, CodingKey {
+        case crypto = "Crypto"
+        case id, version
+    }
 }
