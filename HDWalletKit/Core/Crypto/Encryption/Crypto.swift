@@ -8,8 +8,8 @@
 
 import CryptoSwift
 
-final class Crypto {
-    static func HMACSHA512(key: Data, data: Data) -> Data {
+public final class Crypto {
+   public static func HMACSHA512(key: Data, data: Data) -> Data {
         let output: [UInt8]
         do {
             output = try HMAC(key: key.bytes, variant: .sha512).authenticate(data.bytes)
@@ -19,7 +19,7 @@ final class Crypto {
         return Data(output)
     }
     
-    static func PBKDF2SHA512(password: [UInt8], salt: [UInt8]) -> Data {
+    public static func PBKDF2SHA512(password: [UInt8], salt: [UInt8]) -> Data {
         let output: [UInt8]
         do {
             output = try PKCS5.PBKDF2(password: password, salt: salt, iterations: 2048, variant: .sha512).calculate()
@@ -29,15 +29,15 @@ final class Crypto {
         return Data(output)
     }
     
-    static func generatePublicKey(data: Data, compressed: Bool) -> Data {
+    public static func generatePublicKey(data: Data, compressed: Bool) -> Data {
         return ECDSA.secp256k1.generatePublicKey(with: data, isCompressed: compressed)
     }
     
-    static func sha3keccak256(data:Data) -> Data {
+    public static func sha3keccak256(data:Data) -> Data {
         return Data(bytes: SHA3(variant: .keccak256).calculate(for: data.bytes))
     }
     
-    static func sign(_ hash: Data, privateKey: Data) throws -> Data {
+    public static func sign(_ hash: Data, privateKey: Data) throws -> Data {
         let encrypter = EllipticCurveEncrypterSecp256k1()
         guard var signatureInInternalFormat = encrypter.sign(hash: hash, privateKey: privateKey) else {
             throw HDWalletKitError.failedToSign
