@@ -32,6 +32,7 @@
 		3492216520F6B79400A59A6F /* EIP155Signer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492216320F6B79300A59A6F /* EIP155Signer.swift */; };
 		3492216620F6B79400A59A6F /* RLP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492216420F6B79400A59A6F /* RLP.swift */; };
 		3492216B20F747EC00A59A6F /* EllipticCurveEncrypterSecp256k1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492216A20F747EC00A59A6F /* EllipticCurveEncrypterSecp256k1.swift */; };
+		34A5322E215307DF00B95C66 /* SignTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A5322D215307DF00B95C66 /* SignTransactionTests.swift */; };
 		34B7964A21296427000B1251 /* KeystoreV3Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7964921296427000B1251 /* KeystoreV3Json.swift */; };
 		34B7964C212A881C000B1251 /* KeystoreInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7964B212A881C000B1251 /* KeystoreInterface.swift */; };
 		34B7964E212A93A0000B1251 /* KeystoreV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B7964D212A93A0000B1251 /* KeystoreV3.swift */; };
@@ -98,6 +99,7 @@
 		3492216420F6B79400A59A6F /* RLP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLP.swift; sourceTree = "<group>"; };
 		3492216820F7466800A59A6F /* HDWalletKitError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDWalletKitError.swift; sourceTree = "<group>"; };
 		3492216A20F747EC00A59A6F /* EllipticCurveEncrypterSecp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticCurveEncrypterSecp256k1.swift; sourceTree = "<group>"; };
+		34A5322D215307DF00B95C66 /* SignTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignTransactionTests.swift; sourceTree = "<group>"; };
 		34B7964921296427000B1251 /* KeystoreV3Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreV3Json.swift; sourceTree = "<group>"; };
 		34B7964B212A881C000B1251 /* KeystoreInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreInterface.swift; sourceTree = "<group>"; };
 		34B7964D212A93A0000B1251 /* KeystoreV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreV3.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				34B7B85220F75E5B00D2C34A /* AddressGenerationTests.swift */,
 				3492214B20F64E0300A59A6F /* Info.plist */,
 				344167EB212CC100008B8A91 /* KeystoreTests.swift */,
+				34A5322D215307DF00B95C66 /* SignTransactionTests.swift */,
 			);
 			path = HDWalletKit_Tests;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34A5322E215307DF00B95C66 /* SignTransactionTests.swift in Sources */,
 				34B7B85320F75E5B00D2C34A /* AddressGenerationTests.swift in Sources */,
 				34B7B85120F75E4E00D2C34A /* CryptoTests.swift in Sources */,
 				34B7B84F20F75DBF00D2C34A /* MnemonicTests.swift in Sources */,

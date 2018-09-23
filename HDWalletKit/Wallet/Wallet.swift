@@ -38,7 +38,7 @@ public final class Wallet {
     }
     
     public func sign(rawTransaction: EthereumRawTransaction) throws -> String {
-        let signer = EIP155Signer()
+        let signer = EIP155Signer(chainId: 1)
         let rawData = try signer.sign(rawTransaction, privateKey: privateKey)
         let hash = rawData.toHexString().addHexPrefix()
         return hash

@@ -15,13 +15,14 @@ You can check if the address generation is working right [here](https://iancolem
 - Read keystore file
 - Sign ether transaction
 
-## Include to your project
-### Cocoapods
-Put this line to your `Podfile`
-`pod 'HDWalletKit'`
-Run `pod install` in terminal
+
+## Installation
+### CocoaPods
+<p>To integrate HDWalletKit into your Xcode project using <a href="http://cocoapods.org">CocoaPods</a>, specify it in your <code>Podfile</code>:</p>
+<pre><code class="ruby language-ruby">pod 'HDWalletKit'</code></pre>
+
 ## How to use
-- Generate seed and convert it to mnemonic sentence.
+#### Generate seed and convert it to mnemonic sentence.
 ```swift
 let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
 let mnemonic = Mnemonic.create(entropy: entropy)
@@ -31,7 +32,7 @@ print(mnemonic)
 let seed = Mnemonic.createSeed(mnemonic: mnemonic)
 print(seed.toHexString())
 ```
-- PrivateKey and key derivation (BIP39)
+#### PrivateKey and key derivation (BIP39)
 
 ```swift
 let masterPrivateKey = PrivateKey(seed: seed, network: .main)
@@ -52,14 +53,14 @@ let change = account.derived(at: 0)
 let firstPrivateKey = change.derived(at: 0)
 print(firstPrivateKey.publicKey.address)
 ```
-- Generate keystore file
+#### Generate keystore file
 ```swift
 let data = "4e7936ba4a6bf40d0926ac9b0da0208d".data(using: .utf8)!
 let password = "bYSqu6{X"
 let keystore = try! KeystoreV3(seed: data, password: password)
 let encodedData = keystore.encodedData()
 ```
-- Create your wallet and generate address
+#### Create your wallet and generate address
 ```swift
 let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
 let mnemonic = Mnemonic.create(entropy: entropy)
@@ -69,7 +70,7 @@ let wallet = Wallet(seed: seed, network: network)
 let account = wallet.generateAccount()
 print(account)
 ```
-- Sign transaction by private key
+#### Sign transaction by private key
 ```swift
 let signer = EIP155Signer()
 let rawTransaction1 = EthereumRawTransaction(

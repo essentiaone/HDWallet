@@ -17,7 +17,7 @@ class CryptoTests: XCTestCase {
     }
     
     func testPrivateKeySign() {
-        let signer = EIP155Signer()
+        let signer = EIP155Signer(chainId: 1)
         
         let rawTransaction1 = EthereumRawTransaction(
             value: Wei("10000000000000000")!,
@@ -61,7 +61,7 @@ class CryptoTests: XCTestCase {
     
     func testGeneratingRSV() {
         let signature = Data(hex: "28ef61340bd939bc2195fe537567866003e1a15d3c71ff63e1590620aa63627667cbe9d8997f761aecb703304b3800ccf555c9f3dc64214b297fb1966a3b6d8300")
-        let signer = EIP155Signer()
+        let signer = EIP155Signer(chainId: 1)
         let (r, s, v) = signer.calculateRSV(signature: signature)
         XCTAssertEqual(r, BInt("18515461264373351373200002665853028612451056578545711640558177340181847433846")!)
         XCTAssertEqual(s, BInt("46948507304638947509940763649030358759909902576025900602547168820602576006531")!)
@@ -74,7 +74,7 @@ class CryptoTests: XCTestCase {
         let v = 27
         let r = "75119860711638973245538703589762310947594328712729260330312782656531560398776"
         let s = "51392727032514077370236468627319183981033698696331563950328005524752791633785"
-        let signer = EIP155Signer()
+        let signer = EIP155Signer(chainId: 1)
         let signature = signer.calculateSignature(r: BInt(r)!, s: BInt(s)!, v: BInt(v))
         XCTAssertEqual(signature.toHexString(), "a614559de76862bb1dbf8a969d8979e5bf21b72c51c96b27b3d247b728ebffb8719f40b018940ffd0880285d2196cdd31a710bf7cdda60c77632743d687dff7900")
         
