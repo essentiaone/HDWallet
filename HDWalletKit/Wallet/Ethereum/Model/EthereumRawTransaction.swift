@@ -1,6 +1,6 @@
 import Foundation
 /// RawTransaction constructs necessary information to publish transaction.
-public struct EthereumRawTransaction: Codable {
+public struct EthereumRawTransaction {
     
     /// Amount value to send, unit is in Wei
     public let value: Wei
