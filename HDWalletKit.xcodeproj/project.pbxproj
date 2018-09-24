@@ -102,7 +102,7 @@
 		3492216820F7466800A59A6F /* HDWalletKitError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HDWalletKitError.swift; sourceTree = "<group>"; };
 		3492216A20F747EC00A59A6F /* EllipticCurveEncrypterSecp256k1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipticCurveEncrypterSecp256k1.swift; sourceTree = "<group>"; };
 		34A5322D215307DF00B95C66 /* SignTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignTransactionTests.swift; sourceTree = "<group>"; };
-		34A532312158E66900B95C66 /* ERC20.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20.swift; sourceTree = "<group>"; };
+		34A532312158E66900B95C66 /* ERC20.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ERC20.swift; path = ../ERC20/ERC20.swift; sourceTree = "<group>"; };
 		34A532332158E96C00B95C66 /* ERC20Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERC20Tests.swift; sourceTree = "<group>"; };
 		34B7964921296427000B1251 /* KeystoreV3Json.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreV3Json.swift; sourceTree = "<group>"; };
 		34B7964B212A881C000B1251 /* KeystoreInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreInterface.swift; sourceTree = "<group>"; };

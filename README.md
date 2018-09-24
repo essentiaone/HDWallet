@@ -14,7 +14,7 @@ You can check if the address generation is working right [here](https://iancolem
 - Keystore generation
 - Read keystore file
 - Sign ether transaction
-
+- ERC20 Tokens
 
 ## Installation
 ### CocoaPods
@@ -75,13 +75,19 @@ print(account)
 let signer = EIP155Signer()
 let rawTransaction1 = EthereumRawTransaction(
     value: Wei("10000000000000000")!,
-    to: "0x91c79f31De5208fadCbF83f0a7B0A9b6d8aBA90F",
+    to: "0x34205555576717bBdF8158E2b2c9ed64EB1e6B85",
     gasPrice: 99000000000,
     gasLimit: 21000,
     nonce: 2
 )
 guard let signed = try? signer.hash(rawTransaction: rawTransaction1).toHexString() else { return }
 print(signed)
+```
+#### Create ERC20 parametrs
+```swift
+let erc20Token = ERC20(contractAddress: "0xfc05987bd2be489accf0f509e44b0145d68240f7", decimal: 18, symbol: "ESS")
+let address = "0x34205555576717bBdF8158E2b2c9ed64EB1e6B85"
+let data = try! erc20Token.generateDataParameter(toAddress: address, amount: "3") 
 ```
 ## License
 WalletKit is released under the [MIT License](https://github.com/essentiaone/HDWallet/blob/develop/LICENSE).
