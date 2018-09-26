@@ -12,7 +12,6 @@ Pod::Spec.new do |s|
   s.author           = { 'impl' => 'pavlo.bojkoo@gmail.com' }
   s.source           = { :git => 'https://github.com/essentiaone/HDWallet.git', :tag => s.version.to_s }
 
-  s.platform     = :ios, "12.0"
   s.swift_version= '4.2'
   s.static_framework  = true
 
