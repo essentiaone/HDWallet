@@ -12,8 +12,8 @@ import XCTest
 class KeystoreTests: XCTestCase {
     
     func testKeyStoreGeneration() {
-        let data = Data(hex: "576896308291575cb5b61eacd178e19721736b63594ee4c9bf60ffd9f3bd869de2124580d9ef0d4446fe467a7014b9894a738780db3c00cde5f86a7922115bdb")
-        let keystore = try! KeystoreV3(seed: data, password: "qwertyui")
+        let data = "abandon amount liar amount expire adjust cage candy arch gather drum buyer"
+        let keystore = try! KeystoreV3(data: data, password: "qwertyui")
         let encodedData = (try? keystore?.encodedData())!
         print((encodedData! as NSData).description)
         XCTAssertEqual(keystore?.keystoreParams?.crypto.cipher, "aes-128-ctr")
@@ -25,9 +25,9 @@ class KeystoreTests: XCTestCase {
     }
     
     func testDecodeKeystore() {
-        let data = Data(hex: "576896308291575cb5b61eacd178e19721736b63594ee4c9bf60ffd9f3bd869de2124580d9ef0d4446fe467a7014b9894a738780db3c00cde5f86a7922115bdb")
+        let data = "abandon amount liar amount expire adjust cage candy arch gather drum buyer"
         let password = "qwertyui"
-        let keystore = try! KeystoreV3(seed: data, password: password)
+        let keystore = try! KeystoreV3(data: data, password: password)
         guard let decoded = try? keystore?.getDecriptedKeyStore(password: password) else {
             assertionFailure()
             fatalError()

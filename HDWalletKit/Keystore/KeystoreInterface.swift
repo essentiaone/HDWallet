@@ -14,8 +14,8 @@ public enum KeystoreError: Error {
 }
 
 protocol KeystoreInterface {
-    func getDecriptedKeyStore(password: String) throws -> Data?
+    func getDecriptedKeyStore(password: String) throws -> String?
     func encodedData() throws -> Data
-    init? (seed: Data, password: String) throws
+    init? (data: String, password: String) throws
     init? (keyStore: Data) throws
 }
