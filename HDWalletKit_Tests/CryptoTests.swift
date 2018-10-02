@@ -84,10 +84,10 @@ class CryptoTests: XCTestCase {
         XCTAssertEqual(signature1.toHexString(), "af998533cdac5d64594f462871a8ba79fe41d59295e39db3f069434c9862193003edee4e64d899a2c57bd726e972bb6fdb354e3abcd5846e2315ecfec332f5c900")
     }
     
-    func bip44PrivateKey(network: Network , from: PrivateKey) -> PrivateKey {
+    func bip44PrivateKey(coin: Coin , from: PrivateKey) -> PrivateKey {
         let bip44Purpose:UInt32 = 44
         let purpose = from.derived(at: .hardened(bip44Purpose))
-        let coinType = purpose.derived(at: .hardened(network.coinType))
+        let coinType = purpose.derived(at: .hardened(coin.coinType))
         let account = coinType.derived(at: .hardened(0))
         let receive = account.derived(at: .notHardened(0))
         return receive

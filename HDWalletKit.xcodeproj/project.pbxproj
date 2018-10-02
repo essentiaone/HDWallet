@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3401AEFA20F797CB006DEF49 /* EthereumAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3401AEF920F797CB006DEF49 /* EthereumAddress.swift */; };
 		3401AF6E20F908AA006DEF49 /* SecpResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3401AF6D20F908AA006DEF49 /* SecpResult.swift */; };
+		3411AEE72164278A00AB9476 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411AEE62164278A00AB9476 /* Coin.swift */; };
 		344167EC212CC100008B8A91 /* KeystoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344167EB212CC100008B8A91 /* KeystoreTests.swift */; };
 		3492213320F64D9B00A59A6F /* BigInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492211C20F64D9B00A59A6F /* BigInt+Extension.swift */; };
 		3492213420F64D9B00A59A6F /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492211D20F64D9B00A59A6F /* SMP.swift */; };
@@ -22,7 +23,6 @@
 		3492213C20F64D9B00A59A6F /* Mnemonic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492212A20F64D9B00A59A6F /* Mnemonic.swift */; };
 		3492213D20F64D9B00A59A6F /* WordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492212B20F64D9B00A59A6F /* WordList.swift */; };
 		3492213E20F64D9B00A59A6F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492212D20F64D9B00A59A6F /* Account.swift */; };
-		3492213F20F64D9B00A59A6F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492212F20F64D9B00A59A6F /* Network.swift */; };
 		3492214020F64D9B00A59A6F /* PrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492213020F64D9B00A59A6F /* PrivateKey.swift */; };
 		3492214120F64D9B00A59A6F /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492213120F64D9B00A59A6F /* PublicKey.swift */; };
 		3492214220F64D9B00A59A6F /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492213220F64D9B00A59A6F /* Wallet.swift */; };
@@ -75,6 +75,7 @@
 		18C19464A6E097FE0E2D504F /* Pods-HDWalletKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDWalletKit_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDWalletKit_Tests/Pods-HDWalletKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3401AEF920F797CB006DEF49 /* EthereumAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddress.swift; sourceTree = "<group>"; };
 		3401AF6D20F908AA006DEF49 /* SecpResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecpResult.swift; sourceTree = "<group>"; };
+		3411AEE62164278A00AB9476 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		344167EB212CC100008B8A91 /* KeystoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreTests.swift; sourceTree = "<group>"; };
 		349220E520F64C6600A59A6F /* libHDWalletKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDWalletKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3492211C20F64D9B00A59A6F /* BigInt+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BigInt+Extension.swift"; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		3492212A20F64D9B00A59A6F /* Mnemonic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mnemonic.swift; sourceTree = "<group>"; };
 		3492212B20F64D9B00A59A6F /* WordList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordList.swift; sourceTree = "<group>"; };
 		3492212D20F64D9B00A59A6F /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		3492212F20F64D9B00A59A6F /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		3492213020F64D9B00A59A6F /* PrivateKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateKey.swift; sourceTree = "<group>"; };
 		3492213120F64D9B00A59A6F /* PublicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
 		3492213220F64D9B00A59A6F /* Wallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
@@ -256,10 +256,10 @@
 			children = (
 				34A532302158E64200B95C66 /* ERC20 */,
 				3492215220F6AB4F00A59A6F /* Ethereum */,
-				3492212F20F64D9B00A59A6F /* Network.swift */,
 				3492213020F64D9B00A59A6F /* PrivateKey.swift */,
 				3492213120F64D9B00A59A6F /* PublicKey.swift */,
 				3492213220F64D9B00A59A6F /* Wallet.swift */,
+				3411AEE62164278A00AB9476 /* Coin.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -510,7 +510,6 @@
 				34B7964A21296427000B1251 /* KeystoreV3Json.swift in Sources */,
 				3492214220F64D9B00A59A6F /* Wallet.swift in Sources */,
 				34B7964C212A881C000B1251 /* KeystoreInterface.swift in Sources */,
-				3492213F20F64D9B00A59A6F /* Network.swift in Sources */,
 				3492216520F6B79400A59A6F /* EIP155Signer.swift in Sources */,
 				3492213B20F64D9B00A59A6F /* EIP55.swift in Sources */,
 				3401AEFA20F797CB006DEF49 /* EthereumAddress.swift in Sources */,
@@ -523,6 +522,7 @@
 				3492213820F64D9B00A59A6F /* DataConvertable.swift in Sources */,
 				3492213E20F64D9B00A59A6F /* Account.swift in Sources */,
 				34B79650212A95D5000B1251 /* Data+Random.swift in Sources */,
+				3411AEE72164278A00AB9476 /* Coin.swift in Sources */,
 				3492213A20F64D9B00A59A6F /* Base58Encode.swift in Sources */,
 				3492213520F64D9B00A59A6F /* Crypto.swift in Sources */,
 				34A532322158E66900B95C66 /* ERC20.swift in Sources */,

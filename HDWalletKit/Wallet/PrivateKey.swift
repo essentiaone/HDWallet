@@ -13,34 +13,34 @@ public struct PrivateKey {
     public let depth: UInt8
     public let fingerprint: UInt32
     public let index: UInt32
-    public let network: Network
+    public let coin: Coin
     
-    public init(seed: Data, network: Network) {
+    public init(seed: Data, coin: Coin) {
         let output = Crypto.HMACSHA512(key: "Bitcoin seed".data(using: .ascii)!, data: seed)
         self.raw = output[0..<32]
         self.chainCode = output[32..<64]
         self.depth = 0
         self.fingerprint = 0
         self.index = 0
-        self.network = network
+        self.coin = coin
     }
     
-    private init(privateKey: Data, chainCode: Data, depth: UInt8, fingerprint: UInt32, index: UInt32, network: Network) {
+    private init(privateKey: Data, chainCode: Data, depth: UInt8, fingerprint: UInt32, index: UInt32, coin: Coin) {
         self.raw = privateKey
         self.chainCode = chainCode
         self.depth = depth
         self.fingerprint = fingerprint
         self.index = index
-        self.network = network
+        self.coin = coin
     }
     
     public var publicKey: PublicKey {
-        return PublicKey(privateKey: self, chainCode: chainCode, network: network, depth: depth, fingerprint: fingerprint, index: index)
+        return PublicKey(privateKey: self, chainCode: chainCode, coin: coin, depth: depth, fingerprint: fingerprint, index: index)
     }
     
     public var extended: String {
         var extendedPrivateKeyData = Data()
-        extendedPrivateKeyData += network.privateKeyVersion.bigEndian
+        extendedPrivateKeyData += coin.privateKeyVersion.bigEndian
         extendedPrivateKeyData += depth.littleEndian
         extendedPrivateKeyData += fingerprint.littleEndian
         extendedPrivateKeyData += index.littleEndian
@@ -51,33 +51,30 @@ public struct PrivateKey {
         return Base58.encode(extendedPrivateKeyData + checksum)
     }
     
-    public func wif() -> String {
-        if self.network.coinType == Network.main(.bitcoin).coinType {
-            var data = Data()
-            data += UInt8(0x80)
-            data += raw
-            data += UInt8(0x01)
-            data += data.doubleSHA256.prefix(4)
-            return Base58.encode(data)
-        }
-        return "WIF is not specified"
+    private func wif() -> String {
+        var data = Data()
+        data += coin.wifPreifx
+        data += raw
+        data += UInt8(0x01)
+        data += data.doubleSHA256.prefix(4)
+        return Base58.encode(data)
     }
     
     public func get() -> String {
-        switch self.network.coinType {
-        case Network.main(.bitcoin).coinType:
+        switch self.coin {
+        case .bitcoin: fallthrough
+        case .litecoin: fallthrough
+        case .bitcoinCash:
             return self.wif()
-        case Network.main(.ethereum).coinType:
+        case .ethereum:
             return self.raw.toHexString()
-        default:
-            return "None"
         }
     }
     
     public func derived(at node:DerivationNode) -> PrivateKey {
         let edge: UInt32 = 0x80000000
         guard (edge & node.index) == 0 else { fatalError("Invalid child index") }
-
+        
         var data = Data()
         switch node {
         case .hardened:
@@ -97,7 +94,7 @@ public struct PrivateKey {
         let derivedPrivateKey = ((BInt(data: raw) + factor) % curveOrder).data
         
         let derivedChainCode = digest[32..<64]
-        let fingurePrint: UInt32 = RIPEMD160.hash(publicKey.raw.sha256()).withUnsafeBytes { $0.pointee }
+        let fingurePrint: UInt32 = RIPEMD160.hash(publicKey.rawCompressed.sha256()).withUnsafeBytes { $0.pointee }
         
         return PrivateKey(
             privateKey: derivedPrivateKey,
@@ -105,7 +102,7 @@ public struct PrivateKey {
             depth: depth + 1,
             fingerprint: fingurePrint,
             index: derivingIndex,
-            network: network
+            coin: coin
         )
     }
     
