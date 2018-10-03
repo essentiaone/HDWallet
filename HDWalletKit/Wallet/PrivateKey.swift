@@ -1,54 +1,59 @@
 //
 //  PrivateKey.swift
-//  WalletKit
+//  HDWalletKit
 //
-//  Created by yuzushioh on 2018/02/06.
-//  Copyright © 2018 yuzushioh. All rights reserved.
+//  Created by Pavlo Boiko on 10/4/18.
+//  Copyright © 2018 Essentia. All rights reserved.
 //
+
 import Foundation
+
+enum PrivateKeyType {
+    case hd
+    case nonHd
+}
 
 public struct PrivateKey {
     public let raw: Data
     public let chainCode: Data
-    public let depth: UInt8
-    public let fingerprint: UInt32
     public let index: UInt32
     public let coin: Coin
+    private var keyType: PrivateKeyType
     
     public init(seed: Data, coin: Coin) {
         let output = Crypto.HMACSHA512(key: "Bitcoin seed".data(using: .ascii)!, data: seed)
         self.raw = output[0..<32]
         self.chainCode = output[32..<64]
-        self.depth = 0
-        self.fingerprint = 0
         self.index = 0
         self.coin = coin
+        self.keyType = .hd
     }
     
-    private init(privateKey: Data, chainCode: Data, depth: UInt8, fingerprint: UInt32, index: UInt32, coin: Coin) {
+    public init(pk: String, coin: Coin) {
+        switch coin {
+        case .ethereum:
+            self.raw = Data(hex: pk)
+        default:
+            let decodedPk = Base58.bytesFromBase58(pk)
+            let wifData = Data(decodedPk).dropLast(4).dropFirst()
+            self.raw = wifData
+        }
+        self.chainCode = Data(capacity: 32)
+        self.index = 0
+        self.coin = coin
+        self.keyType = .nonHd
+    }
+    
+    private init(privateKey: Data, chainCode: Data, index: UInt32, coin: Coin) {
         self.raw = privateKey
         self.chainCode = chainCode
-        self.depth = depth
-        self.fingerprint = fingerprint
         self.index = index
         self.coin = coin
+        self.keyType = .hd
     }
     
     public var publicKey: PublicKey {
-        return PublicKey(privateKey: self, chainCode: chainCode, coin: coin, depth: depth, fingerprint: fingerprint, index: index)
-    }
-    
-    public var extended: String {
-        var extendedPrivateKeyData = Data()
-        extendedPrivateKeyData += coin.privateKeyVersion.bigEndian
-        extendedPrivateKeyData += depth.littleEndian
-        extendedPrivateKeyData += fingerprint.littleEndian
-        extendedPrivateKeyData += index.littleEndian
-        extendedPrivateKeyData += chainCode
-        extendedPrivateKeyData += UInt8(0)
-        extendedPrivateKeyData += raw
-        let checksum = extendedPrivateKeyData.doubleSHA256.prefix(4)
-        return Base58.encode(extendedPrivateKeyData + checksum)
+        return PublicKey(privateKey: raw, coin: coin)
     }
     
     private func wif() -> String {
@@ -72,6 +77,7 @@ public struct PrivateKey {
     }
     
     public func derived(at node:DerivationNode) -> PrivateKey {
+        guard keyType == .hd else { fatalError() }
         let edge: UInt32 = 0x80000000
         guard (edge & node.index) == 0 else { fatalError("Invalid child index") }
         
@@ -92,15 +98,10 @@ public struct PrivateKey {
         
         let curveOrder = BInt(hex: "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141")!
         let derivedPrivateKey = ((BInt(data: raw) + factor) % curveOrder).data
-        
         let derivedChainCode = digest[32..<64]
-        let fingurePrint: UInt32 = RIPEMD160.hash(publicKey.rawCompressed.sha256()).withUnsafeBytes { $0.pointee }
-        
         return PrivateKey(
             privateKey: derivedPrivateKey,
             chainCode: derivedChainCode,
-            depth: depth + 1,
-            fingerprint: fingurePrint,
             index: derivingIndex,
             coin: coin
         )

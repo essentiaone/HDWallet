@@ -16,11 +16,6 @@ class AddressGenerationTests: XCTestCase {
         let seed = Mnemonic.createSeed(mnemonic: mnemonic)
         let privateKey = PrivateKey(seed: seed, coin: .bitcoin)
         
-        XCTAssertEqual(
-            privateKey.extended,
-            "xprv9s21ZrQH143K2XojduRLQnU8D8K59KSBoMuQKGx8dW3NBitFDMkYGiJPwZdanjZonM7eXvcEbxwuGf3RdkCyyXjsbHSkwtLnJcsZ9US42Gd"
-        )
-        
         // BIP44 key derivation
         // m/44'
         let purpose = privateKey.derived(at: .hardened(44))
@@ -34,16 +29,6 @@ class AddressGenerationTests: XCTestCase {
         // m/44'/0'/0'/0
         let change = account.derived(at: .notHardened(0))
         
-        XCTAssertEqual(
-            change.extended,
-            "xprvA2QWrMvVn11Cnc8Wv5XH22Phaz1eLLYUtUVCJxjRu3eSbPZk3WphdkqGBnAKiKtg3bxkL48zbf9C8jJKtbDhB4kTJuNfv3KZVRjxseHNNWk"
-        )
-        
-        XCTAssertEqual(
-            change.publicKey.extended,
-            "xpub6FPsFsTPcNZW16Cz274HPALS91r8joGLFhQo7M93TPBRUBttb48xBZ9k34oiG29Bvqfry9QyXPsGXSRE1kjut92Dgik1w6Whm1GU4F122n8"
-        )
-        
         // m/44'/0'/0'/0/0
         let firstPrivateKey = change.derived(at: .notHardened(0))
         XCTAssertEqual(
@@ -52,7 +37,7 @@ class AddressGenerationTests: XCTestCase {
         )
         
         XCTAssertEqual(
-            firstPrivateKey.publicKey.rawCompressed.toHexString(),
+            firstPrivateKey.publicKey.getPublicKey(compressed: true).toHexString(),
             "03ce9b978595558053580d557ff40f9f99a4f1a7609c25268863ee64de7e4abbda"
         )
     }
@@ -151,6 +136,28 @@ class AddressGenerationTests: XCTestCase {
         XCTAssertEqual(generatedAccounts, accounts)
         
     }
+    
+    func testBitcoinAddressFromPrivateKeyGeneration() {
+        let privateKey = PrivateKey(pk: "L35qaFLpbCc9yCzeTuWJg4qWnTs9BaLr5CDYcnJ5UnGmgLo8JBgk", coin: .bitcoin)
+        XCTAssertEqual(privateKey.publicKey.address, "128BCBZndgrPXzEgF4QbVR3jnQGwzRtEz5")
+    }
+    
+    func testEthereumAddressFromPrivateKeyGeneration() {
+        let privateKey = PrivateKey(pk: "df02cbea58239744a8a6ba328056309ae43f86fec6db45e5f782adcf38aacadf", coin: .ethereum)
+        XCTAssertEqual(privateKey.publicKey.address, "0x83f1caAdaBeEC2945b73087F803d404F054Cc2B7")
+    }
+    
+    func testLitecoinAddressFromPrivateKeyGeneration() {
+        let privateKey = PrivateKey(pk: "T3d12aqL7XSNqMojMtqBZGhQ6E93dzrdbnNUKMvdmVTa9TQn4L3m", coin: .litecoin)
+        XCTAssertEqual(privateKey.publicKey.address, "LV8fThzQw45HT6bCgs1yfvLNzv4aFvjJt1")
+    }
+    
+    func testBitcoinCashAddressFromPrivateKeyGeneration() {
+        let privateKey = PrivateKey(pk: "KwgDcj2ZDN5vzRXsTv1F6vzQV7nx7shEYjFBcWng1sH6Fy9rhK2b", coin: .bitcoinCash)
+        XCTAssertEqual(privateKey.publicKey.address, "1FYh9oXWbAzgcX3hPSrRWUodYWt87bMmne")
+    }
+    
+    
     
     func bip44PrivateKey(coin: Coin , from: PrivateKey) -> PrivateKey {
         let bip44Purpose:UInt32 = 44

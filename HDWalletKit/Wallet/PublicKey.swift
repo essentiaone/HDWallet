@@ -1,30 +1,21 @@
 //
 //  PublicKey.swift
-//  WalletKit
+//  HDWalletKit
 //
-//  Created by yuzushioh on 2018/02/06.
-//  Copyright © 2018 yuzushioh. All rights reserved.
+//  Created by Pavlo Boiko on 10/4/18.
+//  Copyright © 2018 Essentia. All rights reserved.
 //
+
 import Foundation
 import CryptoSwift
 import secp256k1
 
 public struct PublicKey {
-    public let rawCompressed: Data
-    public let rawNotCompressed: Data
-    public let chainCode: Data
-    public let depth: UInt8
-    public let fingerprint: UInt32
-    public let index: UInt32
+    public let rawPrivateKey: Data
     public let coin: Coin
     
-    init(privateKey: PrivateKey, chainCode: Data, coin: Coin, depth: UInt8, fingerprint: UInt32, index: UInt32) {
-        self.rawNotCompressed = Crypto.generatePublicKey(data: privateKey.raw, compressed: false)
-        self.rawCompressed = Crypto.generatePublicKey(data: privateKey.raw, compressed: true)
-        self.chainCode = chainCode
-        self.depth = depth
-        self.fingerprint = fingerprint
-        self.index = index
+    public init(privateKey: Data, coin: Coin) {
+        self.rawPrivateKey = privateKey
         self.coin = coin
     }
     
@@ -42,40 +33,25 @@ public struct PublicKey {
     
     func generateBtcAddress() -> String {
         let prefix = Data([coin.publicKeyHash])
-        let payload = RIPEMD160.hash(rawCompressed.sha256())
+        let publicKey = getPublicKey(compressed: true)
+        let payload = RIPEMD160.hash(publicKey.sha256())
         let checksum = (prefix + payload).doubleSHA256.prefix(4)
         return Base58.encode(prefix + payload + checksum)
     }
     
     func generateEthAddress() -> String {
-        let formattedData = (Data(hex: coin.addressPrefix) + rawNotCompressed).dropFirst()
+        let publicKey = getPublicKey(compressed: false)
+        let formattedData = (Data(hex: coin.addressPrefix) + publicKey).dropFirst()
         let addressData = Crypto.sha3keccak256(data: formattedData).suffix(20)
         return coin.addressPrefix + EIP55.encode(addressData)
     }
     
-    public var extended: String {
-        var extendedPublicKeyData = Data()
-        extendedPublicKeyData += coin.publicKeyVersion.bigEndian
-        extendedPublicKeyData += depth.littleEndian
-        extendedPublicKeyData += fingerprint.littleEndian
-        extendedPublicKeyData += index.littleEndian
-        extendedPublicKeyData += chainCode
-        extendedPublicKeyData += rawCompressed
-        let checksum = extendedPublicKeyData.doubleSHA256.prefix(4)
-        return Base58.encode(extendedPublicKeyData + checksum)
-    }
-    
     public func get() -> String {
-        return self.rawCompressed.toHexString()
+        let publicKey = getPublicKey(compressed: true)
+        return publicKey.toHexString()
     }
-}
     
-    extension Data {
-        var uint8: UInt8 {
-            get {
-                var number: UInt8 = 0
-                self.copyBytes(to: &number, count: MemoryLayout<UInt8>.size)
-                return number
-            }
-        }
+    public func getPublicKey(compressed: Bool) -> Data {
+        return Crypto.generatePublicKey(data: rawPrivateKey, compressed: compressed)
+    }
 }

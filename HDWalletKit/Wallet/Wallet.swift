@@ -17,8 +17,7 @@ public final class Wallet {
         privateKey = PrivateKey(seed: seed, coin: coin)
     }
     
-    //MARL: - Public
-    
+    //MARK: - Public
     public func generateAddress(at index: UInt32)  -> String {
         let derivedKey = bip44PrivateKey.derived(at: .notHardened(index))
         return derivedKey.publicKey.address
