@@ -13,8 +13,8 @@ import scrypt
 public class KeystoreV3: KeystoreInterface {
     public var keystoreParams: KeystoreParamsV3?
     
-    public required init? (seed: Data, password: String) throws {
-        try encryptDataToStorage(password, seed: seed)
+    public required init? (data: String, password: String) throws {
+        try encryptDataToStorage(password, data: data)
     }
     
     public required init? (keyStore: Data) throws {
@@ -25,7 +25,7 @@ public class KeystoreV3: KeystoreInterface {
         return try JSONEncoder().encode(keystoreParams)
     }
     
-    public func getDecriptedKeyStore(password: String) throws -> Data? {
+    public func getDecriptedKeyStore(password: String) throws -> String? {
         guard let keystoreParams = self.keystoreParams else {return nil}
         guard let saltData = Data.fromHex(keystoreParams.crypto.kdfparams.salt) else {return nil}
         let derivedLen = keystoreParams.crypto.kdfparams.dklen
@@ -50,7 +50,7 @@ public class KeystoreV3: KeystoreInterface {
         guard let IV = Data.fromHex(keystoreParams.crypto.cipherparams.iv) else {return nil}
         guard let aesCipher = try? AES(key: decryptionKey.bytes, blockMode: CTR(iv: IV.bytes), padding: .noPadding) else {return nil}
         guard let decryptedPK:Array<UInt8> = try? aesCipher.decrypt(cipherText.bytes) else { return nil }
-        return Data(bytes:decryptedPK)
+        return String(bytes: decryptedPK, encoding: .utf8)
     }
     
     private func encryptData(password: String, salt: Data, length: Int, N: Int, R: Int, P: Int) -> Data? {
@@ -60,7 +60,7 @@ public class KeystoreV3: KeystoreInterface {
         return Data(result)
     }
     
-    private func encryptDataToStorage(_ password: String, seed: Data, dkLen: Int=32, N: Int = 1024, R: Int = 8, P: Int = 1) throws {
+    private func encryptDataToStorage(_ password: String, data: String, dkLen: Int=32, N: Int = 1024, R: Int = 8, P: Int = 1) throws {
         let saltLen = 32;
         let saltData = Data.randomBytes(length: saltLen)
         guard let derivedKey = encryptData(password: password,
@@ -73,7 +73,8 @@ public class KeystoreV3: KeystoreInterface {
         let encryptionKey = Data(derivedKey[0...15])
         let IV = Data.randomBytes(length: 16)
         let aesCipher = try? AES(key: encryptionKey.bytes, blockMode: CTR(iv: IV.bytes), padding: .noPadding)
-        guard let encryptedKey = try aesCipher?.encrypt(seed.bytes) else { throw KeystoreError.aesError }
+        let encodedData = Data(data.utf8)
+        guard let encryptedKey = try aesCipher?.encrypt(encodedData.bytes) else { throw KeystoreError.aesError }
         let encryptedKeyData = Data(bytes:encryptedKey)
         var dataForMAC = Data()
         dataForMAC.append(last16bytes)

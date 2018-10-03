@@ -10,11 +10,11 @@ import Foundation
 public final class Wallet {
     
     public let privateKey: PrivateKey
-    public let network: Network
+    public let coin: Coin
     
-    public init(seed: Data, network: Network) {
-        self.network = network
-        privateKey = PrivateKey(seed: seed, network: network)
+    public init(seed: Data, coin: Coin) {
+        self.coin = coin
+        privateKey = PrivateKey(seed: seed, coin: coin)
     }
     
     //MARL: - Public
@@ -49,7 +49,7 @@ public final class Wallet {
     private var bip44PrivateKey:PrivateKey {
         let bip44Purpose:UInt32 = 44
         let purpose = privateKey.derived(at: .hardened(bip44Purpose))
-        let coinType = purpose.derived(at: .hardened(network.coinType))
+        let coinType = purpose.derived(at: .hardened(coin.coinType))
         let account = coinType.derived(at: .hardened(0))
         let receive = account.derived(at: .notHardened(0))
         return receive
