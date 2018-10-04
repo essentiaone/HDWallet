@@ -1,0 +1,3 @@
+github "Boilertalk/secp256k1.swift"
+github "krzyzanowskim/CryptoSwift"
+github "shamatar/scrypt-cryptoswift"
