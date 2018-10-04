@@ -10,6 +10,7 @@ HDWalletKit is a Swift framwork that enables you to create and use bitcoin HD wa
 You can check if the address generation is working right [here](https://iancoleman.io/bip39/).
 
 ## Features
+- HD and NonHD wallets support
 - Mnemonic recovery phrease in [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
 - Keystore generation
 - Read keystore file
@@ -21,6 +22,16 @@ You can check if the address generation is working right [here](https://iancolem
 <p>To integrate HDWalletKit into your Xcode project using <a href="http://cocoapods.org">CocoaPods</a>, specify it in your <code>Podfile</code>:</p>
 <pre><code class="ruby language-ruby">pod 'HDWalletKit'</code></pre>
 
+## Carthage
+To install with [Carthage](https://github.com/Carthage/Carthage), simply add this in your `Cartfile`:
+```ruby
+github "essentiaone/HDWallet"
+```
+## Communication
+
+- If you **found a bug**, open an issue.
+- If you **have a feature request**, open an issue.
+- If you **want to contribute**, submit a pull request.
 ## How to use
 #### Generate seed and convert it to mnemonic sentence.
 ```swift
@@ -89,5 +100,12 @@ let erc20Token = ERC20(contractAddress: "0xfc05987bd2be489accf0f509e44b0145d6824
 let address = "0x34205555576717bBdF8158E2b2c9ed64EB1e6B85"
 let data = try! erc20Token.generateDataParameter(toAddress: address, amount: "3") 
 ```
+#### Convert non HD PrivateKey to Address
+```swift
+let privateKey = PrivateKey(pk: "L35qaFLpbCc9yCzeTuWJg4qWnTs9BaLr5CDYcnJ5UnGmgLo8JBgk", coin: .bitcoin)
+print(privateKey.publicKey.address)
+//128BCBZndgrPXzEgF4QbVR3jnQGwzRtEz5
+```
+
 ## License
-WalletKit is released under the [MIT License](https://github.com/essentiaone/HDWallet/blob/develop/LICENSE).
+WalletKit is released under the [MIT License](https://github.com/essentiaone/HDWallet/blob/develop/LICENSE.md).

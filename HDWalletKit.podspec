@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'HDWalletKit'
-  s.version          = '0.1.8'
+  s.version          = '0.1.9'
   s.summary          = 'Hierarchical Deterministic(HD) wallet for cryptocurrencies'
   
   s.description      = <<-DESC
