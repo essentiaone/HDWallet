@@ -22,8 +22,16 @@ You can check if the address generation is working right [here](https://iancolem
 <p>To integrate HDWalletKit into your Xcode project using <a href="http://cocoapods.org">CocoaPods</a>, specify it in your <code>Podfile</code>:</p>
 <pre><code class="ruby language-ruby">pod 'HDWalletKit'</code></pre>
 
-## Contribution
-Fell free 
+## Carthage
+To install with [Carthage](https://github.com/Carthage/Carthage), simply add this in your `Cartfile`:
+```ruby
+github "essentiaone/HDWallet"
+```
+## Communication
+
+- If you **found a bug**, open an issue.
+- If you **have a feature request**, open an issue.
+- If you **want to contribute**, submit a pull request.
 ## How to use
 #### Generate seed and convert it to mnemonic sentence.
 ```swift
@@ -100,4 +108,4 @@ print(privateKey.publicKey.address)
 ```
 
 ## License
-WalletKit is released under the [MIT License](https://github.com/essentiaone/HDWallet/blob/develop/LICENSE).
+WalletKit is released under the [MIT License](https://github.com/essentiaone/HDWallet/blob/develop/LICENSE.md).
