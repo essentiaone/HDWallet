@@ -22,7 +22,7 @@ You can check if the address generation is working right [here](https://iancolem
 <p>To integrate HDWalletKit into your Xcode project using <a href="http://cocoapods.org">CocoaPods</a>, specify it in your <code>Podfile</code>:</p>
 <pre><code class="ruby language-ruby">pod 'HDWalletKit'</code></pre>
 
-## Carthage
+### Carthage
 To install with [Carthage](https://github.com/Carthage/Carthage), simply add this in your `Cartfile`:
 ```ruby
 github "essentiaone/HDWallet"
@@ -94,11 +94,16 @@ let rawTransaction1 = EthereumRawTransaction(
 guard let signed = try? signer.hash(rawTransaction: rawTransaction1).toHexString() else { return }
 print(signed)
 ```
-#### Create ERC20 parametrs
+#### Create send ERC20 tokens transaction data 
 ```swift
-let erc20Token = ERC20(contractAddress: "0xfc05987bd2be489accf0f509e44b0145d68240f7", decimal: 18, symbol: "ESS")
-let address = "0x34205555576717bBdF8158E2b2c9ed64EB1e6B85"
+let erc20Token = ERC20(contractAddress: "0x8f0921f30555624143d427b340b1156914882c10", decimal: 18, symbol: "ESS")
+let address = "0x2f5059f64D5C0c4895092D26CDDacC58751e0C3C"
 let data = try! erc20Token.generateDataParameter(toAddress: address, amount: "3") 
+```
+#### Create get balance ERC20 token transaction data 
+```swift
+let erc20Token = ERC20(contractAddress: "0x8f0921f30555624143d427b340b1156914882c10", decimal: 18, symbol: "ESS")
+let data = try! erc20Token.generateGetBalanceParameter(toAddress: "2f5059f64D5C0c4895092D26CDDacC58751e0C3C")
 ```
 #### Convert non HD PrivateKey to Address
 ```swift
