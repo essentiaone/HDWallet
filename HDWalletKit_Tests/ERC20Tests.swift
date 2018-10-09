@@ -47,8 +47,8 @@ final class ERC20Tests: XCTestCase {
     
     
     func testSignatures() {
-        XCTAssertEqual(erc20Token.transferSigniture.toHexString(), "a9059cbb")
-        XCTAssertEqual(erc20Token.balanceSigniture.toHexString(), "70a08231")
+        XCTAssertEqual(erc20Token.transferSignature.toHexString(), "a9059cbb")
+        XCTAssertEqual(erc20Token.balanceSignature.toHexString(), "70a08231")
     }
 }
 

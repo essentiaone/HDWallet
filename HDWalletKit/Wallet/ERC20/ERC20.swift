@@ -27,12 +27,12 @@ public struct ERC20 {
     
     /// Transfer method signiture
     /// function transfer(address _to, uint256 _value) returns (bool success)
-    var transferSigniture: Data {
+    var transferSignature: Data {
         let method = "transfer(address,uint256)"
         return method.data(using: .ascii)!.sha3(.keccak256)[0...3]
     }
     
-    var balanceSigniture: Data {
+    var balanceSignature: Data {
         let method = "balanceOf(address)"
         return method.data(using: .ascii)!.sha3(.keccak256)[0...3]
     }
@@ -49,7 +49,7 @@ public struct ERC20 {
     ///    - amount: amount to send
     /// - Returns: transaction data
     public func generateSendBalanceParameter(toAddress: String, amount: String) throws -> Data {
-        let method = transferSigniture.toHexString()
+        let method = transferSignature.toHexString()
         let address = pad(string: toAddress.stripHexPrefix())
         
         let poweredAmount = try power(amount: amount)
@@ -65,7 +65,7 @@ public struct ERC20 {
     ///    - amount: amount to send
     /// - Returns: transaction data
     public func generateGetBalanceParameter(toAddress: String) throws -> Data {
-        let method = balanceSigniture.toHexString()
+        let method = balanceSignature.toHexString()
         let address = pad(string: toAddress.stripHexPrefix())
         return Data(hex: method + address)
     }
