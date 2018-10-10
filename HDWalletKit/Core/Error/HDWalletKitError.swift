@@ -18,8 +18,13 @@ public enum HDWalletKitError: Error {
         case invalidDecimalValue(Any)
     }
     
+    public enum ConvertError: Error {
+        case failedToConvert(Any)
+    }
+    
     case cryptoError(CryptoError)
     case contractError(ContractError)
+    case convertError(ConvertError)
     case failedToSign
     case unknownError
 }
