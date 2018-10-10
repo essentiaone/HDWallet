@@ -12,6 +12,8 @@
 		3411AEE72164278A00AB9476 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411AEE62164278A00AB9476 /* Coin.swift */; };
 		3411AF0A21656F0700AB9476 /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3411AF0921656F0700AB9476 /* PublicKey.swift */; };
 		344167EC212CC100008B8A91 /* KeystoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344167EB212CC100008B8A91 /* KeystoreTests.swift */; };
+		34753F79216E76B70025E0F4 /* WeiEthterConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34753F78216E76B70025E0F4 /* WeiEthterConverter.swift */; };
+		34753F7B216E78430025E0F4 /* ConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34753F7A216E78430025E0F4 /* ConverterTests.swift */; };
 		3492213320F64D9B00A59A6F /* BigInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492211C20F64D9B00A59A6F /* BigInt+Extension.swift */; };
 		3492213420F64D9B00A59A6F /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492211D20F64D9B00A59A6F /* SMP.swift */; };
 		3492213520F64D9B00A59A6F /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492212020F64D9B00A59A6F /* Crypto.swift */; };
@@ -78,6 +80,8 @@
 		3411AEE62164278A00AB9476 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		3411AF0921656F0700AB9476 /* PublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
 		344167EB212CC100008B8A91 /* KeystoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeystoreTests.swift; sourceTree = "<group>"; };
+		34753F78216E76B70025E0F4 /* WeiEthterConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiEthterConverter.swift; sourceTree = "<group>"; };
+		34753F7A216E78430025E0F4 /* ConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTests.swift; sourceTree = "<group>"; };
 		349220E520F64C6600A59A6F /* libHDWalletKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDWalletKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3492211C20F64D9B00A59A6F /* BigInt+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BigInt+Extension.swift"; sourceTree = "<group>"; };
 		3492211D20F64D9B00A59A6F /* SMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMP.swift; sourceTree = "<group>"; };
@@ -139,6 +143,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34753F77216E76720025E0F4 /* Converter */ = {
+			isa = PBXGroup;
+			children = (
+				34753F78216E76B70025E0F4 /* WeiEthterConverter.swift */,
+			);
+			path = Converter;
+			sourceTree = "<group>";
+		};
 		349220DC20F64C6600A59A6F = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +186,7 @@
 		3492211A20F64D9B00A59A6F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				34753F77216E76720025E0F4 /* Converter */,
 				34B7B85520F7847000D2C34A /* Extensions */,
 				3492216720F7464700A59A6F /* Error */,
 				3492211B20F64D9B00A59A6F /* BigInt */,
@@ -274,6 +287,7 @@
 				344167EB212CC100008B8A91 /* KeystoreTests.swift */,
 				34A5322D215307DF00B95C66 /* SignTransactionTests.swift */,
 				34A532332158E96C00B95C66 /* ERC20Tests.swift */,
+				34753F7A216E78430025E0F4 /* ConverterTests.swift */,
 			);
 			path = HDWalletKit_Tests;
 			sourceTree = "<group>";
@@ -531,6 +545,7 @@
 				3492213420F64D9B00A59A6F /* SMP.swift in Sources */,
 				3492216620F6B79400A59A6F /* RLP.swift in Sources */,
 				3492213620F64D9B00A59A6F /* ECDSA.swift in Sources */,
+				34753F79216E76B70025E0F4 /* WeiEthterConverter.swift in Sources */,
 				3492213320F64D9B00A59A6F /* BigInt+Extension.swift in Sources */,
 				3492213C20F64D9B00A59A6F /* Mnemonic.swift in Sources */,
 				34B7964E212A93A0000B1251 /* KeystoreV3.swift in Sources */,
@@ -546,6 +561,7 @@
 				34B7B85320F75E5B00D2C34A /* AddressGenerationTests.swift in Sources */,
 				34B7B85120F75E4E00D2C34A /* CryptoTests.swift in Sources */,
 				34B7B84F20F75DBF00D2C34A /* MnemonicTests.swift in Sources */,
+				34753F7B216E78430025E0F4 /* ConverterTests.swift in Sources */,
 				34A532342158E96C00B95C66 /* ERC20Tests.swift in Sources */,
 				344167EC212CC100008B8A91 /* KeystoreTests.swift in Sources */,
 			);

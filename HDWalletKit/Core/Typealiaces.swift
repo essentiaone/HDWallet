@@ -9,4 +9,4 @@
 import Foundation
 
 public typealias Wei = BInt
-
+public typealias Ether = Decimal

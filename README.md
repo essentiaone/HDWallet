@@ -46,35 +46,44 @@ print(seed.toHexString())
 #### PrivateKey and key derivation (BIP39)
 
 ```swift
-let masterPrivateKey = PrivateKey(seed: seed, network: .main)
+let mnemonic = Mnemonic.create()
+let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+let privateKey = PrivateKey(seed: seed, coin: .bitcoin)
 
+// BIP44 key derivation
 // m/44'
-let purpose = masterPrivateKey.derived(at: 44, hardens: true)
+let purpose = privateKey.derived(at: .hardened(44))
 
 // m/44'/0'
-let coinType = purpose.derived(at: 0, hardens: true)
+let coinType = purpose.derived(at: .hardened(0))
 
 // m/44'/0'/0'
-let account = coinType.derived(at: 0, hardens: true)
+let account = coinType.derived(at: .hardened(0))
 
 // m/44'/0'/0'/0
-let change = account.derived(at: 0)
+let change = account.derived(at: .notHardened(0))
 
-// m/44'/0'/0'/0
-let firstPrivateKey = change.derived(at: 0)
+// m/44'/0'/0'/0/0
+let firstPrivateKey = change.derived(at: .notHardened(0))
 print(firstPrivateKey.publicKey.address)
 ```
 #### Generate keystore file
 ```swift
-let data = "4e7936ba4a6bf40d0926ac9b0da0208d".data(using: .utf8)!
-let password = "bYSqu6{X"
-let keystore = try! KeystoreV3(seed: data, password: password)
-let encodedData = keystore.encodedData()
+let data = "abandon amount liar amount expire adjust cage candy arch gather drum buyer"
+let keystore = try! KeystoreV3(data: data, password: "qwertyui")
+let encodedKeystoreDaya = (try? keystore?.encodedData())
+```
+#### Open keystore file
+```swift
+let keystore = try! KeystoreV3(data: encodedKeystoreDaya, password: password)
+guard let decoded = try? keystore?.getDecriptedKeyStore(password: password) else {
+fatalError()
+}
+print(decoded)
 ```
 #### Create your wallet and generate address
 ```swift
-let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
-let mnemonic = Mnemonic.create(entropy: entropy)
+let mnemonic = Mnemonic.create()
 let seed = Mnemonic.createSeed(mnemonic: mnemonic)
 let network: Network = .main(.bitcoin)
 let wallet = Wallet(seed: seed, network: network)
