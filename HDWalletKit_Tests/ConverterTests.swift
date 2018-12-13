@@ -47,4 +47,8 @@ class ConverterTests: XCTestCase {
         XCTAssertEqual(WeiEthterConverter.toWei(GWei: 60), 60000000000)
         XCTAssertEqual(WeiEthterConverter.toWei(GWei: 99), 99000000000)
     }
+    
+    func testTokensConvert() {
+        XCTAssertEqual(try! WeiEthterConverter.toToken(balance: "0x2d79883d2000", decimals: 12).description, "50")
+    }
 }

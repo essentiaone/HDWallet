@@ -37,6 +37,15 @@ public class  WeiEthterConverter {
         return try toWei(ether: decimalEther)
     }
     
+    ///Convert Wei to Tokens balance
+    public static func toToken(balance: String, decimals: Int) throws -> Ether {
+        guard let wei = Wei(str: balance, radix: 16),
+              let  decimalWei = Decimal(string: wei.description) else {
+            throw HDWalletKitError.convertError(.failedToConvert(balance))
+        }
+        return decimalWei / pow(10, decimals)
+    }
+    
     // Only used for calcurating gas price and gas limit.
     public static func toWei(GWei: Int) -> Int {
         return GWei * 1000000000
