@@ -1,12 +1,13 @@
 language: 
   - objective-c
 osx_image: 
-  - xcode10
+  - xcode10.1
 before_install:
    - pod cache clean --all    
    - pod update
-install: true
+install:
+- gem install xcpretty-travis-formatter
 script:
-  - xcodebuild test -workspace 'HDWalletKit.xcworkspace' -scheme 'HDWalletKit_Tests' -destination 'platform=iOS Simulator,name=iPhone 7,OS=12.0'
+  - xcodebuild test -workspace 'HDWalletKit.xcworkspace' -scheme 'HDWalletKit_Tests' -destination 'platform=iOS Simulator,name=iPhone 7,OS=12.1' | xcpretty -f `xcpretty-travis-formatter`
 after_success:
   - bash <(curl -s https://codecov.io/bash)
