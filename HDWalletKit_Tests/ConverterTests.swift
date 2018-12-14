@@ -49,6 +49,7 @@ class ConverterTests: XCTestCase {
     }
     
     func testTokensConvert() {
-        XCTAssertEqual(try! WeiEthterConverter.toToken(balance: "0x2d79883d2000", decimals: 12).description, "50")
+        XCTAssertEqual(try! WeiEthterConverter.toToken(balance: "0x2d79883d2000", decimals: 12, radix: 16).description, "50")
+        XCTAssertEqual(try! WeiEthterConverter.toToken(balance: "50000000000000", decimals: 12, radix: 10).description, "50")
     }
 }
