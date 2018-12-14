@@ -38,8 +38,8 @@ public class  WeiEthterConverter {
     }
     
     ///Convert Wei to Tokens balance
-    public static func toToken(balance: String, decimals: Int) throws -> Ether {
-        guard let wei = Wei(str: balance, radix: 16),
+    public static func toToken(balance: String, decimals: Int, radix: Int) throws -> Ether {
+        guard let wei = Wei(balance, radix: radix),
               let  decimalWei = Decimal(string: wei.description) else {
             throw HDWalletKitError.convertError(.failedToConvert(balance))
         }
