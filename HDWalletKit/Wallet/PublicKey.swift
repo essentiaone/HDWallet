@@ -31,6 +31,17 @@ public struct PublicKey {
         }
     }
     
+    public var utxoAddress: Address {
+        switch coin {
+        case .bitcoin:
+            return try! LegacyAddress(address)
+        case .ethereum:
+            fatalError("Coin does not support UTXO address")
+        default:
+            fatalError("Coin does not support yet")
+        }
+    }
+    
     func generateBtcAddress() -> String {
         let prefix = Data([coin.publicKeyHash])
         let publicKey = getPublicKey(compressed: true)
@@ -49,6 +60,10 @@ public struct PublicKey {
     public func get() -> String {
         let publicKey = getPublicKey(compressed: true)
         return publicKey.toHexString()
+    }
+    
+    public var data: Data {
+        return Data(hex: get())
     }
     
     public func getPublicKey(compressed: Bool) -> Data {

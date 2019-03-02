@@ -34,8 +34,8 @@ public struct PrivateKey {
         case .ethereum:
             self.raw = Data(hex: pk)
         default:
-            let decodedPk = Base58.bytesFromBase58(pk)
-            let wifData = Data(decodedPk).dropLast(4).dropFirst()
+            let decodedPk = Base58.decode(pk) ?? Data()
+            let wifData = decodedPk.dropLast(4).dropFirst()
             self.raw = wifData
         }
         self.chainCode = Data(capacity: 32)
