@@ -40,19 +40,6 @@ final public class UTXOWallet {
         self.utxoTransactionBuilder = utxoTransactionBuilder
         self.utoxTransactionSigner = utoxTransactionSigner
     }
-    //    public convenience init?(dataStore: BitcoinKitDataStoreProtocol = UserDefaults.bitcoinKit) {
-    //        guard let wif = dataStore.getString(forKey: .wif), let privateKey = try? PrivateKey(wif: wif) else {
-    //            return nil
-    //        }
-    //        self.init(privateKey: privateKey, dataStore: dataStore)
-    //    }
-    //
-    //    public convenience init?(wif: String) {
-    //        guard let privateKey = try? PrivateKey(wif: wif) else {
-    //            return nil
-    //        }
-    //        self.init(privateKey: privateKey)
-    //    }
     
     public var address: Address { return privateKey.publicKey.utxoAddress }
     
