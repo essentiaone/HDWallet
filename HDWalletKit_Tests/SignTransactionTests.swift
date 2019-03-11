@@ -47,7 +47,7 @@ class SignTransactionTests: XCTestCase {
         let utxoWallet = UTXOWallet(privateKey: pk)
         do {
             let signedTx = try utxoWallet.createTransaction(to: address, amount: 0, utxos: [utxo])
-            XCTAssertEqual(signedTx, "0100000001f3bc1022a05b6687b55d92361457ae7ee2299238a09aa99572e615cf9682ed9c9d3e001500ffffffff020a000000000000001976a914b342b16a24dffc3be74ccf202e418fc22c271cbd88ac3b010800000000001976a914b342b16a24dffc3be74ccf202e418fc22c271cbd88ac00000000")
+            XCTAssertEqual(signedTx, "01000000000200000000000000001976a914b342b16a24dffc3be74ccf202e418fc22c271cbd88ac00000000000000001976a9140a216a7816a462237e7de323c1666a75932d648d88ac00000000")
             
         } catch {
             print(error)
