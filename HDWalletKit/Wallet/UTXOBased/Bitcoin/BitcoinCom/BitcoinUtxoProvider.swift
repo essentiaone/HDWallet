@@ -47,9 +47,9 @@ private struct BitcoinComUtxoModel: Codable {
     let legacyAddress: String
     let cashAddress: String
     
-    func asUtxo() -> UnspentTransaction? {
-        guard let lockingScript: Data = Data(hex: scriptPubKey),
-              let txidData: Data = Data(hex: String(txid)) else { return nil }
+    func asUtxo() -> UnspentTransaction {
+        let lockingScript: Data = Data(hex: scriptPubKey)
+        let txidData: Data = Data(hex: String(txid))
         let txHash: Data = Data(txidData.reversed())
         let output = TransactionOutput(value: satoshis, lockingScript: lockingScript)
         let outpoint = TransactionOutPoint(hash: txHash, index: vout)
