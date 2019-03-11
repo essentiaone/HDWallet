@@ -19,6 +19,8 @@ public enum Coin {
         switch self {
         case .litecoin:
             return 0x019D9CFE
+        case .bitcoin:
+            return 0x0488ADE4
         default:
             return 0x0488ADE4
         }
@@ -28,6 +30,8 @@ public enum Coin {
         switch self {
         case .litecoin:
             return 0x019DA462
+        case .bitcoin:
+            return 0x0488B21E
         default:
             return 0x0488B21E
         }
@@ -37,16 +41,31 @@ public enum Coin {
         switch self {
         case .litecoin:
             return 0x30
+        case .bitcoin:
+            return 0x00
         default:
             return 0x00
         }
     }
     
     //https://www.reddit.com/r/litecoin/comments/6vc8tc/how_do_i_convert_a_raw_private_key_to_wif_for/
-    public var wifPreifx: UInt8 {
+    public var wifPrefix: UInt8 {
         switch self {
         case .litecoin:
             return 0xB0
+        case .bitcoin:
+            return 0x80
+        default:
+            return 0x80
+        }
+    }
+    
+    public var scripthash: UInt8 {
+        switch self {
+        case .litecoin:
+            return 0xB0
+        case .bitcoin:
+            return 0x80
         default:
             return 0x80
         }
@@ -72,6 +91,18 @@ public enum Coin {
             return 2
         case .bitcoinCash:
             return 145
+        }
+    }
+    
+    public var scheme: String {
+        switch self {
+        case .bitcoin:
+            return "bitcoin"
+        case .litecoin:
+            return "litecoin"
+        case .bitcoinCash:
+            return "bitcoincash"
+        default: return ""
         }
     }
 }

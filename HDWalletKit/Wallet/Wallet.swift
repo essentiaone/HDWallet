@@ -23,6 +23,11 @@ public final class Wallet {
         return derivedKey.publicKey.address
     }
     
+    public func generateAccount(at derivationPath: [DerivationNode]) -> Account {
+        let privateKey = generatePrivateKey(at: derivationPath)
+        return Account(privateKey: privateKey)
+    }
+    
     public func generateAccount(at index: UInt32 = 0) -> Account {
         let address = bip44PrivateKey.derived(at: .notHardened(index))
         return Account(privateKey: address)

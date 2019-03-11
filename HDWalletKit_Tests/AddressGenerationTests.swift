@@ -42,6 +42,8 @@ class AddressGenerationTests: XCTestCase {
         )
     }
     
+
+    
     func testBitcoinMainNetAddressGeneration() {
         let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
         let mnemonic = Mnemonic.create(entropy: entropy)
