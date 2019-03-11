@@ -36,7 +36,7 @@ class SignTransactionTests: XCTestCase {
     }
     
     func testBitcoinSign() {
-        let pk = PrivateKey(pk: "e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109", coin: .bitcoin)
+        let pk = PrivateKey(pk: "L5GgBH1U8PuNuzCQGvvEH3udEXCEuJaiK96e88romhpGa1cU7JTY", coin: .bitcoin)
         let lockingScript: Data = Data(hex: "76a914e42a54ba2042e889461c7966ac6ba13eeb144a3f88ac")
         let txidData: Data = Data(hex: "9ced8296cf15e67295a99aa0389229e27eae571436925db587665ba02210bcf3")
         let txHash: Data = Data(txidData.reversed())
@@ -47,7 +47,7 @@ class SignTransactionTests: XCTestCase {
         let utxoWallet = UTXOWallet(privateKey: pk)
         do {
             let signedTx = try utxoWallet.createTransaction(to: address, amount: 0, utxos: [utxo])
-            XCTAssertEqual(signedTx, "01000000000200000000000000001976a914b342b16a24dffc3be74ccf202e418fc22c271cbd88ac00000000000000001976a9140a216a7816a462237e7de323c1666a75932d648d88ac00000000")
+            XCTAssertEqual(signedTx, "01000000000200000000000000001976a914b342b16a24dffc3be74ccf202e418fc22c271cbd88ac00000000000000001976a9144f5cd7cf2e4d0ec1bcbd82b64691e2f7867b618688ac00000000")
             
         } catch {
             print(error)
