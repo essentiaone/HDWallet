@@ -44,7 +44,7 @@ final public class UTXOWallet {
     public var address: Address { return privateKey.publicKey.utxoAddress }
     
     public func reloadBalance(completion: @escaping (([UnspentTransaction]) -> Void)) {
-        utxoProvider.reload(addresses: [address], completion: completion)
+        utxoProvider.reload(address: address, completion: completion)
     }
     
     public func createTransaction(to toAddress: Address, amount: UInt64, utxos: [UnspentTransaction]) throws -> String {

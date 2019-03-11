@@ -16,8 +16,8 @@ final public class BitcoinComUtxoProvider: UtxoProviderInterface {
     }
     
     // GET API: reload utxos
-    public func reload(addresses: [Address], completion: @escaping (([UnspentTransaction]) -> Void)) {
-        networkManager.makeAsyncRequest(BitcoinComApiEndPoint.utxo(addresses: addresses)) { (result: NetworkResult
+    public func reload(address: Address, completion: @escaping (([UnspentTransaction]) -> Void)) {
+        networkManager.makeAsyncRequest(BitcoinComApiEndPoint.utxo(address: address)) { (result: NetworkResult
             <[[BitcoinComUtxoModel]]>) in
             switch result {
             case .success(let utxos):

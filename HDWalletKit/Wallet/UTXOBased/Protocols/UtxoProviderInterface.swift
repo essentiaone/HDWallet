@@ -9,8 +9,7 @@
 import Foundation
 
 public protocol UtxoProviderInterface {
-    // Reload utxos [GET API, SPV, etc...]
-    func reload(addresses: [Address], completion: @escaping (([UnspentTransaction]) -> Void))
+    func reload(address: Address, completion: @escaping (([UnspentTransaction]) -> Void))
     
     // List cached utxos
 //    var cached: [UnspentTransaction] { get }

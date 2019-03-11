@@ -10,13 +10,12 @@ import Foundation
 import EssentiaNetworkCore
 
 public enum BitcoinComApiEndPoint: RequestProtocol {
-    case utxo(addresses: [AddressProtocol])
+    case utxo(address: AddressProtocol)
     
     public var path: String {
         switch self {
-        case .utxo(let addresses):
-            let parameter: String = "[" + addresses.map { "\"\($0.cashaddr)\"" }.joined(separator: ",") + "]"
-            return "address/utxo/\(parameter)"
+        case .utxo(let address):
+            return "address/utxo/\(address.cashaddr)"
         }
     }
     

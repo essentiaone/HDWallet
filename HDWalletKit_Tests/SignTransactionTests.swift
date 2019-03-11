@@ -34,4 +34,28 @@ class SignTransactionTests: XCTestCase {
         XCTAssertEqual("0xf86c8085170cdc1e008252089491c79f31de5208fadcbf83f0a7b0a9b6d8aba90f880de0b6b3a76400008025a0f62b35ed65db13b02ccab29eeea2d29990a690a8620f8bee56b765c5357c82b8a05c266f2d429c87f8c903f7089870aa169638518c5c3a56ade8ce66ffcb5c3991", data.toHexString().addHexPrefix())
         
     }
+    
+    func testBitcoinSign() {
+        let expect = expectation(description: "Sign transaction")
+        
+        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
+        let mnemonic = Mnemonic.create(entropy: entropy)
+        let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+        let wallet = Wallet(seed: seed, coin: .bitcoin)
+        let account = wallet.generateAccount()
+        let pk = account.privateKey
+        let address = try! LegacyAddress(account.address)
+        let utxoWallet = UTXOWallet(privateKey: pk)
+        utxoWallet.reloadBalance { (utxos) in
+            do {
+                let signedTx = try utxoWallet.createTransaction(to: address, amount: 0, utxos: utxos)
+                XCTAssertEqual(signedTx, "01000000000200000000000000001976a9140c538bc8df14c3017234e8495174453e732cfd8f88ac00000000000000001976a9140c538bc8df14c3017234e8495174453e732cfd8f88ac00000000")
+                expect.fulfill()
+            } catch {
+                print(error)
+            }
+        }
+        wait(for: [expect], timeout: 5)
+        
+    }
 }
