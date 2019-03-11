@@ -167,7 +167,6 @@
 		34D9CF2C22199E6000B3A625 /* UtxoTransactionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9CF2B22199E6000B3A625 /* UtxoTransactionBuilder.swift */; };
 		34D9CF2E22199ED300B3A625 /* UnsignedTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9CF2D22199ED300B3A625 /* UnsignedTransaction.swift */; };
 		34D9CF30221C361D00B3A625 /* UTXOWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9CF2F221C361D00B3A625 /* UTXOWallet.swift */; };
-		34D9CF33221C3A7A00B3A625 /* UtxoProviderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9CF32221C3A7A00B3A625 /* UtxoProviderInterface.swift */; };
 		34D9CF35221C3A9900B3A625 /* UtxoSelectorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9CF34221C3A9900B3A625 /* UtxoSelectorInterface.swift */; };
 		34D9CF37221C3AAF00B3A625 /* UtxoTransactionBuilderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9CF36221C3AAF00B3A625 /* UtxoTransactionBuilderInterface.swift */; };
 		34D9CF39221C3AC100B3A625 /* UtxoTransactionSignerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9CF38221C3AC100B3A625 /* UtxoTransactionSignerInterface.swift */; };
@@ -363,7 +362,6 @@
 		34D9CF2B22199E6000B3A625 /* UtxoTransactionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtxoTransactionBuilder.swift; sourceTree = "<group>"; };
 		34D9CF2D22199ED300B3A625 /* UnsignedTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsignedTransaction.swift; sourceTree = "<group>"; };
 		34D9CF2F221C361D00B3A625 /* UTXOWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTXOWallet.swift; sourceTree = "<group>"; };
-		34D9CF32221C3A7A00B3A625 /* UtxoProviderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtxoProviderInterface.swift; sourceTree = "<group>"; };
 		34D9CF34221C3A9900B3A625 /* UtxoSelectorInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtxoSelectorInterface.swift; sourceTree = "<group>"; };
 		34D9CF36221C3AAF00B3A625 /* UtxoTransactionBuilderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtxoTransactionBuilderInterface.swift; sourceTree = "<group>"; };
 		34D9CF38221C3AC100B3A625 /* UtxoTransactionSignerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtxoTransactionSignerInterface.swift; sourceTree = "<group>"; };
@@ -854,7 +852,6 @@
 		34D9CF31221C36B200B3A625 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				34D9CF32221C3A7A00B3A625 /* UtxoProviderInterface.swift */,
 				34D9CF34221C3A9900B3A625 /* UtxoSelectorInterface.swift */,
 				34D9CF36221C3AAF00B3A625 /* UtxoTransactionBuilderInterface.swift */,
 				34D9CF38221C3AC100B3A625 /* UtxoTransactionSignerInterface.swift */,
@@ -1184,7 +1181,6 @@
 				34D9CF30221C361D00B3A625 /* UTXOWallet.swift in Sources */,
 				34D9CF35221C3A9900B3A625 /* UtxoSelectorInterface.swift in Sources */,
 				348C11CB21E1675B00295370 /* UtilsAndLimits.swift in Sources */,
-				34D9CF33221C3A7A00B3A625 /* UtxoProviderInterface.swift in Sources */,
 				34D9CF48221C447D00B3A625 /* UtxoTransactionSigner.swift in Sources */,
 				348C11B521D68F2C00295370 /* OP_RETURN.swift in Sources */,
 				348C119521D68F2C00295370 /* OP_CAT.swift in Sources */,
