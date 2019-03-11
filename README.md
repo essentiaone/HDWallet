@@ -16,6 +16,7 @@ You can check if the address generation is working right [here](https://iancolem
 - Read keystore file
 - Sign ether transaction
 - ERC20 Tokens
+- Sign UTXO based transaction
 
 ## Installation
 ### CocoaPods
@@ -90,7 +91,7 @@ let wallet = Wallet(seed: seed, network: network)
 let account = wallet.generateAccount()
 print(account)
 ```
-#### Sign transaction by private key
+#### Sign Ethereum transaction by private key
 ```swift
 let signer = EIP155Signer()
 let rawTransaction1 = EthereumRawTransaction(
@@ -103,6 +104,15 @@ let rawTransaction1 = EthereumRawTransaction(
 guard let signed = try? signer.hash(rawTransaction: rawTransaction1).toHexString() else { return }
 print(signed)
 ```
+
+#### Sign Bitcoin transaction by private key
+For getting UTXO you can use (https://github.com/essentiaone/essentia-bridges-api-ios)
+```swift
+let address = try LegacyAddress("1HLqrFX5fYwKriU7LRKMQGhwpz5HuszjnK", coin: .bitcoin)
+let utxoWallet = UTXOWallet(privateKey: "Kz9UKkL6bKE92QPxQbPcqkCZTnCyLVyfRNFRSbToNjyb4bx321fh")
+let signedTx = try utxoWallet.createTransaction(to: address, amount: 0, utxos: utxos)
+```
+
 #### Create send ERC20 tokens transaction data 
 ```swift
 let erc20Token = ERC20(contractAddress: "0x8f0921f30555624143d427b340b1156914882c10", decimal: 18, symbol: "ESS")
