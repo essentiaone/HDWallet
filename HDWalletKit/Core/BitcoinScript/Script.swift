@@ -61,11 +61,6 @@ public class Script {
             .append(.OP_EQUAL)
     }
 
-    public func standardP2SHAddress(network: BitcoinNetwork) -> Address {
-        let scriptHash: Data = RIPEMD160.hash(data.sha256())
-        return Cashaddr(data: scriptHash, type: .scriptHash, network: network)
-    }
-
     // Multisignature script attribute.
     // If multisig script is not detected, this is nil
     public typealias MultisigVariables = (nSigRequired: UInt, publickeys: [PublicKey])
@@ -317,21 +312,6 @@ public class Script {
 
     public var scriptChunks: [ScriptChunk] {
         return chunks
-    }
-
-    public func standardAddress(network: BitcoinNetwork) -> Address? {
-        if isPayToPublicKeyHashScript {
-            guard let dataChunk = chunk(at: 2) as? DataChunk else {
-                return nil
-            }
-            return Cashaddr(data: dataChunk.pushedData, type: .pubkeyHash, network: network)
-        } else if isPayToScriptHashScript {
-            guard let dataChunk = chunk(at: 1) as? DataChunk else {
-                return nil
-            }
-            return Cashaddr(data: dataChunk.pushedData, type: .scriptHash, network: network)
-        }
-        return nil
     }
 
     // MARK: - Modification

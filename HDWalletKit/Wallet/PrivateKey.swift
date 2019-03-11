@@ -58,7 +58,7 @@ public struct PrivateKey {
     
     private func wif() -> String {
         var data = Data()
-        data += coin.wifPreifx
+        data += coin.wifPrefix
         data += raw
         data += UInt8(0x01)
         data += data.doubleSHA256.prefix(4)

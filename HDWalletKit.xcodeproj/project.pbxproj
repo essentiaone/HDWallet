@@ -158,8 +158,6 @@
 		34C9B1BE21E2B38B00198EAF /* SighashType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9B1BD21E2B38B00198EAF /* SighashType.swift */; };
 		34C9B1C021E2B3E700198EAF /* TransactionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9B1BF21E2B3E700198EAF /* TransactionInput.swift */; };
 		34C9B1C221E5065000198EAF /* BitcoinAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9B1C121E5065000198EAF /* BitcoinAddress.swift */; };
-		34C9B1C421E506C700198EAF /* BitcoinNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9B1C321E506C700198EAF /* BitcoinNetwork.swift */; };
-		34C9B1C621E5083D00198EAF /* AddressType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9B1C521E5083D00198EAF /* AddressType.swift */; };
 		34C9B1C821E5087900198EAF /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9B1C721E5087900198EAF /* Transaction.swift */; };
 		34C9B1CA21E50A1700198EAF /* VersionByte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C9B1C921E50A1700198EAF /* VersionByte.swift */; };
 		34D9CC442209BFAF00B3A625 /* Bech32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D9CC432209BFAF00B3A625 /* Bech32.swift */; };
@@ -356,8 +354,6 @@
 		34C9B1BD21E2B38B00198EAF /* SighashType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SighashType.swift; sourceTree = "<group>"; };
 		34C9B1BF21E2B3E700198EAF /* TransactionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInput.swift; sourceTree = "<group>"; };
 		34C9B1C121E5065000198EAF /* BitcoinAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinAddress.swift; sourceTree = "<group>"; };
-		34C9B1C321E506C700198EAF /* BitcoinNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinNetwork.swift; sourceTree = "<group>"; };
-		34C9B1C521E5083D00198EAF /* AddressType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressType.swift; sourceTree = "<group>"; };
 		34C9B1C721E5087900198EAF /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		34C9B1C921E50A1700198EAF /* VersionByte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionByte.swift; sourceTree = "<group>"; };
 		34D9CC432209BFAF00B3A625 /* Bech32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bech32.swift; sourceTree = "<group>"; };
@@ -411,7 +407,6 @@
 			isa = PBXGroup;
 			children = (
 				34C9B1C121E5065000198EAF /* BitcoinAddress.swift */,
-				34C9B1C321E506C700198EAF /* BitcoinNetwork.swift */,
 				34D9CC452209CD4300B3A625 /* Transaction+SignatureHash.swift */,
 				34D9CC472209CDB900B3A625 /* BitcoinTransactionSignatureSerializer.swift */,
 			);
@@ -880,7 +875,6 @@
 		34D9CF44221C433500B3A625 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				34C9B1C521E5083D00198EAF /* AddressType.swift */,
 				34C9B1C921E50A1700198EAF /* VersionByte.swift */,
 				34C9B1BD21E2B38B00198EAF /* SighashType.swift */,
 				348C11CA21E1675B00295370 /* UtilsAndLimits.swift */,
@@ -1070,7 +1064,6 @@
 				348C117021D68F2B00295370 /* OP_RESERVED2.swift in Sources */,
 				3492216220F6B53300A59A6F /* Typealiaces.swift in Sources */,
 				348C117F21D68F2B00295370 /* OP_LESSTHAN.swift in Sources */,
-				34C9B1C421E506C700198EAF /* BitcoinNetwork.swift in Sources */,
 				34B7964A21296427000B1251 /* KeystoreV3Json.swift in Sources */,
 				348C115F21D68F2B00295370 /* ScriptFactory.swift in Sources */,
 				34C9B1BE21E2B38B00198EAF /* SighashType.swift in Sources */,
@@ -1086,7 +1079,6 @@
 				348C11BA21D68F2C00295370 /* OP_VERNOTIF.swift in Sources */,
 				3492213B20F64D9B00A59A6F /* EIP55.swift in Sources */,
 				348C11B021D68F2C00295370 /* OP_0.swift in Sources */,
-				34C9B1C621E5083D00198EAF /* AddressType.swift in Sources */,
 				348C11A621D68F2C00295370 /* OP_2OVER.swift in Sources */,
 				348C118D21D68F2B00295370 /* OP_NUMEQUAL.swift in Sources */,
 				348C11AC21D68F2C00295370 /* OP_CHECKLOCKTIMEVERIFY.swift in Sources */,

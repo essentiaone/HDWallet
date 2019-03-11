@@ -36,18 +36,18 @@ class SignTransactionTests: XCTestCase {
     }
     
     func testBitcoinSign() {
-        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
-        let mnemonic = Mnemonic.create(entropy: entropy)
-        let seed = Mnemonic.createSeed(mnemonic: mnemonic)
-        let wallet = Wallet(seed: seed, coin: .bitcoin)
-        
         let pk = PrivateKey(pk: "KxCPHuQByyyf1RdcbXgWXqigzKAYeoTieGd4ezYcjQPVcGh5P9PC", coin: .bitcoin)
-        let address = try! LegacyAddress(pk.publicKey.address)
-        let addr = Cashaddr(data: pk.raw, type: .pubkeyHash, network: .mainnet)
+        let address = try! LegacyAddress(pk.publicKey.address, coin: .bitcoin)
+        let lockingScript: Data = Data(hex: "76a914e42a54ba2042e889461c7966ac6ba13eeb144a3f88ac")
+        let txidData: Data = Data(hex: "9ced8296cf15e67295a99aa0389229e27eae571436925db587665ba02210bcf3")
+        let txHash: Data = Data(txidData.reversed())
+        let output = TransactionOutput(value: 524839, lockingScript: lockingScript)
+        let outpoint = TransactionOutPoint(hash: txHash, index: 352337565)
+        let utxo = UnspentTransaction(output: output, outpoint: outpoint)
         let utxoWallet = UTXOWallet(privateKey: pk)
         do {
-            let signedTx = try utxoWallet.createTransaction(to: address, amount: 10, utxos: [])
-            XCTAssertEqual(signedTx, "01000000000200000000000000001976a9140c538bc8df14c3017234e8495174453e732cfd8f88ac00000000000000001976a9140c538bc8df14c3017234e8495174453e732cfd8f88ac00000000")
+            let signedTx = try utxoWallet.createTransaction(to: address, amount: 10, utxos: [utxo])
+            XCTAssertEqual(signedTx, "0100000001f3bc1022a05b6687b55d92361457ae7ee2299238a09aa99572e615cf9682ed9c9d3e001500ffffffff020a000000000000001976a914b342b16a24dffc3be74ccf202e418fc22c271cbd88ac3b010800000000001976a914b342b16a24dffc3be74ccf202e418fc22c271cbd88ac00000000")
             
         } catch {
             print(error)

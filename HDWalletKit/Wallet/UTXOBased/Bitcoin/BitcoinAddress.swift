@@ -8,8 +8,14 @@
 
 import Foundation
 
+public enum AddressType {
+    case pubkeyHash
+    case scriptHash
+    case wif
+}
+
 public protocol AddressProtocol {
-    var network: BitcoinNetwork { get }
+    var coin: Coin { get }
     var type: AddressType { get }
     var data: Data { get }
     var publicKey: Data? { get }
@@ -27,7 +33,7 @@ public enum AddressError: Error {
 }
 
 public struct LegacyAddress: Address {
-    public let network: BitcoinNetwork
+    public let coin: Coin
     public let type: AddressType
     public let data: Data
     public let base58: Base58Check
@@ -36,16 +42,16 @@ public struct LegacyAddress: Address {
     
     public typealias Base58Check = String
     
-    public init(data: Data, type: AddressType, network: BitcoinNetwork, base58: String, bech32: String, publicKey: Data?) {
+    public init(data: Data, type: AddressType, coin: Coin, base58: String, bech32: String, publicKey: Data?) {
         self.data = data
         self.type = type
-        self.network = network
+        self.coin = coin
         self.base58 = base58
         self.cashaddr = bech32
         self.publicKey = publicKey
     }
     
-    public init(_ base58: Base58Check) throws {
+    public init(_ base58: Base58Check, coin: Coin) throws {
         guard let raw = Base58.decode(base58) else {
             throw AddressError.invalid
         }
@@ -55,22 +61,21 @@ public struct LegacyAddress: Address {
         guard checksum == checksumConfirm else {
             throw AddressError.invalid
         }
+        self.coin = coin
         
-        let network: BitcoinNetwork
         let type: AddressType
         let addressPrefix = pubKeyHash[0]
         switch addressPrefix {
-        case BitcoinNetwork.mainnet.pubkeyhash:
-            network = .mainnet
+        case coin.publicKeyHash:
             type = .pubkeyHash
-        case BitcoinNetwork.mainnet.scripthash:
-            network = .mainnet
+        case coin.scripthash:
             type = .scriptHash
+        case coin.wifPrefix:
+            type = .wif
         default:
             throw AddressError.invalidVersionByte
         }
         
-        self.network = network
         self.type = type
         self.publicKey = nil
         self.data = pubKeyHash.dropFirst()
@@ -78,27 +83,21 @@ public struct LegacyAddress: Address {
         
         // cashaddr
         switch type {
-        case .pubkeyHash, .scriptHash:
-            let payload = Data([type.versionByte160]) + self.data
-            self.cashaddr = Bech32.encode(payload, prefix: network.scheme)
+        case .pubkeyHash:
+            let payload = Data([coin.publicKeyHash]) + self.data
+            self.cashaddr = Bech32.encode(payload, prefix: coin.scheme)
+        case .scriptHash:
+            let payload = Data([coin.scripthash]) + self.data
+            self.cashaddr = Bech32.encode(payload, prefix: coin.scheme)
         default:
             self.cashaddr = ""
         }
-    }
-    public init(data: Data, type: AddressType, network: BitcoinNetwork) {
-        let addressData: Data = [type.versionByte] + data
-        self.data = data
-        self.type = type
-        self.network = network
-        self.publicKey = nil
-        self.base58 = publicKeyHashToAddress(addressData)
-        self.cashaddr = Bech32.encode(addressData, prefix: network.scheme)
     }
 }
 
 extension LegacyAddress: Equatable {
     public static func == (lhs: LegacyAddress, rhs: LegacyAddress) -> Bool {
-        return lhs.network == rhs.network && lhs.data == rhs.data && lhs.type == rhs.type
+        return lhs.coin == rhs.coin && lhs.data == rhs.data && lhs.type == rhs.type
     }
 }
 
@@ -109,7 +108,7 @@ extension LegacyAddress: CustomStringConvertible {
 }
 
 public struct Cashaddr: Address {
-    public let network: BitcoinNetwork
+    public let coin: Coin
     public let type: AddressType
     public let data: Data
     public let base58: String
@@ -118,31 +117,23 @@ public struct Cashaddr: Address {
     
     public typealias CashaddrWithScheme = String
     
-    public init(data: Data, type: AddressType, network: BitcoinNetwork, base58: String, bech32: CashaddrWithScheme, publicKey: Data?) {
+    public init(data: Data, type: AddressType, coin: Coin, base58: String, bech32: CashaddrWithScheme, publicKey: Data?) {
         self.data = data
         self.type = type
-        self.network = network
+        self.coin = coin
         self.base58 = base58
         self.cashaddr = bech32
         self.publicKey = publicKey
     }
     
-    public init(_ cashaddr: CashaddrWithScheme) throws {
+    public init(_ cashaddr: CashaddrWithScheme, coin: Coin) throws {
         guard let decoded = Bech32.decode(cashaddr) else {
             throw AddressError.invalid
         }
-        let (prefix, raw) = (decoded.prefix, decoded.data)
+        let raw = decoded.data
         self.cashaddr = cashaddr
         self.publicKey = nil
-        
-        switch prefix {
-        case BitcoinNetwork.mainnet.scheme:
-            network = .mainnet
-        case BitcoinNetwork.testnet.scheme:
-            network = .testnet
-        default:
-            throw AddressError.invalidScheme
-        }
+        self.coin = coin
         
         let versionByte = raw[0]
         let hash = raw.dropFirst()
@@ -158,28 +149,14 @@ public struct Cashaddr: Address {
         switch typeBits {
         case .pubkeyHash:
             type = .pubkeyHash
-            base58 = publicKeyHashToAddress(Data([network.pubkeyhash]) + data)
+            base58 = publicKeyHashToAddress(Data([coin.publicKeyHash]) + data)
         case .scriptHash:
             type = .scriptHash
-            base58 = publicKeyHashToAddress(Data([network.scripthash]) + data)
+            base58 = publicKeyHashToAddress(Data([coin.scripthash]) + data)
         }
-    }
-    public init(data: Data, type: AddressType, network: BitcoinNetwork) {
-        let addressData: Data = [type.versionByte] + data
-        self.data = data
-        self.type = type
-        self.network = network
-        self.publicKey = nil
-        self.base58 = publicKeyHashToAddress(addressData)
-        self.cashaddr = Bech32.encode(addressData, prefix: network.scheme)
     }
 }
 
-extension Cashaddr: Equatable {
-    public static func == (lhs: Cashaddr, rhs: Cashaddr) -> Bool {
-        return lhs.network == rhs.network && lhs.data == rhs.data && lhs.type == rhs.type
-    }
-}
 
 extension Cashaddr: CustomStringConvertible {
     public var description: String {
