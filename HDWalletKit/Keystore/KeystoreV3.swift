@@ -15,7 +15,7 @@ public class KeystoreV3: KeystoreInterface {
     /// Init with raw pasword
     /// We will automaticaly hash password to sha3-keccak256
     ///
-    required convenience init?(data: String, password: String) throws {
+    required public convenience init?(data: String, password: String) throws {
         guard let passwordData = password.data(using: .utf8)?.sha3(.keccak256) else { return nil }
         try self.init(data: data, passwordData: passwordData)
     }
