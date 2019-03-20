@@ -15,7 +15,7 @@ public class KeystoreV3: KeystoreInterface {
     /// Init with raw pasword
     /// We will automaticaly hash password to sha3-keccak256
     ///
-    required public convenience init?(data: String, password: String) throws {
+    required public convenience init?(data: Data, password: String) throws {
         guard let passwordData = password.data(using: .utf8)?.sha3(.keccak256) else { return nil }
         try self.init(data: data, passwordData: passwordData)
     }
@@ -23,7 +23,7 @@ public class KeystoreV3: KeystoreInterface {
     
     /// Init with encoded pasword
     ///
-    public required init? (data: String, passwordData: Data) throws {
+    public required init? (data: Data, passwordData: Data) throws {
         try encryptDataToStorage(passwordData, data: data)
     }
     
@@ -45,7 +45,7 @@ public class KeystoreV3: KeystoreInterface {
     /// - Parameter password: raw password
     /// - Returns: decripted keystore value
     /// - Throws: wrong password error
-    func getDecriptedKeyStore(password: String) throws -> String? {
+    func getDecriptedKeyStore(password: String) throws -> Data? {
         guard let passwordData = password.data(using: .utf8)?.sha3(.keccak256) else { return nil }
         return try getDecriptedKeyStore(passwordData: passwordData)
     }
@@ -55,7 +55,7 @@ public class KeystoreV3: KeystoreInterface {
     /// - Parameter password: encoded password
     /// - Returns: decripted keystore value
     /// - Throws: wrong password error
-    public func getDecriptedKeyStore(passwordData: Data) throws -> String? {
+    public func getDecriptedKeyStore(passwordData: Data) throws -> Data? {
         guard let keystoreParams = self.keystoreParams else {return nil}
         guard let saltData = Data.fromHex(keystoreParams.crypto.kdfparams.salt) else {return nil}
         let derivedLen = keystoreParams.crypto.kdfparams.dklen
@@ -80,7 +80,7 @@ public class KeystoreV3: KeystoreInterface {
         guard let IV = Data.fromHex(keystoreParams.crypto.cipherparams.iv) else {return nil}
         guard let aesCipher = try? AES(key: decryptionKey.bytes, blockMode: CTR(iv: IV.bytes), padding: .noPadding) else {return nil}
         guard let decryptedPK:Array<UInt8> = try? aesCipher.decrypt(cipherText.bytes) else { return nil }
-        return String(bytes: decryptedPK, encoding: .utf8)
+        return Data(decryptedPK)
     }
     
     private func encryptData(passwordData: Data, salt: Data, length: Int, N: Int, R: Int, P: Int) -> Data? {
@@ -89,7 +89,7 @@ public class KeystoreV3: KeystoreInterface {
         return Data(result)
     }
     
-    private func encryptDataToStorage(_ passwordData: Data, data: String, dkLen: Int=32, N: Int = 1024, R: Int = 8, P: Int = 1) throws {
+    private func encryptDataToStorage(_ passwordData: Data, data: Data, dkLen: Int=32, N: Int = 1024, R: Int = 8, P: Int = 1) throws {
         let saltLen = 32;
         let saltData = Data.randomBytes(length: saltLen)
         guard let derivedKey = encryptData(passwordData: passwordData,
@@ -102,8 +102,7 @@ public class KeystoreV3: KeystoreInterface {
         let encryptionKey = Data(derivedKey[0...15])
         let IV = Data.randomBytes(length: 16)
         let aesCipher = try? AES(key: encryptionKey.bytes, blockMode: CTR(iv: IV.bytes), padding: .noPadding)
-        let encodedData = Data(data.utf8)
-        guard let encryptedKey = try aesCipher?.encrypt(encodedData.bytes) else { throw KeystoreError.aesError }
+        guard let encryptedKey = try aesCipher?.encrypt(data.bytes) else { throw KeystoreError.aesError }
         let encryptedKeyData = Data(bytes:encryptedKey)
         var dataForMAC = Data()
         dataForMAC.append(last16bytes)

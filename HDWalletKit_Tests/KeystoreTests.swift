@@ -12,7 +12,7 @@ import XCTest
 class KeystoreTests: XCTestCase {
     
     func testKeyStoreGeneration() {
-        let data = "abandon amount liar amount expire adjust cage candy arch gather drum buyer"
+        let data = "abandon amount liar amount expire adjust cage candy arch gather drum buyer".data(using: .utf8)!
         let keystore = try! KeystoreV3(data: data, password: "qwertyui")
         let encodedData = (try? keystore?.encodedData())!
         print((encodedData! as NSData).description)
@@ -25,7 +25,7 @@ class KeystoreTests: XCTestCase {
     }
     
     func testDecodeKeystore() {
-        let data = "abandon amount liar amount expire adjust cage candy arch gather drum buyer"
+        let data = "abandon amount liar amount expire adjust cage candy arch gather drum buyer".data(using: .utf8)!
         let password = "qwertyui"
         let keystore = try! KeystoreV3(data: data, password: password)
         guard let decoded = try? keystore?.getDecriptedKeyStore(password: password) else {
