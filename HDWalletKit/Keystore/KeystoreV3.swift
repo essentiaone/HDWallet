@@ -11,33 +11,63 @@ import CryptoSwift
 import scrypt
 
 public class KeystoreV3: KeystoreInterface {
-    public var keystoreParams: KeystoreParamsV3?
+    @available(*, deprecated)
+    /// Init with raw pasword
+    /// We will automaticaly hash password to sha3-keccak256
+    ///
+    required convenience init?(data: String, password: String) throws {
+        guard let passwordData = password.data(using: .utf8)?.sha3(.keccak256) else { return nil }
+        try self.init(data: data, passwordData: passwordData)
+    }
     
-    public required init? (data: String, password: String) throws {
-        try encryptDataToStorage(password, data: data)
+    
+    /// Init with encoded pasword
+    ///
+    public required init? (data: String, passwordData: Data) throws {
+        try encryptDataToStorage(passwordData, data: data)
     }
     
     public required init? (keyStore: Data) throws {
         keystoreParams = try JSONDecoder().decode(KeystoreParamsV3.self, from: keyStore)
     }
     
+    public var keystoreParams: KeystoreParamsV3?
+
+    
     public func encodedData() throws -> Data {
         return try JSONEncoder().encode(keystoreParams)
     }
     
-    public func getDecriptedKeyStore(password: String) throws -> String? {
+    @available(*, deprecated)
+    /// Decode keystore with password
+    /// We will automaticaly hash password to sha3-keccak256
+    ///
+    /// - Parameter password: raw password
+    /// - Returns: decripted keystore value
+    /// - Throws: wrong password error
+    func getDecriptedKeyStore(password: String) throws -> String? {
+        guard let passwordData = password.data(using: .utf8)?.sha3(.keccak256) else { return nil }
+        return try getDecriptedKeyStore(passwordData: passwordData)
+    }
+    
+    /// Decode keystore with password
+    ///
+    /// - Parameter password: encoded password
+    /// - Returns: decripted keystore value
+    /// - Throws: wrong password error
+    public func getDecriptedKeyStore(passwordData: Data) throws -> String? {
         guard let keystoreParams = self.keystoreParams else {return nil}
         guard let saltData = Data.fromHex(keystoreParams.crypto.kdfparams.salt) else {return nil}
         let derivedLen = keystoreParams.crypto.kdfparams.dklen
         guard let N = keystoreParams.crypto.kdfparams.n else {return nil}
         guard let P = keystoreParams.crypto.kdfparams.p else {return nil}
         guard let R = keystoreParams.crypto.kdfparams.r else {return nil}
-        guard let derivedKey = encryptData(password: password,
-                                      salt: saltData,
-                                      length: derivedLen,
-                                      N: N,
-                                      R: R,
-                                      P: P) else {return nil}
+        guard let derivedKey = encryptData(passwordData: passwordData,
+                                           salt: saltData,
+                                           length: derivedLen,
+                                           N: N,
+                                           R: R,
+                                           P: P) else {return nil}
         var dataForMAC = Data()
         let derivedKeyLast16bytes = Data(derivedKey[(derivedKey.count - 16)...(derivedKey.count - 1)])
         dataForMAC.append(derivedKeyLast16bytes)
@@ -45,7 +75,7 @@ public class KeystoreV3: KeystoreInterface {
         dataForMAC.append(cipherText)
         let mac = dataForMAC.sha3(.keccak256)
         guard let calculatedMac = Data.fromHex(keystoreParams.crypto.mac),
-              mac.constantTimeComparisonTo(calculatedMac) else {return nil}
+            mac.constantTimeComparisonTo(calculatedMac) else {return nil}
         let decryptionKey = derivedKey[0...15]
         guard let IV = Data.fromHex(keystoreParams.crypto.cipherparams.iv) else {return nil}
         guard let aesCipher = try? AES(key: decryptionKey.bytes, blockMode: CTR(iv: IV.bytes), padding: .noPadding) else {return nil}
@@ -53,17 +83,16 @@ public class KeystoreV3: KeystoreInterface {
         return String(bytes: decryptedPK, encoding: .utf8)
     }
     
-    private func encryptData(password: String, salt: Data, length: Int, N: Int, R: Int, P: Int) -> Data? {
-        guard let passwordData = password.data(using: .utf8)?.sha3(.keccak256) else {return nil}
+    private func encryptData(passwordData: Data, salt: Data, length: Int, N: Int, R: Int, P: Int) -> Data? {
         guard let deriver = try? Scrypt(password: passwordData.bytes, salt: salt.bytes, dkLen: length, N: N, r: R, p: P) else {return nil}
         guard let result = try? deriver.calculate() else {return nil}
         return Data(result)
     }
     
-    private func encryptDataToStorage(_ password: String, data: String, dkLen: Int=32, N: Int = 1024, R: Int = 8, P: Int = 1) throws {
+    private func encryptDataToStorage(_ passwordData: Data, data: String, dkLen: Int=32, N: Int = 1024, R: Int = 8, P: Int = 1) throws {
         let saltLen = 32;
         let saltData = Data.randomBytes(length: saltLen)
-        guard let derivedKey = encryptData(password: password,
+        guard let derivedKey = encryptData(passwordData: passwordData,
                                            salt: saltData,
                                            length: dkLen,
                                            N: N,
