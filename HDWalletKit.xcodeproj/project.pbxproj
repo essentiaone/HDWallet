@@ -119,6 +119,7 @@
 		348C11C021D68F2C00295370 /* ScriptMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C115C21D68F2B00295370 /* ScriptMachine.swift */; };
 		348C11C921DFDB9400295370 /* Data+Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C11C821DFDB9400295370 /* Data+Script.swift */; };
 		348C11CB21E1675B00295370 /* UtilsAndLimits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C11CA21E1675B00295370 /* UtilsAndLimits.swift */; };
+		348FA3BC224A4C9D00DA3F1B /* UTXOSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348FA3BB224A4C9D00DA3F1B /* UTXOSign.swift */; };
 		3492213320F64D9B00A59A6F /* BigInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492211C20F64D9B00A59A6F /* BigInt+Extension.swift */; };
 		3492213420F64D9B00A59A6F /* SMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492211D20F64D9B00A59A6F /* SMP.swift */; };
 		3492213520F64D9B00A59A6F /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492212020F64D9B00A59A6F /* Crypto.swift */; };
@@ -312,6 +313,7 @@
 		348C115C21D68F2B00295370 /* ScriptMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptMachine.swift; sourceTree = "<group>"; };
 		348C11C821DFDB9400295370 /* Data+Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Script.swift"; sourceTree = "<group>"; };
 		348C11CA21E1675B00295370 /* UtilsAndLimits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsAndLimits.swift; sourceTree = "<group>"; };
+		348FA3BB224A4C9D00DA3F1B /* UTXOSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTXOSign.swift; sourceTree = "<group>"; };
 		349220E520F64C6600A59A6F /* libHDWalletKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHDWalletKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3492211C20F64D9B00A59A6F /* BigInt+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BigInt+Extension.swift"; sourceTree = "<group>"; };
 		3492211D20F64D9B00A59A6F /* SMP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMP.swift; sourceTree = "<group>"; };
@@ -649,6 +651,14 @@
 			path = UTXOBased;
 			sourceTree = "<group>";
 		};
+		348FA3BD224A4F6E00DA3F1B /* UTXO */ = {
+			isa = PBXGroup;
+			children = (
+				348FA3BB224A4C9D00DA3F1B /* UTXOSign.swift */,
+			);
+			path = UTXO;
+			sourceTree = "<group>";
+		};
 		349220DC20F64C6600A59A6F = {
 			isa = PBXGroup;
 			children = (
@@ -784,6 +794,7 @@
 		3492214820F64E0300A59A6F /* HDWalletKit_Tests */ = {
 			isa = PBXGroup;
 			children = (
+				348FA3BD224A4F6E00DA3F1B /* UTXO */,
 				34B7B84E20F75DBF00D2C34A /* MnemonicTests.swift */,
 				34B7B85020F75E4E00D2C34A /* CryptoTests.swift */,
 				34B7B85220F75E5B00D2C34A /* AddressGenerationTests.swift */,
@@ -1196,6 +1207,7 @@
 			files = (
 				34A5322E215307DF00B95C66 /* SignTransactionTests.swift in Sources */,
 				34B7B85320F75E5B00D2C34A /* AddressGenerationTests.swift in Sources */,
+				348FA3BC224A4C9D00DA3F1B /* UTXOSign.swift in Sources */,
 				34B7B85120F75E4E00D2C34A /* CryptoTests.swift in Sources */,
 				34B7B84F20F75DBF00D2C34A /* MnemonicTests.swift in Sources */,
 				34753F7B216E78430025E0F4 /* ConverterTests.swift in Sources */,
