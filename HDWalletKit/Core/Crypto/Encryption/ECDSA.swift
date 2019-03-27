@@ -16,6 +16,29 @@ public final class ECDSA {
         return generatePublicKey(privateKeyData: privateKey, isCompression: isCompressed)!
     }
     
+    public static func sign(_ data: Data, privateKey: Data) throws -> Data {
+        let ctx = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))!
+        defer { secp256k1_context_destroy(ctx) }
+        
+        let signature = UnsafeMutablePointer<secp256k1_ecdsa_signature>.allocate(capacity: 1)
+        defer { signature.deallocate() }
+        let status = data.withUnsafeBytes { (ptr: UnsafePointer<UInt8>) in
+            privateKey.withUnsafeBytes { secp256k1_ecdsa_sign(ctx, signature, ptr, $0, nil, nil) }
+        }
+        guard status == 1 else { throw HDWalletKitError.failedToSign }
+        
+        let normalizedsig = UnsafeMutablePointer<secp256k1_ecdsa_signature>.allocate(capacity: 1)
+        defer { normalizedsig.deallocate() }
+        secp256k1_ecdsa_signature_normalize(ctx, normalizedsig, signature)
+        
+        var length: size_t = 128
+        var der = Data(count: length)
+        guard der.withUnsafeMutableBytes({ return secp256k1_ecdsa_signature_serialize_der(ctx, $0, &length, normalizedsig) }) == 1 else { throw HDWalletKitError.noEnoughSpace }
+        der.count = length
+        
+        return der
+    }
+    
     func generatePublicKey(privateKeyData: Data, isCompression: Bool) -> Data? {
         
         let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN))!

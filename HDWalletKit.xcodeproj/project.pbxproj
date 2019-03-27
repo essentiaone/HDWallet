@@ -939,6 +939,7 @@
 				3492214320F64E0300A59A6F /* Sources */,
 				3492214420F64E0300A59A6F /* Frameworks */,
 				3492214520F64E0300A59A6F /* Resources */,
+				3F9BA7AA8852F4EF10D32D3D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -999,6 +1000,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3F9BA7AA8852F4EF10D32D3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HDWalletKit_Tests/Pods-HDWalletKit_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HDWalletKit_Tests/Pods-HDWalletKit_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4B8D9FC1EAB0A374CC6823B3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -10,5 +10,6 @@ install:
 script:
   - xcodebuild test -workspace 'HDWalletKit.xcworkspace' -scheme 'HDWalletKit_Tests' -destination 'platform=iOS Simulator,name=iPhone 7,OS=12.1' | xcpretty -f `xcpretty-travis-formatter`
 after_success:
-- ruby scripts/coverage.rb "$SCHEME"
-- bash <(curl -s https://codecov.io/bash) -f 'coverage.txt' -y '.codecov.yml'
+ - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+ - ruby scripts/coverage.rb "$SCHEME"
+ - bash <(curl -s https://codecov.io/bash) -f 'coverage.txt' -y '.codecov.yml'

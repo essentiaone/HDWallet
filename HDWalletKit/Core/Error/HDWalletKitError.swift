@@ -26,5 +26,6 @@ public enum HDWalletKitError: Error {
     case contractError(ContractError)
     case convertError(ConvertError)
     case failedToSign
+    case noEnoughSpace
     case unknownError
 }
