@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol UtxoTransactionSignerInterface {
-    func sign(_ unsignedTransaction: UnsignedTransaction, with keys: [PrivateKey]) throws -> Transaction
+    func sign(_ unsignedTransaction: UnsignedTransaction, with key: PrivateKey) throws -> Transaction
 }

@@ -11,7 +11,7 @@ import Foundation
 public struct UtxoTransactionSigner: UtxoTransactionSignerInterface {
     public init() {}
     
-    public func sign(_ unsignedTransaction: UnsignedTransaction, with keys: [PrivateKey]) throws -> Transaction {
+    public func sign(_ unsignedTransaction: UnsignedTransaction, with key: PrivateKey) throws -> Transaction {
         // Define Transaction
         var signingInputs: [TransactionInput]
         var signingTransaction: Transaction {
@@ -21,19 +21,11 @@ public struct UtxoTransactionSigner: UtxoTransactionSignerInterface {
         
         // Sign
         signingInputs = unsignedTransaction.tx.inputs
-        let hashType = SighashType.BCH.ALL
+        let hashType = SighashType.BTC.ALL
         for (i, utxo) in unsignedTransaction.utxos.enumerated() {
-            // Select key
-            let pubkeyHash: Data = Script.getPublicKeyHash(from: utxo.output.lockingScript)
-            // CHECK!!!
-            let keysOfUtxo: [PrivateKey] = keys.filter { $0.publicKey.rawPrivateKey == pubkeyHash }
-            guard let key = keysOfUtxo.first else {
-                continue
-            }
-            
             // Sign transaction hash
-            let sighash: Data = signingTransaction.signatureHash(for: utxo.output, inputIndex: i, hashType: SighashType.BCH.ALL)
-            let signature: Data = try Crypto.sign(sighash, privateKey: key.raw)
+            let sighash: Data = signingTransaction.signatureHash(for: utxo.output, inputIndex: i, hashType: SighashType.BTC.ALL)
+            let signature: Data = try ECDSA.sign(sighash, privateKey: key.raw)
             let txin = signingInputs[i]
             let pubkey = key.publicKey
             
