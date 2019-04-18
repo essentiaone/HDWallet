@@ -40,7 +40,7 @@ public struct PrivateKey {
                 switch pkType {
                 case .hex:
                     self.raw = Data(hex: pk)
-                case .wif:
+                case .wifUncompressed:
                     let decodedPk = Base58.decode(pk) ?? Data()
                     let wifData = decodedPk.dropLast(4).dropFirst()
                     self.raw = wifData
@@ -72,11 +72,19 @@ public struct PrivateKey {
         return PublicKey(privateKey: raw, coin: coin)
     }
     
-    private func wif() -> String {
+    public func wifCompressed() -> String {
         var data = Data()
         data += coin.wifPrefix
         data += raw
         data += UInt8(0x01)
+        data += data.doubleSHA256.prefix(4)
+        return Base58.encode(data)
+    }
+    
+    public func wifUncompressed() -> String {
+        var data = Data()
+        data += coin.wifPrefix
+        data += raw
         data += data.doubleSHA256.prefix(4)
         return Base58.encode(data)
     }
@@ -86,7 +94,7 @@ public struct PrivateKey {
         case .bitcoin: fallthrough
         case .litecoin: fallthrough
         case .bitcoinCash:
-            return self.wif()
+            return self.wifCompressed()
         case .ethereum:
             return self.raw.toHexString()
         }

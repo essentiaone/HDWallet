@@ -9,7 +9,7 @@
 import Foundation
 
 public enum UtxoPrivateKeyType {
-    case wif
+    case wifUncompressed
     case wifCompressed
     case hex
     
@@ -21,7 +21,7 @@ public enum UtxoPrivateKeyType {
                 return "^\\p{XDigit}+$"
             case .wifCompressed:
                 return "[KL][1-9A-HJ-NP-Za-km-z]{51}"
-            case .wif:
+            case .wifUncompressed:
                 return "^5[HJK][0-9A-Za-z&&[^0OIl]]{49}"
             }
         case .litecoin:
@@ -30,7 +30,7 @@ public enum UtxoPrivateKeyType {
                 return "^\\p{XDigit}+$"
             case .wifCompressed:
                 return "[T][1-9A-HJ-NP-Za-km-z]{51}"
-            case .wif:
+            case .wifUncompressed:
                 return "^6[uv][1-9A-HJ-NP-Za-km-z]{49}"
             }
         case .ethereum:
@@ -41,7 +41,7 @@ public enum UtxoPrivateKeyType {
                 return "^\\p{XDigit}+$"
             case .wifCompressed:
                 return "[KL][1-9A-HJ-NP-Za-km-z]{51}"
-            case .wif:
+            case .wifUncompressed:
                 return "^5[HJK][0-9A-Za-z&&[^0OIl]]{49}"
             }
 
@@ -50,7 +50,7 @@ public enum UtxoPrivateKeyType {
     
     static func pkType(for pk: String, coin: Coin) -> UtxoPrivateKeyType? {
         let range = NSRange(location: 0, length: pk.utf16.count)
-        return [UtxoPrivateKeyType.wif, .wifCompressed, .hex].first(where: {
+        return [UtxoPrivateKeyType.wifUncompressed, .wifCompressed, .hex].first(where: {
             let regexString = $0.regexForCoin(coin: coin)
             let regex = try? NSRegularExpression(pattern: regexString, options: [])
             return regex?.matches(in: pk, options: [], range: range).count == 1

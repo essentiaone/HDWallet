@@ -80,6 +80,10 @@ public enum Coin {
         }
     }
     
+    public var uncompressedPkSuffix: UInt8 {
+        return 0x01
+    }
+    
     
     public var coinType: UInt32 {
         switch self {
