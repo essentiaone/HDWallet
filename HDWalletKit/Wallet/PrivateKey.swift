@@ -29,14 +29,30 @@ public struct PrivateKey {
         self.keyType = .hd
     }
     
-    public init(pk: String, coin: Coin) {
+    public init?(pk: String, coin: Coin) {
         switch coin {
         case .ethereum:
             self.raw = Data(hex: pk)
         default:
-            let decodedPk = Base58.decode(pk) ?? Data()
-            let wifData = decodedPk.dropLast(4).dropFirst()
-            self.raw = wifData
+            let utxoPkType = UtxoPrivateKeyType.pkType(for: pk, coin: coin)
+            switch utxoPkType {
+            case .some(let pkType):
+                switch pkType {
+                case .hex:
+                    self.raw = Data(hex: pk)
+                case .wif:
+                    let decodedPk = Base58.decode(pk) ?? Data()
+                    let wifData = decodedPk.dropLast(4).dropFirst()
+                    self.raw = wifData
+                case .wifCompressed:
+                    let decodedPk = Base58.decode(pk) ?? Data()
+                    let wifData = decodedPk.dropLast(4).dropFirst().dropLast()
+                    self.raw = wifData
+                }
+            case .none:
+                return nil
+            }
+
         }
         self.chainCode = Data(capacity: 32)
         self.index = 0
