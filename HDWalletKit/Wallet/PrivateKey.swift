@@ -29,14 +29,30 @@ public struct PrivateKey {
         self.keyType = .hd
     }
     
-    public init(pk: String, coin: Coin) {
+    public init?(pk: String, coin: Coin) {
         switch coin {
         case .ethereum:
             self.raw = Data(hex: pk)
         default:
-            let decodedPk = Base58.decode(pk) ?? Data()
-            let wifData = decodedPk.dropLast(4).dropFirst()
-            self.raw = wifData
+            let utxoPkType = UtxoPrivateKeyType.pkType(for: pk, coin: coin)
+            switch utxoPkType {
+            case .some(let pkType):
+                switch pkType {
+                case .hex:
+                    self.raw = Data(hex: pk)
+                case .wifUncompressed:
+                    let decodedPk = Base58.decode(pk) ?? Data()
+                    let wifData = decodedPk.dropLast(4).dropFirst()
+                    self.raw = wifData
+                case .wifCompressed:
+                    let decodedPk = Base58.decode(pk) ?? Data()
+                    let wifData = decodedPk.dropLast(4).dropFirst().dropLast()
+                    self.raw = wifData
+                }
+            case .none:
+                return nil
+            }
+
         }
         self.chainCode = Data(capacity: 32)
         self.index = 0
@@ -56,11 +72,19 @@ public struct PrivateKey {
         return PublicKey(privateKey: raw, coin: coin)
     }
     
-    private func wif() -> String {
+    public func wifCompressed() -> String {
         var data = Data()
         data += coin.wifPrefix
         data += raw
         data += UInt8(0x01)
+        data += data.doubleSHA256.prefix(4)
+        return Base58.encode(data)
+    }
+    
+    public func wifUncompressed() -> String {
+        var data = Data()
+        data += coin.wifPrefix
+        data += raw
         data += data.doubleSHA256.prefix(4)
         return Base58.encode(data)
     }
@@ -70,7 +94,7 @@ public struct PrivateKey {
         case .bitcoin: fallthrough
         case .litecoin: fallthrough
         case .bitcoinCash:
-            return self.wif()
+            return self.wifCompressed()
         case .ethereum:
             return self.raw.toHexString()
         }
