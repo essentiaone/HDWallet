@@ -15,8 +15,6 @@ class KeystoreTests: XCTestCase {
         let data = Data("abandon amount liar amount expire adjust cage candy arch gather drum buyer".utf8)
         let passwordData =  Data("qwertyui".utf8)
         let keystore = try! KeystoreV3(data: data, passwordData: passwordData)
-        let encodedData = (try? keystore?.encodedData())!
-        print((encodedData! as NSData).description)
         XCTAssertEqual(keystore?.keystoreParams?.crypto.cipher, "aes-128-ctr")
         XCTAssertEqual(keystore?.keystoreParams?.crypto.kdf, "scrypt")
         XCTAssertEqual(keystore?.keystoreParams?.crypto.kdfparams.r, 8)

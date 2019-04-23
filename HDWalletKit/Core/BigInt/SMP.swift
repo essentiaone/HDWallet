@@ -929,7 +929,7 @@ fileprivate extension String {
         var multiplier = BInt(1)
         
         for char in number.reversed() {
-            if let digit = chars.index(of: char) {
+            if let digit = chars.firstIndex(of: char) {
                 precondition(digit < from)
                 
                 sum += digit * multiplier

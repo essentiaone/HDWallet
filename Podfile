@@ -3,7 +3,7 @@ use_frameworks!
 
 target 'HDWalletKit' do
     pod 'secp256k1.swift', '~> 0.1.4'
-    pod 'CryptoSwift', '~> 0.11'
+    pod 'CryptoSwift', '~> 1.0.0'
 
     target 'HDWalletKit_Tests' do
         inherit! :search_paths
