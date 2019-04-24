@@ -30,15 +30,17 @@ public final class Crypto {
     }
     
     public static func generatePublicKey(data: Data, compressed: Bool) -> Data {
-        return ECDSA.secp256k1.generatePublicKey(with: data, isCompressed: compressed)
+        let encrypter = EllipticCurveEncrypterSecp256k1()
+        var publicKey = encrypter.createPublicKey(privateKey: data)
+        return encrypter.export(publicKey: &publicKey, compressed: compressed)
     }
     
     public static func sha3keccak256(data:Data) -> Data {
-        return Data(bytes: SHA3(variant: .keccak256).calculate(for: data.bytes))
+        return Data(SHA3(variant: .keccak256).calculate(for: data.bytes))
     }
     
     public static func hashSHA3_256(_ data: Data) -> Data {
-        return Data(bytes: CryptoSwift.SHA3(variant: .sha256).calculate(for: data.bytes))
+        return Data(CryptoSwift.SHA3(variant: .sha256).calculate(for: data.bytes))
     }
     
     public static func sign(_ hash: Data, privateKey: Data) throws -> Data {

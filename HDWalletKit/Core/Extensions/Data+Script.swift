@@ -72,7 +72,9 @@ extension Data {
     }
     
     func to<T>(type: T.Type) -> T {
-        return self.withUnsafeBytes { $0.pointee }
+        return self.withUnsafeBytes { (ptr) -> T in
+            return ptr.baseAddress!.assumingMemoryBound(to: T.self).pointee
+        }
     }
     
     func to(type: String.Type) -> String {
