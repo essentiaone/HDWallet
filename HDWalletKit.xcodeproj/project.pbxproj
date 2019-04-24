@@ -16,6 +16,8 @@
 		345639CA226F0CF000ED17DA /* RIPEMD160Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345639C9226F0CF000ED17DA /* RIPEMD160Tests.swift */; };
 		345639CC226F42A500ED17DA /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 345639CB226F42A500ED17DA /* CryptoSwift.framework */; };
 		345639D0226F58BD00ED17DA /* Secp256k1Tets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345639CF226F58BD00ED17DA /* Secp256k1Tets.swift */; };
+		345B813222675002000E3460 /* UtxoPrivateKeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B813122675002000E3460 /* UtxoPrivateKeyType.swift */; };
+		345B81342268A649000E3460 /* PrivateKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345B81332268A649000E3460 /* PrivateKeyTests.swift */; };
 		34753F79216E76B70025E0F4 /* WeiEthterConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34753F78216E76B70025E0F4 /* WeiEthterConverter.swift */; };
 		34753F7B216E78430025E0F4 /* ConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34753F7A216E78430025E0F4 /* ConverterTests.swift */; };
 		348C10E721D68A2600295370 /* UnspendTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348C10E621D68A2600295370 /* UnspendTransaction.swift */; };
@@ -213,6 +215,8 @@
 		345639CB226F42A500ED17DA /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		345639CD226F42BC00ED17DA /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		345639CF226F58BD00ED17DA /* Secp256k1Tets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secp256k1Tets.swift; sourceTree = "<group>"; };
+		345B813122675002000E3460 /* UtxoPrivateKeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtxoPrivateKeyType.swift; sourceTree = "<group>"; };
+		345B81332268A649000E3460 /* PrivateKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyTests.swift; sourceTree = "<group>"; };
 		34753F78216E76B70025E0F4 /* WeiEthterConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeiEthterConverter.swift; sourceTree = "<group>"; };
 		34753F7A216E78430025E0F4 /* ConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTests.swift; sourceTree = "<group>"; };
 		348C10E621D68A2600295370 /* UnspendTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnspendTransaction.swift; sourceTree = "<group>"; };
@@ -658,6 +662,7 @@
 				348C10E121D642CB00295370 /* Bitcoin */,
 				34C9B1C721E5087900198EAF /* Transaction.swift */,
 				34D9CF2F221C361D00B3A625 /* UTXOWallet.swift */,
+				345B813122675002000E3460 /* UtxoPrivateKeyType.swift */,
 			);
 			path = UTXOBased;
 			sourceTree = "<group>";
@@ -816,6 +821,7 @@
 				34753F7A216E78430025E0F4 /* ConverterTests.swift */,
 				345639C9226F0CF000ED17DA /* RIPEMD160Tests.swift */,
 				345639CF226F58BD00ED17DA /* Secp256k1Tets.swift */,
+				345B81332268A649000E3460 /* PrivateKeyTests.swift */,
 			);
 			path = HDWalletKit_Tests;
 			sourceTree = "<group>";
@@ -1182,6 +1188,7 @@
 				34C9B1B621E2AE6700198EAF /* BigNumber.swift in Sources */,
 				3492213A20F64D9B00A59A6F /* Base58Encode.swift in Sources */,
 				34D9CC442209BFAF00B3A625 /* Bech32.swift in Sources */,
+				345B813222675002000E3460 /* UtxoPrivateKeyType.swift in Sources */,
 				34D9CF39221C3AC100B3A625 /* UtxoTransactionSignerInterface.swift in Sources */,
 				3492213520F64D9B00A59A6F /* Crypto.swift in Sources */,
 				34A532322158E66900B95C66 /* ERC20.swift in Sources */,
@@ -1262,6 +1269,7 @@
 				34A532342158E96C00B95C66 /* ERC20Tests.swift in Sources */,
 				345639D0226F58BD00ED17DA /* Secp256k1Tets.swift in Sources */,
 				344167EC212CC100008B8A91 /* KeystoreTests.swift in Sources */,
+				345B81342268A649000E3460 /* PrivateKeyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

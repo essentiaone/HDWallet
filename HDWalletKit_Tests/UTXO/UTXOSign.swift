@@ -12,7 +12,7 @@ import XCTest
 
 class UTXOSign: XCTestCase {
     func testBitcoinSign() {
-        let pk = PrivateKey(pk: "L5GgBH1U8PuNuzCQGvvEH3udEXCEuJaiK96e88romhpGa1cU7JTY", coin: .bitcoin)
+        let pk = PrivateKey(pk: "L5GgBH1U8PuNuzCQGvvEH3udEXCEuJaiK96e88romhpGa1cU7JTY", coin: .bitcoin)!
         let lockingScript: Data = Data(hex: "76a914e42a54ba2042e889461c7966ac6ba13eeb144a3f88ac")
         let txidData: Data = Data(hex: "9ced8296cf15e67295a99aa0389229e27eae571436925db587665ba02210bcf3")
         let txHash: Data = Data(txidData.reversed())
@@ -30,7 +30,7 @@ class UTXOSign: XCTestCase {
     }
     
     func testRawTransactionCration() {
-        let pk = PrivateKey(pk: "L5VqJYoBWVKwe3icNjSGz5maPmAaSm32TEjPdxMNyix8groNubU8", coin: .bitcoin)
+        let pk = PrivateKey(pk: "L5VqJYoBWVKwe3icNjSGz5maPmAaSm32TEjPdxMNyix8groNubU8", coin: .bitcoin)!
         print(pk.publicKey.address)
     }
 }
