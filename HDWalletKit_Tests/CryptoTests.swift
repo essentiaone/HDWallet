@@ -85,7 +85,7 @@ class CryptoTests: XCTestCase {
     }
     
     func testCreatePublicKey() {
-        let pk = PrivateKey(pk: "L5GgBH1U8PuNuzCQGvvEH3udEXCEuJaiK96e88romhpGa1cU7JTY", coin: .bitcoin)
+        let pk = PrivateKey(pk: "L5GgBH1U8PuNuzCQGvvEH3udEXCEuJaiK96e88romhpGa1cU7JTY", coin: .bitcoin)!
         let publicKey = Crypto.generatePublicKey(data: pk.raw, compressed: true)
         XCTAssertEqual(publicKey.toHexString(), "0346a4129884b46fdb7f7977c6e90ed4c367af343494f3ff5272db721752d28ef3")
     }
