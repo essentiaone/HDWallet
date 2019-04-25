@@ -87,18 +87,20 @@ public struct ScriptChunkHelper {
             guard offset + MemoryLayout.size(ofValue: dataLength) <= count else {
                 throw ScriptChunkError.error("Parse DataChunk failed. OP_PUSHDATA1 error")
             }
-            _ = scriptData.withUnsafeBytes {
-                memcpy(&dataLength, $0 + offset + MemoryLayout.size(ofValue: opcode), MemoryLayout.size(ofValue: dataLength))
-            }
+            _ = scriptData.withUnsafeBytes({ (pointer) -> Void in
+                guard let baseAddress = pointer.baseAddress else { return }
+                memcpy(&dataLength, baseAddress + offset + MemoryLayout.size(ofValue: opcode), MemoryLayout.size(ofValue: dataLength))
+            })
             chunkLength = MemoryLayout.size(ofValue: opcode) + MemoryLayout.size(ofValue: dataLength) + Int(dataLength)
         case OpCode.OP_PUSHDATA2.value:
             var dataLength = UInt16()
             guard offset + MemoryLayout.size(ofValue: dataLength) <= count else {
                 throw ScriptChunkError.error("Parse DataChunk failed.  OP_PUSHDATA2 error")
             }
-            _ = scriptData.withUnsafeBytes {
-                memcpy(&dataLength, $0 + offset + MemoryLayout.size(ofValue: opcode), MemoryLayout.size(ofValue: dataLength))
-            }
+            _ = scriptData.withUnsafeBytes({ (pointer) -> Void in
+                guard let baseAddress = pointer.baseAddress else { return }
+                memcpy(&dataLength, baseAddress + offset + MemoryLayout.size(ofValue: opcode), MemoryLayout.size(ofValue: dataLength))
+            })
             dataLength = CFSwapInt16LittleToHost(dataLength)
             chunkLength = MemoryLayout.size(ofValue: opcode) + MemoryLayout.size(ofValue: dataLength) + Int(dataLength)
         case OpCode.OP_PUSHDATA4.value:
@@ -106,9 +108,10 @@ public struct ScriptChunkHelper {
             guard offset + MemoryLayout.size(ofValue: dataLength) <= count else {
                 throw ScriptChunkError.error("Parse DataChunk failed.  OP_PUSHDATA4 error")
             }
-            _ = scriptData.withUnsafeBytes {
-                memcpy(&dataLength, $0 + offset + MemoryLayout.size(ofValue: opcode), MemoryLayout.size(ofValue: dataLength))
-            }
+            _ = scriptData.withUnsafeBytes({ (pointer) -> Void in
+                guard let baseAddress = pointer.baseAddress else { return }
+                memcpy(&dataLength, baseAddress + offset + MemoryLayout.size(ofValue: opcode), MemoryLayout.size(ofValue: dataLength))
+            })
             dataLength = CFSwapInt32LittleToHost(dataLength) // CoreBitcoin uses CFSwapInt16LittleToHost(dataLength)
             chunkLength = MemoryLayout.size(ofValue: opcode) + MemoryLayout.size(ofValue: dataLength) + Int(dataLength)
         default:

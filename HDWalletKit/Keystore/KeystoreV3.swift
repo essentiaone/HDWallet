@@ -102,7 +102,7 @@ public class KeystoreV3: KeystoreInterface {
         let IV = Data.randomBytes(length: 16)
         let aesCipher = try? AES(key: encryptionKey.bytes, blockMode: CTR(iv: IV.bytes), padding: .noPadding)
         guard let encryptedKey = try aesCipher?.encrypt(data.bytes) else { throw KeystoreError.aesError }
-        let encryptedKeyData = Data(bytes:encryptedKey)
+        let encryptedKeyData = Data(encryptedKey)
         var dataForMAC = Data()
         dataForMAC.append(last16bytes)
         dataForMAC.append(encryptedKeyData)

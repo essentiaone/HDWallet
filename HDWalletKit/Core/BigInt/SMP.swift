@@ -422,10 +422,6 @@ ExpressibleByFloatLiteral {
         return (self.sign, self.limbs)
     }
     
-    public var hashValue: Int {
-        return "\(self.sign)\(self.limbs)".hashValue
-    }
-    
     ///    A Boolean value indicating whether this type is a signed integer type.
     public static var isSigned: Bool {
         return true
@@ -463,7 +459,8 @@ ExpressibleByFloatLiteral {
         guard byteCount > 0 else { return Data()}
         
         var data = Data(count: byteCount)
-        data.withUnsafeMutableBytes { (p: UnsafeMutablePointer<UInt8>) -> Void in
+        data.withUnsafeMutableBytes { (pointer) -> Void in
+            let p = pointer.bindMemory(to: UInt8.self)
             var i = byteCount - 1
             for var word in words {
                 for _ in 0 ..< UInt.bitWidth / 8 {
@@ -929,7 +926,7 @@ fileprivate extension String {
         var multiplier = BInt(1)
         
         for char in number.reversed() {
-            if let digit = chars.index(of: char) {
+            if let digit = chars.firstIndex(of: char) {
                 precondition(digit < from)
                 
                 sum += digit * multiplier
