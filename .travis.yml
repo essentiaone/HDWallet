@@ -1,7 +1,7 @@
 language: 
   - objective-c
 osx_image: 
-  - xcode10.2
+  - xcode10.2.1
 before_install:
    - pod cache clean --all    
    - pod update
