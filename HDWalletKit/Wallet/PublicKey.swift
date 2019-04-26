@@ -24,6 +24,7 @@ public struct PublicKey {
         switch coin {
         case .bitcoin: fallthrough
         case .bitcoinCash: fallthrough
+        case .dash: fallthrough
         case .litecoin:
             return generateBtcAddress()
         case .ethereum:

@@ -13,6 +13,7 @@ public enum Coin {
     case ethereum
     case litecoin
     case bitcoinCash
+    case dash
     
     //https://github.com/satoshilabs/slips/blob/master/slip-0132.md
     public var privateKeyVersion: UInt32 {
@@ -21,28 +22,21 @@ public enum Coin {
             return 0x019D9CFE
         case .bitcoin:
             return 0x0488ADE4
+        case .dash:
+            return 0x02FE52CC
         default:
             return 0x0488ADE4
         }
     }
-    
-    public var publicKeyVersion: UInt32 {
-        switch self {
-        case .litecoin:
-            return 0x019DA462
-        case .bitcoin:
-            return 0x0488B21E
-        default:
-            return 0x0488B21E
-        }
-    }
-    
+    // P2PKH
     public var publicKeyHash: UInt8 {
         switch self {
         case .litecoin:
             return 0x30
         case .bitcoin:
             return 0x00
+        case .dash:
+            return 0x4C
         default:
             return 0x00
         }
@@ -55,17 +49,8 @@ public enum Coin {
             return 0xB0
         case .bitcoin:
             return 0x80
-        default:
-            return 0x80
-        }
-    }
-    
-    public var scripthash: UInt8 {
-        switch self {
-        case .litecoin:
-            return 0xB0
-        case .bitcoin:
-            return 0x80
+        case .dash:
+            return 0xCC
         default:
             return 0x80
         }
@@ -91,6 +76,8 @@ public enum Coin {
             return 0
         case .litecoin:
             return 2
+        case .dash:
+            return 5
         case .ethereum:
             return 60
         case .bitcoinCash:
@@ -106,6 +93,8 @@ public enum Coin {
             return "litecoin"
         case .bitcoinCash:
             return "bitcoincash"
+        case .dash:
+            return "dash"
         default: return ""
         }
     }

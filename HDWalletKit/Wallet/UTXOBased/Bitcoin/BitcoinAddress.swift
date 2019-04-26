@@ -68,8 +68,6 @@ public struct LegacyAddress: Address {
         switch addressPrefix {
         case coin.publicKeyHash:
             type = .pubkeyHash
-        case coin.scripthash:
-            type = .scriptHash
         case coin.wifPrefix:
             type = .wif
         default:
@@ -86,8 +84,8 @@ public struct LegacyAddress: Address {
         case .pubkeyHash:
             let payload = Data([coin.publicKeyHash]) + self.data
             self.cashaddr = Bech32.encode(payload, prefix: coin.scheme)
-        case .scriptHash:
-            let payload = Data([coin.scripthash]) + self.data
+        case .wif:
+            let payload = Data([coin.wifPrefix]) + self.data
             self.cashaddr = Bech32.encode(payload, prefix: coin.scheme)
         default:
             self.cashaddr = ""
@@ -152,7 +150,7 @@ public struct Cashaddr: Address {
             base58 = publicKeyHashToAddress(Data([coin.publicKeyHash]) + data)
         case .scriptHash:
             type = .scriptHash
-            base58 = publicKeyHashToAddress(Data([coin.scripthash]) + data)
+            base58 = publicKeyHashToAddress(Data([coin.wifPrefix]) + data)
         }
     }
 }
