@@ -100,6 +100,28 @@ class AddressGenerationTests: XCTestCase {
         XCTAssertEqual(forthAddress, "LcZoNSHLQc1XGjMLy6PdqE8PtphMbRPCQ3")
     }
     
+    func testDashAddressGeneration() {
+        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
+        let mnemonic = Mnemonic.create(entropy: entropy)
+        let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+        let wallet = Wallet(seed: seed, coin: .dash)
+        
+        let firstAccount = wallet.generateAccount(at: 0)
+        XCTAssertEqual(firstAccount.address, "Xud1fZjupDuhndpYtTquDPmSWmehtEbxhy")
+        XCTAssertEqual(firstAccount.rawPublicKey, "02f1dfce053d0a9aadb8f63ab4490ac84b33ad018c62dbabb9ff2352fe62fc4619")
+        XCTAssertEqual(firstAccount.rawPrivateKey, "XCHbiHeTfzwhryHEZTp3ojAM1nYpKwL575ieLLv7s4q1f5ZEm1vP")
+        
+        let secondAddress = wallet.generateAddress(at: 1)
+        XCTAssertEqual(secondAddress, "XbATV62bhk2P1Vkroc1QXX3vqJuSxvvDta")
+        
+        let thirdAddress = wallet.generateAddress(at: 2)
+        XCTAssertEqual(thirdAddress, "XoWa4HnW9u8fWQHaAPH9YirPcUZVVEdMMk")
+        
+        let forthAddress = wallet.generateAddress(at: 3)
+        XCTAssertEqual(forthAddress, "XnckifVkTXKkSQf3k7LKPVYaVfycuXQhZ6")
+    }
+    
+    
     func testBitcoinCashAddressGeneration() {
         let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
         let mnemonic = Mnemonic.create(entropy: entropy)
@@ -154,12 +176,11 @@ class AddressGenerationTests: XCTestCase {
         XCTAssertEqual(privateKey?.publicKey.address, "LV8fThzQw45HT6bCgs1yfvLNzv4aFvjJt1")
     }
     
-//    func testBitcoinCashAddressFromPrivateKeyGeneration() {
-//        let privateKey = PrivateKey(pk: "KwgDcj2ZDN5vzRXsTv1F6vzQV7nx7shEYjFBcWng1sH6Fy9rhK2b", coin: .bitcoinCash)
-//        XCTAssertEqual(privateKey?.publicKey.address, "1FYh9oXWbAzgcX3hPSrRWUodYWt87bMmne")
-//    }
-//    
-    
+    func testDashAddressFromPrivateKeyGeneration() {
+        let privateKey = PrivateKey(pk: "XJV6uhBJu5tu34hjKK2x28t9kpMUmPH4vC9xU4RDA62Yz8oKsKac", coin: .dash)
+        XCTAssertEqual(privateKey?.publicKey.address, "Xqe9L4R81MhQE4MX3w38zhAJyQSSiZLZXy")
+        
+    }
     
     func bip44PrivateKey(coin: Coin , from: PrivateKey) -> PrivateKey {
         let bip44Purpose:UInt32 = 44
