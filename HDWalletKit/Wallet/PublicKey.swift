@@ -51,6 +51,13 @@ public struct PublicKey {
         return Base58.encode(prefix + payload + checksum)
     }
     
+    func generateCashAddress() -> String {
+        let prefix = Data([coin.publicKeyHash])
+        let publicKey = getPublicKey(compressed: true)
+        let payload = RIPEMD160.hash(publicKey.sha256())
+        return Bech32.encode(prefix + payload, prefix: coin.scheme)
+    }
+    
     func generateEthAddress() -> String {
         let publicKey = getPublicKey(compressed: false)
         let formattedData = (Data(hex: coin.addressPrefix) + publicKey).dropFirst()

@@ -42,15 +42,6 @@ public struct LegacyAddress: Address {
     
     public typealias Base58Check = String
     
-    public init(data: Data, type: AddressType, coin: Coin, base58: String, bech32: String, publicKey: Data?) {
-        self.data = data
-        self.type = type
-        self.coin = coin
-        self.base58 = base58
-        self.cashaddr = bech32
-        self.publicKey = publicKey
-    }
-    
     public init(_ base58: Base58Check, coin: Coin) throws {
         guard let raw = Base58.decode(base58) else {
             throw AddressError.invalid
@@ -68,7 +59,7 @@ public struct LegacyAddress: Address {
         switch addressPrefix {
         case coin.publicKeyHash:
             type = .pubkeyHash
-        case coin.wifPrefix:
+        case coin.wifAddressPrefix:
             type = .wif
         default:
             throw AddressError.invalidVersionByte
@@ -85,7 +76,7 @@ public struct LegacyAddress: Address {
             let payload = Data([coin.publicKeyHash]) + self.data
             self.cashaddr = Bech32.encode(payload, prefix: coin.scheme)
         case .wif:
-            let payload = Data([coin.wifPrefix]) + self.data
+            let payload = Data([coin.wifAddressPrefix]) + self.data
             self.cashaddr = Bech32.encode(payload, prefix: coin.scheme)
         default:
             self.cashaddr = ""
@@ -103,67 +94,4 @@ extension LegacyAddress: CustomStringConvertible {
     public var description: String {
         return base58
     }
-}
-
-public struct Cashaddr: Address {
-    public let coin: Coin
-    public let type: AddressType
-    public let data: Data
-    public let base58: String
-    public let cashaddr: CashaddrWithScheme
-    public let publicKey: Data?
-    
-    public typealias CashaddrWithScheme = String
-    
-    public init(data: Data, type: AddressType, coin: Coin, base58: String, bech32: CashaddrWithScheme, publicKey: Data?) {
-        self.data = data
-        self.type = type
-        self.coin = coin
-        self.base58 = base58
-        self.cashaddr = bech32
-        self.publicKey = publicKey
-    }
-    
-    public init(_ cashaddr: CashaddrWithScheme, coin: Coin) throws {
-        guard let decoded = Bech32.decode(cashaddr) else {
-            throw AddressError.invalid
-        }
-        let raw = decoded.data
-        self.cashaddr = cashaddr
-        self.publicKey = nil
-        self.coin = coin
-        
-        let versionByte = raw[0]
-        let hash = raw.dropFirst()
-        
-        guard hash.count == VersionByte.getSize(from: versionByte) else {
-            throw AddressError.invalidVersionByte
-        }
-        self.data = hash
-        guard let typeBits = VersionByte.TypeBits(rawValue: (versionByte & 0b01111000)) else {
-            throw AddressError.invalidVersionByte
-        }
-        
-        switch typeBits {
-        case .pubkeyHash:
-            type = .pubkeyHash
-            base58 = publicKeyHashToAddress(Data([coin.publicKeyHash]) + data)
-        case .scriptHash:
-            type = .scriptHash
-            base58 = publicKeyHashToAddress(Data([coin.wifPrefix]) + data)
-        }
-    }
-}
-
-
-extension Cashaddr: CustomStringConvertible {
-    public var description: String {
-        return cashaddr
-    }
-}
-
-func publicKeyHashToAddress(_ hash: Data) -> String {
-    let checksum =  hash.doubleSHA256.prefix(4)
-    let address = Base58.encode(hash + checksum)
-    return address
 }

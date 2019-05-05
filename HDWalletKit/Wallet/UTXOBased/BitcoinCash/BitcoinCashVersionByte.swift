@@ -1,5 +1,5 @@
 //
-//  VersionByte.swift
+//  BitcoinCashVersionByte.swift
 //  HDWalletKit
 //
 //  Created by Pavlo Boiko on 1/8/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class VersionByte {
+public class BitcoinCashVersionByte {
     static let pubkeyHash160: UInt8 = PubkeyHash160().bytes
     static let scriptHash160: UInt8 = ScriptHash160().bytes
     var bytes: UInt8 {
@@ -62,11 +62,11 @@ public class VersionByte {
     }
 }
 
-public class PubkeyHash160: VersionByte {
+public class PubkeyHash160: BitcoinCashVersionByte {
     public override var size: SizeBits { return .size160 }
     public override var type: TypeBits { return .pubkeyHash }
 }
-public class ScriptHash160: VersionByte {
+public class ScriptHash160: BitcoinCashVersionByte {
     public override var size: SizeBits { return .size160 }
     public override var type: TypeBits { return .scriptHash }
 }
