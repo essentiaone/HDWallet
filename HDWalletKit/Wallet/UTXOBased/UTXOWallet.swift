@@ -17,7 +17,7 @@ final public class UTXOWallet {
     
     public convenience init(privateKey: PrivateKey) {
         switch privateKey.coin {
-        case .bitcoin, .litecoin, .dash:
+        case .bitcoin, .litecoin, .dash, .bitcoinCash:
             self.init(privateKey: privateKey,
                       utxoSelector: UtxoSelector(),
                       utxoTransactionBuilder: UtxoTransactionBuilder(),
