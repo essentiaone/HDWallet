@@ -37,7 +37,7 @@ class AddressGenerationTests: XCTestCase {
         )
         
         XCTAssertEqual(
-            firstPrivateKey.publicKey.getPublicKey(compressed: true).toHexString(),
+            firstPrivateKey.publicKey.compressedPublicKey.toHexString(),
             "03ce9b978595558053580d557ff40f9f99a4f1a7609c25268863ee64de7e4abbda"
         )
     }

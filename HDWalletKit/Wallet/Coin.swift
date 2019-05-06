@@ -20,7 +20,8 @@ public enum Coin {
         switch self {
         case .litecoin:
             return 0x019D9CFE
-        case .bitcoin, .bitcoinCash:
+        case .bitcoinCash: fallthrough
+        case .bitcoin:
             return 0x0488ADE4
         case .dash:
             return 0x02FE52CC
@@ -33,7 +34,8 @@ public enum Coin {
         switch self {
         case .litecoin:
             return 0x30
-        case .bitcoin, .bitcoinCash:
+        case .bitcoinCash: fallthrough
+        case .bitcoin:
             return 0x00
         case .dash:
             return 0x4C
@@ -45,7 +47,8 @@ public enum Coin {
     // P2SH
     public var scriptHash: UInt8 {
         switch self {
-        case .bitcoinCash, .bitcoin:
+        case .bitcoinCash: fallthrough
+        case .bitcoin:
             return 0x05
         default:
             fatalError("Not implemented")
@@ -55,7 +58,8 @@ public enum Coin {
     //https://www.reddit.com/r/litecoin/comments/6vc8tc/how_do_i_convert_a_raw_private_key_to_wif_for/
     public var wifAddressPrefix: UInt8 {
         switch self {
-        case .bitcoin, .bitcoinCash:
+        case .bitcoinCash: fallthrough
+        case .bitcoin:
             return 0x80
         case .litecoin:
             return 0xB0

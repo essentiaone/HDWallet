@@ -18,7 +18,6 @@ public protocol AddressProtocol {
     var coin: Coin { get }
     var type: AddressType { get }
     var data: Data { get }
-    var publicKey: Data? { get }
     
     var base58: String { get }
     var cashaddr: String { get }
@@ -38,7 +37,6 @@ public struct LegacyAddress: Address {
     public let data: Data
     public let base58: Base58Check
     public let cashaddr: String
-    public let publicKey: Data?
     
     public typealias Base58Check = String
     
@@ -66,7 +64,6 @@ public struct LegacyAddress: Address {
         }
         
         self.type = type
-        self.publicKey = nil
         self.data = pubKeyHash.dropFirst()
         self.base58 = base58
         
@@ -81,17 +78,5 @@ public struct LegacyAddress: Address {
         default:
             self.cashaddr = ""
         }
-    }
-}
-
-extension LegacyAddress: Equatable {
-    public static func == (lhs: LegacyAddress, rhs: LegacyAddress) -> Bool {
-        return lhs.coin == rhs.coin && lhs.data == rhs.data && lhs.type == rhs.type
-    }
-}
-
-extension LegacyAddress: CustomStringConvertible {
-    public var description: String {
-        return base58
     }
 }

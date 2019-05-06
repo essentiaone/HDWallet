@@ -8,13 +8,12 @@
 
 import Foundation
 
-public struct Cashaddr: Address {
+public struct BitcoinCashAddress: Address {
     public let coin: Coin
     public let type: AddressType
     public let data: Data
     public let base58: String
     public let cashaddr: String
-    public let publicKey: Data?
     
     public init(_ cashaddr: String) throws {
         guard let decoded = Bech32.decode(cashaddr) else {
@@ -23,7 +22,6 @@ public struct Cashaddr: Address {
         
         let raw = decoded.data
         self.cashaddr = cashaddr
-        self.publicKey = nil
         self.coin = .bitcoinCash
         
         let versionByte = raw[0]
