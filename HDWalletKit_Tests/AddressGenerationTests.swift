@@ -37,7 +37,7 @@ class AddressGenerationTests: XCTestCase {
         )
         
         XCTAssertEqual(
-            firstPrivateKey.publicKey.getPublicKey(compressed: true).toHexString(),
+            firstPrivateKey.publicKey.compressedPublicKey.toHexString(),
             "03ce9b978595558053580d557ff40f9f99a4f1a7609c25268863ee64de7e4abbda"
         )
     }
@@ -130,17 +130,25 @@ class AddressGenerationTests: XCTestCase {
         
         let firstAccount = wallet.generateAccount(at: 0)
         XCTAssertEqual(firstAccount.address, "1FYh9oXWbAzgcX3hPSrRWUodYWt87bMmne")
+        XCTAssertEqual(firstAccount.privateKey.publicKey.generateCashAddress(),
+                       "bitcoincash:qz0eqtpupzxvx5h2u93tew8mq4qtglyhzyjdq3ezw0")
         XCTAssertEqual(firstAccount.rawPublicKey, "030f6c58f37ffe1bf56dd79fac07f339f44d96efaa3d78e1f32fadd41dcd0b7bbc")
         XCTAssertEqual(firstAccount.rawPrivateKey, "KwgDcj2ZDN5vzRXsTv1F6vzQV7nx7shEYjFBcWng1sH6Fy9rhK2b")
         
-        let secondAddress = wallet.generateAddress(at: 1)
-        XCTAssertEqual(secondAddress, "19Q2M5swtorWmL9ZdhtaxBFFuhUuBr9z1Q")
+        let secondAccount = wallet.generateAccount(at: 1)
+        XCTAssertEqual(secondAccount.address, "19Q2M5swtorWmL9ZdhtaxBFFuhUuBr9z1Q")
+        XCTAssertEqual(secondAccount.privateKey.publicKey.generateCashAddress(),
+                       "bitcoincash:qpwphvnuxqxxg9z9m4f7vkuyrzu5twjasqyfxl5x3g")
         
-        let thirdAddress = wallet.generateAddress(at: 2)
-        XCTAssertEqual(thirdAddress, "1QDAX8eZXMjVdZxMzHyXr81uWu9ZDWd9vR")
+        let thirdAccount = wallet.generateAccount(at: 2)
+        XCTAssertEqual(thirdAccount.address, "1QDAX8eZXMjVdZxMzHyXr81uWu9ZDWd9vR")
+        XCTAssertEqual(thirdAccount.privateKey.publicKey.generateCashAddress(),
+                       "bitcoincash:qrlf04xqfxaum4w7dsk7s8q5utulazggfunjpz7tes")
         
-        let forthAddress = wallet.generateAddress(at: 3)
-        XCTAssertEqual(forthAddress, "1Jgjm6m4ETPGezaoTBdJCJV7RCjDRR9Ddf")
+        let forthAccount = wallet.generateAccount(at: 3)
+        XCTAssertEqual(forthAccount.address, "1Jgjm6m4ETPGezaoTBdJCJV7RCjDRR9Ddf")
+        XCTAssertEqual(forthAccount.privateKey.publicKey.generateCashAddress(),
+                       "bitcoincash:qrqlur3v8zl500w8k5lkas4re7d70zmxtqnqp5htct")
     }
     
     func testBitcoinMainNetAccountGeneration() {
@@ -166,6 +174,12 @@ class AddressGenerationTests: XCTestCase {
         XCTAssertEqual(privateKey?.publicKey.address, "128BCBZndgrPXzEgF4QbVR3jnQGwzRtEz5")
     }
     
+    func testBitcoinCashFromPrivateKeyGeneration() {
+        let privateKey = PrivateKey(pk: "L1a13jus2Tm8rbcJX3TMenNPCtMBD19jB4krpsfCk5mmDoZZSAft", coin: .bitcoinCash)
+        XCTAssertEqual(privateKey?.publicKey.address, "19Q2M5swtorWmL9ZdhtaxBFFuhUuBr9z1Q")
+        XCTAssertEqual(privateKey?.publicKey.generateCashAddress(), "bitcoincash:qpwphvnuxqxxg9z9m4f7vkuyrzu5twjasqyfxl5x3g")
+    }
+    
     func testEthereumAddressFromPrivateKeyGeneration() {
         let privateKey = PrivateKey(pk: "df02cbea58239744a8a6ba328056309ae43f86fec6db45e5f782adcf38aacadf", coin: .ethereum)
         XCTAssertEqual(privateKey?.publicKey.address, "0x83f1caAdaBeEC2945b73087F803d404F054Cc2B7")
@@ -179,7 +193,7 @@ class AddressGenerationTests: XCTestCase {
     func testDashAddressFromPrivateKeyGeneration() {
         let privateKey = PrivateKey(pk: "XJV6uhBJu5tu34hjKK2x28t9kpMUmPH4vC9xU4RDA62Yz8oKsKac", coin: .dash)
         XCTAssertEqual(privateKey?.publicKey.address, "Xqe9L4R81MhQE4MX3w38zhAJyQSSiZLZXy")
-        
+        XCTAssertEqual(privateKey?.publicKey.address, "Xqe9L4R81MhQE4MX3w38zhAJyQSSiZLZXy")
     }
     
     func bip44PrivateKey(coin: Coin , from: PrivateKey) -> PrivateKey {

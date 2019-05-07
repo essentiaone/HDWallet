@@ -40,7 +40,7 @@ public struct ScriptFactory {
 public extension ScriptFactory.Standard {
     static func buildP2PK(publickey: PublicKey) -> Script? {
         return try? Script()
-            .appendData(publickey.rawPrivateKey)
+            .appendData(publickey.data)
             .append(.OP_CHECKSIG)
     }
 

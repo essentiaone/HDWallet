@@ -29,6 +29,25 @@ class UTXOSign: XCTestCase {
         }
     }
     
+    func testBitcoinCashSign() {
+        let pk = PrivateKey(pk: "KwgDcj2ZDN5vzRXsTv1F6vzQV7nx7shEYjFBcWng1sH6Fy9rhK2b", coin: .bitcoinCash)!
+        let lockingScript: Data = Data(hex: "76a914e42a54ba2042e889461c7966ac6ba13eeb144a3f88ac")
+        let txidData: Data = Data(hex: "9ced8296cf15e67295a99aa0389229e27eae571436925db587665ba02210bcf3")
+        let txHash: Data = Data(txidData.reversed())
+        let output = TransactionOutput(value: 524839, lockingScript: lockingScript)
+        let outpoint = TransactionOutPoint(hash: txHash, index: 352337565)
+        let utxo = UnspentTransaction(output: output, outpoint: outpoint)
+        let address = try! BitcoinCashAddress("bitcoincash:qpwphvnuxqxxg9z9m4f7vkuyrzu5twjasqyfxl5x3g")
+        let utxoWallet = UTXOWallet(privateKey: pk)
+        do {
+            let signedTx = try utxoWallet.createTransaction(to: address, amount: 10000, utxos: [utxo])
+            XCTAssertEqual(signedTx, "0100000001f3bc1022a05b6687b55d92361457ae7ee2299238a09aa99572e615cf9682ed9c9d3e00156b48304502210099c98b61d22ae2282dc8e9d2fe66ac97f53ed62bbe895229525b2627ef5c528102200ed46feb869c99082bedc1f60c6eee0468fd58a707eb33f37e3016ad2fd8124f0121030f6c58f37ffe1bf56dd79fac07f339f44d96efaa3d78e1f32fadd41dcd0b7bbcffffffff0210270000000000001976a9145c1bb27c300c641445dd53e65b8418b945ba5d8088ac35da0700000000001976a9149f902c3c088cc352eae162bcb8fb0540b47c971188ac00000000")
+        } catch {
+            print(error)
+        }
+    }
+    
+    
     func testDashSign() {
         let pk = PrivateKey(pk: "XJpB8Kdaws3YzzS4dfLBhoUmyrzMkVp3KxKg1deiHk9dnLwZYPcA", coin: .dash)!
         let lockingScript: Data = Data(hex: "76a914e42a54ba2042e889461c7966ac6ba13eeb144a3f88ac")

@@ -3,7 +3,7 @@ language:
 osx_image: 
   - xcode10.2.1
 before_install:
-   - pod cache clean --all    
+   - gem update cocoapods --pre
    - pod update
 install:
 - gem install xcpretty-travis-formatter

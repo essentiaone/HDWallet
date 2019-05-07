@@ -74,7 +74,7 @@ public struct PrivateKey {
     
     public func wifCompressed() -> String {
         var data = Data()
-        data += coin.wifPrefix
+        data += coin.wifAddressPrefix
         data += raw
         data += UInt8(0x01)
         data += data.doubleSHA256.prefix(4)
@@ -83,7 +83,7 @@ public struct PrivateKey {
     
     public func wifUncompressed() -> String {
         var data = Data()
-        data += coin.wifPrefix
+        data += coin.wifAddressPrefix
         data += raw
         data += data.doubleSHA256.prefix(4)
         return Base58.encode(data)
