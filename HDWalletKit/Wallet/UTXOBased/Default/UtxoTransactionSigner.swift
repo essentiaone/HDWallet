@@ -21,10 +21,10 @@ public struct UtxoTransactionSigner: UtxoTransactionSignerInterface {
         
         // Sign
         signingInputs = unsignedTransaction.tx.inputs
-        let hashType = SighashType.BTC.ALL
+        let hashType = SighashType.hashTypeForCoin(coin: key.coin)
         for (i, utxo) in unsignedTransaction.utxos.enumerated() {
             // Sign transaction hash
-            let sighash: Data = signingTransaction.signatureHash(for: utxo.output, inputIndex: i, hashType: SighashType.BTC.ALL)
+            let sighash: Data = signingTransaction.signatureHash(for: utxo.output, inputIndex: i, hashType: hashType)
             let signature: Data = try ECDSA.sign(sighash, privateKey: key.raw)
             let txin = signingInputs[i]
             let pubkey = key.publicKey

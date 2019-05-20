@@ -59,6 +59,8 @@ public struct LegacyAddress: Address {
             type = .pubkeyHash
         case coin.wifAddressPrefix:
             type = .wif
+        case coin.scriptHash:
+            type = .scriptHash
         default:
             throw AddressError.invalidVersionByte
         }

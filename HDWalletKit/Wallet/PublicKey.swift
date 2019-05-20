@@ -33,12 +33,11 @@ public struct PublicKey {
         switch coin {
         case .bitcoin: fallthrough
         case .dash: fallthrough
+        case .bitcoinCash: fallthrough
         case .litecoin:
             return generateBtcAddress()
         case .ethereum:
             return generateEthAddress()
-        case .bitcoinCash:
-            return generateCashAddress()
         }
     }
     

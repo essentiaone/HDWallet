@@ -59,6 +59,15 @@ public struct SighashType {
         public static let NONE_ANYONECANPAY: SighashType = SighashType(SIGHASH_NONE + SIGHASH_ANYONECANPAY) // 10000010
         public static let SINGLE_ANYONECANPAY: SighashType = SighashType(SIGHASH_SINGLE + SIGHASH_ANYONECANPAY) // 10000011
     }
+    
+    static func hashTypeForCoin(coin: Coin) -> SighashType {
+        switch coin {
+        case .bitcoinCash:
+            return BCH.ALL
+        default:
+            return BTC.ALL
+        }
+    }
 }
 
 extension UInt8 {

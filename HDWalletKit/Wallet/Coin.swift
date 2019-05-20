@@ -48,8 +48,11 @@ public enum Coin {
     public var scriptHash: UInt8 {
         switch self {
         case .bitcoinCash: fallthrough
+        case .litecoin: fallthrough
         case .bitcoin:
             return 0x05
+        case .dash:
+            return 0x10
         default:
             fatalError("Not implemented")
         }
