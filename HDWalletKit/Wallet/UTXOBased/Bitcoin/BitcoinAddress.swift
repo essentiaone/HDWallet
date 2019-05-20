@@ -55,12 +55,12 @@ public struct LegacyAddress: Address {
         let type: AddressType
         let addressPrefix = pubKeyHash[0]
         switch addressPrefix {
-        case coin.scriptHash:
-            type = .scriptHash
         case coin.publicKeyHash:
             type = .pubkeyHash
         case coin.wifAddressPrefix:
             type = .wif
+        case coin.scriptHash:
+            type = .scriptHash
         default:
             throw AddressError.invalidVersionByte
         }
