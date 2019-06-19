@@ -34,6 +34,7 @@ public struct PublicKey {
         case .bitcoin: fallthrough
         case .dash: fallthrough
         case .bitcoinCash: fallthrough
+        case .essentia: fallthrough
         case .litecoin:
             return generateBtcAddress()
         case .ethereum:
@@ -43,7 +44,7 @@ public struct PublicKey {
     
     public var utxoAddress: Address {
         switch coin {
-        case .bitcoin, .litecoin, .dash, .bitcoinCash:
+        case .bitcoin, .litecoin, .dash, .bitcoinCash, .essentia:
             return try! LegacyAddress(address, coin: coin)
         case .ethereum:
             fatalError("Coin does not support UTXO address")

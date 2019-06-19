@@ -14,6 +14,7 @@ public enum Coin {
     case litecoin
     case bitcoinCash
     case dash
+    case essentia
     
     //https://github.com/satoshilabs/slips/blob/master/slip-0132.md
     public var privateKeyVersion: UInt32 {
@@ -25,6 +26,8 @@ public enum Coin {
             return 0x0488ADE4
         case .dash:
             return 0x02FE52CC
+        case .essentia:
+            return 0x0221312b
         default:
             fatalError("Not implemented")
         }
@@ -39,6 +42,8 @@ public enum Coin {
             return 0x00
         case .dash:
             return 0x4C
+        case .essentia:
+            return 0x1e
         default:
             fatalError("Not implemented")
         }
@@ -53,6 +58,8 @@ public enum Coin {
             return 0x05
         case .dash:
             return 0x10
+        case .essentia:
+            return 0x0d
         default:
             fatalError("Not implemented")
         }
@@ -68,6 +75,8 @@ public enum Coin {
             return 0xB0
         case .dash:
             return 0xCC
+        case .essentia:
+            return 0xd4
         default:
             fatalError("Not implemented")
         }
@@ -99,6 +108,8 @@ public enum Coin {
             return 60
         case .bitcoinCash:
             return 145
+        case .essentia:
+            return 11111
         }
     }
     
@@ -112,6 +123,8 @@ public enum Coin {
             return "bitcoincash"
         case .dash:
             return "dash"
+        case .essentia:
+            return "essentia"
         default: return ""
         }
     }
