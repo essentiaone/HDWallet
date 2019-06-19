@@ -7,7 +7,7 @@
 # HDWalletKit
 HDWalletKit is a Swift framwork that enables you to create and use bitcoin HD wallet ([Hierarchical Deterministic Wallets](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)) in your own app.
 <p>
-<img src="https://clogos.essdev.info/64x64/bitcoin.png" >  <img src="https://clogos.essdev.info/64x64/bitcoin-cash.png" >  <img src="https://clogos.essdev.info/64x64/litecoin.png" > <img src="https://clogos.essdev.info/64x64/dash.png" > <img src="https://clogos.essdev.info/64x64/ethereum.png" > <img src="https://clogos.essdev.info/64x64/erc20.png" >
+<img src="https://clogos.essdev.info/64x64/essentia.png" >  <img src="https://clogos.essdev.info/64x64/bitcoin.png" >  <img src="https://clogos.essdev.info/64x64/bitcoin-cash.png" >  <img src="https://clogos.essdev.info/64x64/litecoin.png" > <img src="https://clogos.essdev.info/64x64/dash.png" > <img src="https://clogos.essdev.info/64x64/ethereum.png" > <img src="https://clogos.essdev.info/64x64/erc20.png" >
 </p>
 You can check if the address generation is working right [here](https://iancoleman.io/bip39/).
 
