@@ -169,6 +169,27 @@ class AddressGenerationTests: XCTestCase {
         
     }
     
+    func testEssentiaAddressGeneration() {
+        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
+        let mnemonic = Mnemonic.create(entropy: entropy)
+        let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+        let wallet = Wallet(seed: seed, coin: .essentia)
+        
+        let firstAccount = wallet.generateAccount(at: 0)
+        XCTAssertEqual(firstAccount.address, "DNzrSF4PEfC4pVdrhNdhz9fy8e8A7zubPF")
+        XCTAssertEqual(firstAccount.rawPublicKey, "02567f4a520d2974bd3da15346331b8c49778463e2d57a283b42530e4700906c8b")
+        XCTAssertEqual(firstAccount.rawPrivateKey, "YWNsomfysfAXszQgGHG5cRFutJ7fdRY7fPbQJDwis7gLQc1keb5G")
+        
+        let secondAddress = wallet.generateAddress(at: 1)
+        XCTAssertEqual(secondAddress, "DKnzyoFZfREjsJZhRCsaP7VJfJNrAqYYtt")
+        
+        let thirdAddress = wallet.generateAddress(at: 2)
+        XCTAssertEqual(thirdAddress, "DE6Z8NhDExUbgoHNC5zv6VnPbZivSM5kch")
+        
+        let forthAddress = wallet.generateAddress(at: 3)
+        XCTAssertEqual(forthAddress, "DACjj5NUvsNx63E2bxkbZiyMQLvoAxbg6g")
+    }
+    
     func testBitcoinAddressFromPrivateKeyGeneration() {
         let privateKey = PrivateKey(pk: "L35qaFLpbCc9yCzeTuWJg4qWnTs9BaLr5CDYcnJ5UnGmgLo8JBgk", coin: .bitcoin)
         XCTAssertEqual(privateKey?.publicKey.address, "128BCBZndgrPXzEgF4QbVR3jnQGwzRtEz5")
@@ -193,7 +214,11 @@ class AddressGenerationTests: XCTestCase {
     func testDashAddressFromPrivateKeyGeneration() {
         let privateKey = PrivateKey(pk: "XJV6uhBJu5tu34hjKK2x28t9kpMUmPH4vC9xU4RDA62Yz8oKsKac", coin: .dash)
         XCTAssertEqual(privateKey?.publicKey.address, "Xqe9L4R81MhQE4MX3w38zhAJyQSSiZLZXy")
-        XCTAssertEqual(privateKey?.publicKey.address, "Xqe9L4R81MhQE4MX3w38zhAJyQSSiZLZXy")
+    }
+    
+    func testEssentiaAddressFromPrivateKeyGeneration() {
+        let privateKey = PrivateKey(pk: "YWNsomfysfAXszQgGHG5cRFutJ7fdRY7fPbQJDwis7gLQc1keb5G", coin: .essentia)
+        XCTAssertEqual(privateKey?.publicKey.address, "DNzrSF4PEfC4pVdrhNdhz9fy8e8A7zubPF")
     }
     
     func bip44PrivateKey(coin: Coin , from: PrivateKey) -> PrivateKey {
