@@ -38,6 +38,8 @@ public struct PublicKey {
             return generateBtcAddress()
         case .ethereum:
             return generateEthAddress()
+        case .topnetwork:
+            return generateTopAddress()
         }
     }
     
@@ -45,7 +47,7 @@ public struct PublicKey {
         switch coin {
         case .bitcoin, .litecoin, .dash, .bitcoinCash:
             return try! LegacyAddress(address, coin: coin)
-        case .ethereum:
+        case .ethereum,.topnetwork:
             fatalError("Coin does not support UTXO address")
         }
     }
@@ -67,6 +69,13 @@ public struct PublicKey {
         let formattedData = (Data(hex: coin.addressPrefix) + uncompressedPublicKey).dropFirst()
         let addressData = Crypto.sha3keccak256(data: formattedData).suffix(20)
         return coin.addressPrefix + EIP55.encode(addressData)
+    }
+    
+    func generateTopAddress() -> String {
+        let prefix = Data([coin.publicKeyHash])
+        let payload = RIPEMD160.hash(uncompressedPublicKey.sha256())
+        let checksum = (prefix + payload).doubleSHA256.prefix(4)
+        return "T-0-" + Base58.encode(prefix + payload + checksum)
     }
     
     public func get() -> String {

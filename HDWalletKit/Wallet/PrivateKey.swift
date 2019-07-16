@@ -98,6 +98,8 @@ public struct PrivateKey {
             return self.wifCompressed()
         case .ethereum:
             return self.raw.toHexString()
+        case .topnetwork:
+            return self.raw.toHexString()
         }
     }
     

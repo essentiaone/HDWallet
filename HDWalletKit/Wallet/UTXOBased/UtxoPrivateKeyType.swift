@@ -33,7 +33,7 @@ public enum UtxoPrivateKeyType {
             case .wifUncompressed:
                 return "^6[uv][1-9A-HJ-NP-Za-km-z]{49}"
             }
-        case .ethereum:
+        case .ethereum,.topnetwork:
             return "^\\p{XDigit}+$"
         case .bitcoinCash:
             switch self {

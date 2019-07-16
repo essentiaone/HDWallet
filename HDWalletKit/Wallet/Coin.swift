@@ -14,7 +14,8 @@ public enum Coin {
     case litecoin
     case bitcoinCash
     case dash
-    
+    case topnetwork
+
     //https://github.com/satoshilabs/slips/blob/master/slip-0132.md
     public var privateKeyVersion: UInt32 {
         switch self {
@@ -39,6 +40,8 @@ public enum Coin {
             return 0x00
         case .dash:
             return 0x4C
+        case .topnetwork:
+            return 0x00
         default:
             fatalError("Not implemented")
         }
@@ -99,6 +102,8 @@ public enum Coin {
             return 60
         case .bitcoinCash:
             return 145
+        case .topnetwork:
+            return 0
         }
     }
     
