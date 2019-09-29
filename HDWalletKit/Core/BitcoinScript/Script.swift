@@ -451,10 +451,13 @@ public class Script {
 extension Script {
     // Standard Transaction to Bitcoin address (pay-to-pubkey-hash)
     // scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
-    public static func buildPublicKeyHashOut(pubKeyHash: Data) -> Data {
-        let tmp: Data = Data() + OpCode.OP_DUP + OpCode.OP_HASH160 + UInt8(pubKeyHash.count) + pubKeyHash + OpCode.OP_EQUALVERIFY
-        return tmp + OpCode.OP_CHECKSIG
-    }
+    
+    //Fix：Xcode11 not support
+    
+//    public static func buildPublicKeyHashOut(pubKeyHash: Data) -> Data {
+//        let tmp: Data = Data() + OpCode.OP_DUP + OpCode.OP_HASH160 + UInt8(pubKeyHash.count) + pubKeyHash + OpCode.OP_EQUALVERIFY
+//        return tmp + OpCode.OP_CHECKSIG
+//    }
 
     public static func buildPublicKeyUnlockingScript(signature: Data, pubkey: PublicKey, hashType: SighashType) -> Data {
         var data: Data = Data([UInt8(signature.count + 1)]) + signature + UInt8(hashType)
