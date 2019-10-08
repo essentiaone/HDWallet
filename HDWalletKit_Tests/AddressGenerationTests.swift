@@ -126,15 +126,20 @@ class AddressGenerationTests: XCTestCase {
         let mnemonic = Mnemonic.create(entropy: entropy)
         let seed = Mnemonic.createSeed(mnemonic: mnemonic)
         let wallet = Wallet(seed: seed, coin: .dogecoin)
-        let accounts = wallet.generateAccounts(count: 30)
-        for account in accounts {
-            print(account.address)
-            print(account.privateKey.wifCompressed())
-            print(account.privateKey.wifUncompressed())
-            print("==============\n")
-        }
-        let pk = PrivateKey(pk: "QRgjyPP6vpxrfFJz9He7kMnBzKXACicAdaPCtGvEKBYby5pudjS5", coin: .dogecoin)
-        XCTAssertEqual(pk?.publicKey.address, "DGWtWhVMMU4xRWXq21NxZNN9P4yhvjixic")
+        
+        let firstAccount = wallet.generateAccount(at: 0)
+        XCTAssertEqual(firstAccount.address, "DSsPuTmCThdr1qkgJ49K1mHskypbi2LTrS")
+        XCTAssertEqual(firstAccount.rawPublicKey, "0372caf38ff987350d04a24cad8436b3c9337d9bc0ebab2a39682d621c34ddc99b")
+        XCTAssertEqual(firstAccount.rawPrivateKey, "6KJYQ2MeVTWDA7gA9YCGn2GpHwe4679QY874nLmp6U1jjHgDnHg")
+        
+        let secondAddress = wallet.generateAddress(at: 1)
+        XCTAssertEqual(secondAddress, "DCvD62aLgZSuAvSxbFPyyLaaSHjFNAmDye")
+        
+        let thirdAddress = wallet.generateAddress(at: 2)
+        XCTAssertEqual(thirdAddress, "DRa2dkLbiezQ23ubYbjUwgJRZff1GHpT7p")
+        
+        let forthAddress = wallet.generateAddress(at: 3)
+        XCTAssertEqual(forthAddress, "D99a5gvcaWxy5fugLymc629j8bBX33KPo9")
     }
     
     
