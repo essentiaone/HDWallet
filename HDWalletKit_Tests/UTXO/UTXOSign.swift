@@ -37,11 +37,11 @@ class UTXOSign: XCTestCase {
         let output = TransactionOutput(value: 524839, lockingScript: lockingScript)
         let outpoint = TransactionOutPoint(hash: txHash, index: 352337565)
         let utxo = UnspentTransaction(output: output, outpoint: outpoint)
-        let address = try! BitcoinCashAddress("bitcoincash:qpwphvnuxqxxg9z9m4f7vkuyrzu5twjasqyfxl5x3g")
+        let address = try! LegacyAddress("1HLqrFX5fYwKriU7LRKMQGhwpz5HuszjnK", coin: .bitcoinCash)
         let utxoWallet = UTXOWallet(privateKey: pk)
         do {
             let signedTx = try utxoWallet.createTransaction(to: address, amount: 10000, utxos: [utxo])
-            XCTAssertEqual(signedTx, "0100000001f3bc1022a05b6687b55d92361457ae7ee2299238a09aa99572e615cf9682ed9c9d3e00156a47304402201d46b49cb17ea71d3a63e3d92f5d7c33a3a0d68b3f7ba2d10b410c5afb15a9d7022019e1bc12767eabfac90216055baca546a85c42fc16c842297f0fba4910784aee4121030f6c58f37ffe1bf56dd79fac07f339f44d96efaa3d78e1f32fadd41dcd0b7bbcffffffff0210270000000000001976a9145c1bb27c300c641445dd53e65b8418b945ba5d8088ac35da0700000000001976a9149f902c3c088cc352eae162bcb8fb0540b47c971188ac00000000")
+            XCTAssertEqual(signedTx, "0100000001f3bc1022a05b6687b55d92361457ae7ee2299238a09aa99572e615cf9682ed9c9d3e00156a473044022013373441cc4521f4c4d89b454520ebedaebe4e035b5e1f9575886f1eaad4e91302200af1062f4c4e8c0633b9e3570f1d399af3f04d5ca5806bb9d62a162dfba9a2b64121030f6c58f37ffe1bf56dd79fac07f339f44d96efaa3d78e1f32fadd41dcd0b7bbcffffffff0210270000000000001976a914b342b16a24dffc3be74ccf202e418fc22c271cbd88ac35da0700000000001976a9149f902c3c088cc352eae162bcb8fb0540b47c971188ac00000000")
         } catch {
             print(error)
         }

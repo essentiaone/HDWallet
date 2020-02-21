@@ -53,6 +53,15 @@ public enum UtxoPrivateKeyType {
             case .wifUncompressed:
                 return "^7[rs][1-9A-HJ-NP-Za-km-z]{49}"
             }
+        case .dogecoin:
+            switch self {
+            case .hex:
+                return "^\\p{XDigit}+$"
+            case .wifCompressed:
+                return "[Q][1-9A-HJ-NP-Za-km-z]{51}"
+            case .wifUncompressed:
+                return "^6[LKJ][1-9A-HJ-NP-Za-km-z]{49}"
+            }
         }
     }
     
