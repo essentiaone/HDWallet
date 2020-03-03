@@ -453,8 +453,8 @@ extension Script {
     // scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
     public static func buildPublicKeyHashOut(pubKeyHash: Data) -> Data {
         let tmp: Data = Data() + OpCode.OP_DUP + OpCode.OP_HASH160 + UInt8(pubKeyHash.count) + pubKeyHash
-        return tmp + OpCode.OP_EQUALVERIFY + OpCode.OP_CHECKSIG
-
+        let anotherTmp = tmp +  OpCode.OP_EQUALVERIFY
+        return anotherTmp + OpCode.OP_CHECKSIG
     }
 
     public static func buildPublicKeyUnlockingScript(signature: Data, pubkey: PublicKey, hashType: SighashType) -> Data {
