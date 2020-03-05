@@ -98,4 +98,15 @@ class CryptoTests: XCTestCase {
         let receive = account.derived(at: .notHardened(0))
         return receive
     }
+
+     func testPublickKeyHashOutFromPubKeyHash() {
+        let expected = "76a9210392030131e97b2a396691a7c1d91f6b5541649b75bda14d056797ab3cadcaf2f588ac"
+        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
+        let mnemonic = Mnemonic.create(entropy: entropy)
+        let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+        let privateKey = PrivateKey(seed: seed, coin: .bitcoin)
+        let publicKey = privateKey.publicKey.data
+        let hash = Script.buildPublicKeyHashOut(pubKeyHash: publicKey)
+        XCTAssertEqual(hash.toHexString(), expected)
+    }
 }
