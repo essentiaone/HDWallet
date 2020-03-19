@@ -121,6 +121,27 @@ class AddressGenerationTests: XCTestCase {
         XCTAssertEqual(forthAddress, "XnckifVkTXKkSQf3k7LKPVYaVfycuXQhZ6")
     }
     
+    func testDogecoinAddressGeneration() {
+        let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
+        let mnemonic = Mnemonic.create(entropy: entropy)
+        let seed = Mnemonic.createSeed(mnemonic: mnemonic)
+        let wallet = Wallet(seed: seed, coin: .dogecoin)
+        
+        let firstAccount = wallet.generateAccount(at: 0)
+        XCTAssertEqual(firstAccount.address, "DSsPuTmCThdr1qkgJ49K1mHskypbi2LTrS")
+        XCTAssertEqual(firstAccount.rawPublicKey, "0372caf38ff987350d04a24cad8436b3c9337d9bc0ebab2a39682d621c34ddc99b")
+        XCTAssertEqual(firstAccount.rawPrivateKey, "6KJYQ2MeVTWDA7gA9YCGn2GpHwe4679QY874nLmp6U1jjHgDnHg")
+        
+        let secondAddress = wallet.generateAddress(at: 1)
+        XCTAssertEqual(secondAddress, "DCvD62aLgZSuAvSxbFPyyLaaSHjFNAmDye")
+        
+        let thirdAddress = wallet.generateAddress(at: 2)
+        XCTAssertEqual(thirdAddress, "DRa2dkLbiezQ23ubYbjUwgJRZff1GHpT7p")
+        
+        let forthAddress = wallet.generateAddress(at: 3)
+        XCTAssertEqual(forthAddress, "D99a5gvcaWxy5fugLymc629j8bBX33KPo9")
+    }
+    
     
     func testBitcoinCashAddressGeneration() {
         let entropy = Data(hex: "000102030405060708090a0b0c0d0e0f")
