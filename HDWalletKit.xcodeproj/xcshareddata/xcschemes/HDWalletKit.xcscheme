@@ -28,9 +28,17 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3492214620F64E0300A59A6F"
+               BuildableName = "HDWalletKit_Tests.xctest"
+               BlueprintName = "HDWalletKit_Tests"
+               ReferencedContainer = "container:HDWalletKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -51,8 +59,6 @@
             ReferencedContainer = "container:HDWalletKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
