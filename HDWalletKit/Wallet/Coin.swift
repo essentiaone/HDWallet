@@ -58,6 +58,7 @@ public enum Coin {
         switch self {
         case .bitcoinCash: fallthrough
         case .litecoin: fallthrough
+        case .topnetwork: fallthrough
         case .bitcoin:
             return 0x05
         case .dash:
@@ -75,6 +76,7 @@ public enum Coin {
         case .dogecoin:
             return 0x9E
         case .bitcoinCash: fallthrough
+        case .topnetwork: fallthrough
         case .bitcoin:
             return 0x80
         case .litecoin:
@@ -90,6 +92,8 @@ public enum Coin {
         switch self {
         case .ethereum:
             return "0x"
+        case .topnetwork:
+            return "T-0-"
         default:
             return ""
         }
@@ -114,12 +118,14 @@ public enum Coin {
         case .bitcoinCash:
             return 145
         case .topnetwork:
-            return 0
+            return 0 //主链暂未申请
         }
     }
 
     public var scheme: String {
         switch self {
+        case .topnetwork:
+            return "topnetwork"
         case .bitcoin:
             return "bitcoin"
         case .litecoin:
