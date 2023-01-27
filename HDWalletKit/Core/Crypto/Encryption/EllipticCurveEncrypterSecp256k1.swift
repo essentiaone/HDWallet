@@ -8,7 +8,7 @@
 
 import secp256k1
 import CryptoSwift
-
+import Foundation
 public class EllipticCurveEncrypterSecp256k1 {
     // holds internal state of the c library
     private let context: OpaquePointer

@@ -1,5 +1,5 @@
 import CryptoSwift
-
+import Foundation
 public struct EIP155Signer {
     
     public init(chainId: Int) {
