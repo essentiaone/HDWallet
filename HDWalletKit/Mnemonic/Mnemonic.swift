@@ -6,7 +6,7 @@
 //  Copyright © 2018 yuzushioh. All rights reserved.
 //
 import Foundation
-
+import Bip39
 // https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki
 public final class Mnemonic {
     public enum Strength: Int {
@@ -44,7 +44,14 @@ public final class Mnemonic {
         
         return mnemonic.joined(separator: " ")
     }
-    
+
+    public static func createEntropy(mnemonic: String, language: WordList = .english) -> Data? {
+        let mnemonic = try! Mnemonic(mnemonic: mnemonic.components(separatedBy: " "))
+        print("Entropy: ", mnemonic.entropy)
+        let entropy = Data(mnemonic.entropy)
+        return entropy
+    }
+
     public static func createSeed(mnemonic: String, withPassphrase passphrase: String = "") -> Data {
         guard let password = mnemonic.decomposedStringWithCompatibilityMapping.data(using: .utf8) else {
             fatalError("Nomalizing password failed in \(self)")
