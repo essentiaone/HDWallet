@@ -88,8 +88,8 @@ print(decoded)
 ```swift
 let mnemonic = Mnemonic.create()
 let seed = Mnemonic.createSeed(mnemonic: mnemonic)
-let network: Network = .main(.bitcoin)
-let wallet = Wallet(seed: seed, network: network)
+let coin : Coin = .ethereum
+let wallet = Wallet(seed: seed, coin: coin)
 let account = wallet.generateAccount()
 print(account)
 ```

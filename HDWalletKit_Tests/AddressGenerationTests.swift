@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Foundation
 @testable import HDWalletKit
 
 class AddressGenerationTests: XCTestCase {

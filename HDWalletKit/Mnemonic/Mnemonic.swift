@@ -19,7 +19,13 @@ public final class Mnemonic {
         let bytes = Data.randomBytes(length: byteCount)
         return create(entropy: bytes, language: language)
     }
-    
+
+    public static func createEntropy(strength: Strength = .normal) -> Data {
+        let byteCount = strength.rawValue / 8
+        let bytes = Data.randomBytes(length: byteCount)
+        return bytes
+    }
+
     public static func create(entropy: Data, language: WordList = .english) -> String {
         let entropybits = String(entropy.flatMap { ("00000000" + String($0, radix: 2)).suffix(8) })
         let hashBits = String(entropy.sha256().flatMap { ("00000000" + String($0, radix: 2)).suffix(8) })
