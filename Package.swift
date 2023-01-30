@@ -17,15 +17,15 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "1.4.0"),
         .package(url: "https://github.com/Boilertalk/secp256k1.swift.git", from: "0.1.7"),
-        .package(url: "https://github.com/tesseract-one/Bip39.swift.git", from: "0.1.0")
+        .package(url: "https://github.com/tesseract-one/Bip39.swift.git", from: "0.1.1")
     ],
     targets: [
         .target(
             name: "HDWalletKit",
             dependencies: [
                 "CryptoSwift",
-                .product(name: "Bip39", package: "Bip39.swift"),
-                .product(name: "secp256k1", package: "secp256k1.swift")
+                .product(name: "secp256k1", package: "secp256k1.swift"),
+                .product(name: "Bip39", package: "Bip39.swift")
             ],
             path: "HDWalletKit",
             sources: ["Core",
